@@ -11,7 +11,8 @@
     <link rel="preload" href="assets/fonts/libre-baskerville-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/libre-baskerville-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="assets/css/fonts.css">
-    <!-- <link rel="stylesheet" href="assets/css/styles.css"> -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    
 </head>
 
 <body>
@@ -38,7 +39,7 @@
                     <p class="kicker kicker-gold"><span></span> Portal de Roraima</p>
                     <h1>Onde o<br><em>Brasil</em><br>começa.</h1>
                     <p>Um convite para descobrir paisagens ancestrais, histórias que atravessam fronteiras e a cultura viva do extremo norte.</p>
-                    <p class="hero-actions"><a class="button button-gold" href="#experiencias">Comece a explorar <span aria-hidden="true">→</span></a><a class="text-link" href="#historia"><span aria-hidden="true">▣</span> &nbsp; Ler a história</a></p>
+                    <div class="hero-actions"><a class="button button-gold" href="#experiencias">Comece a explorar <span aria-hidden="true">→</span></a><a class="text-link" href="#historia"><span aria-hidden="true">▣</span> &nbsp; Ler a história</a></div>
                 </header>
                 <div class="hero-visual reveal delay-1">
                     <span class="hero-stamp" aria-hidden="true">✦
@@ -103,7 +104,7 @@
             <div class="container territory-grid">
                 <figure class="territory-photo"><img src="assets/img/orla-taumanan-boa-vista.webp" alt="Orla Taumanan em Boa Vista" width="960" height="960" loading="lazy" decoding="async">
                     <span class="round-note" aria-hidden="true">céu<br>aberto<br>todo dia</span><figcaption class="photo-label"><span aria-hidden="true">⌖</span> BOA VISTA<strong>Cidade-jardim do norte</strong></figcaption></figure>
-                <div>
+                <div class="territory-content">
                     <p class="kicker"><span aria-hidden="true">≈</span> Um território raro</p>
                     <h2>O norte que<br><em>surpreende.</em></h2>
                     <p class="lead">Aqui, a Amazônia encontra o lavrado, a serra encontra o céu e três fronteiras se encontram no mesmo horizonte. Roraima é pequeno no mapa, mas gigante nas possibilidades.</p>
@@ -141,12 +142,16 @@
                         </hgroup>
                     </article>
                     <article class="culture-box ochre"><b aria-hidden="true">♨</b>
-                        <h3>Sabores<br><em>do lavrado</em></h3>
-                        <p>Damurida, caxiri, peixes dos rios e ingredientes que só o norte explica.</p>
+                        <div class="culture-box-text">
+                            <h3>Sabores<br><em>do lavrado</em></h3>
+                            <p>Damurida, caxiri, peixes dos rios e ingredientes que só o norte explica.</p>
+                        </div>
                     </article>
                     <article class="culture-box dark"><b aria-hidden="true">◷</b>
-                        <h3>Festas<br><em>e encontros</em></h3>
-                        <p>Do boi-bumbá às celebrações indígenas, o calendário pulsa o ano inteiro.</p>
+                        <div class="culture-box-text">
+                            <h3>Festas<br><em>e encontros</em></h3>
+                            <p>Do boi-bumbá às celebrações indígenas, o calendário pulsa o ano inteiro.</p>
+                        </div>
                     </article>
                 </div>
             </div>
@@ -195,42 +200,42 @@
                 <ul class="municipality-grid" id="municipality-grid">
                     <li>
                         <article>
-                            <span>URBANO</span><small>Capital</small>
+                            <div class="municipality-tags"><span>URBANO</span><small>Capital</small></div>
                             <h3>Boa Vista</h3>
                             <p>Orla Taumanan · centro histórico</p>
                         </article>
                     </li>
                     <li>
                         <article>
-                            <span>AVENTURA</span><small>Norte</small>
+                            <div class="municipality-tags"><span>AVENTURA</span><small>Norte</small></div>
                             <h3>Pacaraima</h3>
                             <p>Monte Roraima · fronteira</p>
                         </article>
                     </li>
                     <li>
                         <article>
-                            <span>NATUREZA</span><small>Norte</small>
+                            <div class="municipality-tags"><span>NATUREZA</span><small>Norte</small></div>
                             <h3>Uiramutã</h3>
                             <p>Cachoeiras · serras · Makunaima</p>
                         </article>
                     </li>
                     <li>
                         <article>
-                            <span>NATUREZA</span><small>Norte</small>
+                            <div class="municipality-tags"><span>NATUREZA</span><small>Norte</small></div>
                             <h3>Amajari</h3>
                             <p>Trilhas · lavrados · comunidades</p>
                         </article>
                     </li>
                     <li>
                         <article>
-                            <span>RIOS</span><small>Centro-Sul</small>
+                            <div class="municipality-tags"><span>RIOS</span><small>Centro-Sul</small></div>
                             <h3>Caracaraí</h3>
                             <p>Rio Branco · pesca · floresta</p>
                         </article>
                     </li>
                     <li>
                         <article>
-                            <span>FLORESTA</span><small>Sul</small>
+                            <div class="municipality-tags"><span>FLORESTA</span><small>Sul</small></div>
                             <h3>Rorainópolis</h3>
                             <p>Portal da Amazônia · BR-174</p>
                         </article>
@@ -301,16 +306,22 @@
                 <div class="itinerary-list">
                     <ol>
                         <li><b aria-hidden="true">01</b>
-                            <h3>Chegue sentindo</h3>
-                            <p>Boa Vista, Orla Taumanan e um fim de tarde olhando o Rio Branco.</p>
+                            <div class="step-text">
+                                <h3>Chegue sentindo</h3>
+                                <p>Boa Vista, Orla Taumanan e um fim de tarde olhando o Rio Branco.</p>
+                            </div>
                         </li>
                         <li><b aria-hidden="true">02</b>
-                            <h3>Entre no lavrado</h3>
-                            <p>Paisagens abertas, comunidades e o céu enorme do norte de Roraima.</p>
+                            <div class="step-text">
+                                <h3>Entre no lavrado</h3>
+                                <p>Paisagens abertas, comunidades e o céu enorme do norte de Roraima.</p>
+                            </div>
                         </li>
                         <li><b aria-hidden="true">03</b>
-                            <h3>Suba a serra</h3>
-                            <p>Pacaraima e a porta de entrada para a experiência do Monte Roraima.</p>
+                            <div class="step-text">
+                                <h3>Suba a serra</h3>
+                                <p>Pacaraima e a porta de entrada para a experiência do Monte Roraima.</p>
+                            </div>
                         </li>
                     </ol>
                     <p class="best-time"><span aria-hidden="true">◷</span>　Melhor época: <strong>outubro a abril</strong>　· clima de aventura</p>
@@ -332,30 +343,42 @@
                     <fieldset>
                         <legend>Seus dados</legend>
                         <div class="form-row">
-                            <label for="nome">Seu nome *</label>
-                            <input id="nome" name="nome" type="text" required minlength="3" maxlength="80" pattern="[A-Za-zÀ-ÿ ]+" title="Use apenas letras e espaços (mínimo de 3 caracteres)." autocomplete="name" placeholder="Como podemos te chamar?">
-                            <label for="email">Seu e-mail *</label>
-                            <input id="email" name="email" type="email" required maxlength="120" autocomplete="email" placeholder="voce@email.com">
+                            <div class="form-field">
+                                <label for="nome">Seu nome *</label>
+                                <input id="nome" name="nome" type="text" required minlength="3" maxlength="80" pattern="[A-Za-zÀ-ÿ ]+" title="Use apenas letras e espaços (mínimo de 3 caracteres)." autocomplete="name" placeholder="Como podemos te chamar?">
+                            </div>
+                            <div class="form-field">
+                                <label for="email">Seu e-mail *</label>
+                                <input id="email" name="email" type="email" required maxlength="120" autocomplete="email" placeholder="voce@email.com">
+                            </div>
                         </div>
-                        <label for="telefone">Telefone / WhatsApp *</label>
-                        <input id="telefone" name="telefone" type="tel" required pattern="\(?\d{2}\)? ?\d{4,5}-?\d{4}" title="Informe DDD e número, por exemplo: 95 99999-9999 ou (95) 99999-9999." minlength="10" maxlength="15" autocomplete="tel" placeholder="95 99999-9999">
+                        <div class="form-field">
+                            <label for="telefone">Telefone / WhatsApp *</label>
+                            <input id="telefone" name="telefone" type="tel" required pattern="\(?\d{2}\)? ?\d{4,5}-?\d{4}" title="Informe DDD e número, por exemplo: 95 99999-9999 ou (95) 99999-9999." minlength="10" maxlength="15" autocomplete="tel" placeholder="95 99999-9999">
+                        </div>
                     </fieldset>
 
                     <fieldset>
                         <legend>Sua viagem</legend>
-                        <label for="assunto">Assunto *</label>
-                        <select id="assunto" name="assunto" required>
-                            <option value="">Selecione uma opção</option>
-                            <option value="duvida">Tenho uma dúvida</option>
-                            <option value="roteiro">Quero montar um roteiro</option>
-                            <option value="historia">Quero compartilhar uma história</option>
-                            <option value="parceria">Quero falar sobre parceria</option>
-                        </select>
+                        <div class="form-field">
+                            <label for="assunto">Assunto *</label>
+                            <select id="assunto" name="assunto" required>
+                                <option value="">Selecione uma opção</option>
+                                <option value="duvida">Tenho uma dúvida</option>
+                                <option value="roteiro">Quero montar um roteiro</option>
+                                <option value="historia">Quero compartilhar uma história</option>
+                                <option value="parceria">Quero falar sobre parceria</option>
+                            </select>
+                        </div>
                         <div class="form-row">
-                            <label for="data-viagem">Data prevista da viagem</label>
-                            <input id="data-viagem" name="data_viagem" type="date" min="2026-01-01" max="2028-12-31">
-                            <label for="pessoas">Número de pessoas</label>
-                            <input id="pessoas" name="pessoas" type="number" min="1" max="20" step="1" value="1">
+                            <div class="form-field">
+                                <label for="data-viagem">Data prevista da viagem</label>
+                                <input id="data-viagem" name="data_viagem" type="date" min="2026-01-01" max="2028-12-31">
+                            </div>
+                            <div class="form-field">
+                                <label for="pessoas">Número de pessoas</label>
+                                <input id="pessoas" name="pessoas" type="number" min="1" max="20" step="1" value="1">
+                            </div>
                         </div>
                         <fieldset class="checkbox-fieldset">
                             <legend class="checkbox-title">Interesses</legend>
@@ -370,8 +393,10 @@
 
                     <fieldset>
                         <legend>Sua mensagem</legend>
-                        <label for="mensagem">Mensagem *</label>
-                        <textarea id="mensagem" name="mensagem" required minlength="10" maxlength="1000" rows="5" placeholder="Conte um pouco mais..."></textarea>
+                        <div class="form-field">
+                            <label for="mensagem">Mensagem *</label>
+                            <textarea id="mensagem" name="mensagem" required minlength="10" maxlength="1000" rows="5" placeholder="Conte um pouco mais..."></textarea>
+                        </div>
                         <div class="checkbox-group">
                             <label for="aceite"><input id="aceite" name="aceite" type="checkbox" required> Concordo em receber uma resposta da equipe do portal *</label>
                         </div>
@@ -388,7 +413,7 @@
 
     <footer>
         <div class="container footer-top">
-            <div><a class="brand" href="#inicio"><span class="brand-mark">CR</span> <span>CONHEÇA RORAIMA</span></a>
+            <div class="footer-brand"><a class="brand" href="#inicio"><span class="brand-mark">CR</span> <span>CONHEÇA RORAIMA</span></a>
                 <p>Um portal para olhar o extremo norte com curiosidade, respeito e vontade de voltar.</p>
             </div>
             <nav aria-label="Links do rodapé">

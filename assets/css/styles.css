@@ -55,19 +55,35 @@
   /* ---- Formas (cantos arredondados) ---- */
   --raio-circulo: 50%;     /* botões redondos e marcadores circulares */
   --raio-pilula: 999px;    /* botões e etiquetas em formato de cápsula */
-  --raio-grande: 30px;     /* cards de destaque */
-  --raio-medio: 28px;
-  --raio-pequeno: 12px;
+  --raio-grande: 1.875rem;     /* cards de destaque */
+  --raio-medio: 1.75rem;
+  --raio-pequeno: .75rem;
 
   /* ---- Movimento ---- */
   --transicao: .2s;         /* hover rápido (botões, links) */
   --transicao-lenta: .7s;   /* zoom lento das fotos ao passar o mouse */
 
   /* ---- Medidas de layout ---- */
-  --largura-max: 1152px;    /* largura máxima do conteúdo */
-  --margem-lateral: 48px;   /* respiro nas bordas da tela */
-  --altura-header: 76px;    /* altura fixa do cabeçalho */
+  --largura-max: 72rem;    /* largura máxima do conteúdo */
+  --margem-lateral: 3rem;   /* respiro nas bordas da tela */
+  --altura-header: 4.75rem;    /* altura fixa do cabeçalho */
 }
+
+/* --------------------------------------------------------------------------
+   UNIDADES: px, rem ou em?
+   --------------------------------------------------------------------------
+   rem = relativo ao tamanho de fonte da RAIZ (<html>). O padrão do
+         navegador é 16px, então 1rem = 16px. Conta rápida: px ÷ 16.
+         Ex.: 24px → 1.5rem · 12px → .75rem · 48px → 3rem.
+         Vantagem: se a pessoa aumenta a fonte do navegador (acessibilidade),
+         textos E espaçamentos crescem juntos, mantendo a proporção.
+   em  = relativo à fonte do PRÓPRIO elemento. Usado nos botões: se o
+         botão ficar maior, o padding cresce junto automaticamente.
+   px  = mantido só no que deve ficar fixo: bordas finas (1px), sombras
+         e o raio "pílula" (999px), que é só um número bem grande.
+   Não mudamos o font-size do <html> de propósito: assim respeitamos a
+   preferência de tamanho de fonte de quem visita o site.
+   -------------------------------------------------------------------------- */
 
 
 /* ==========================================================================
@@ -81,6 +97,8 @@
    o padding entra para dentro da largura — muito mais fácil de prever. */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -138,9 +156,9 @@ em {
   display: inline-flex;
   margin: 0;
   align-items: center;
-  gap: 10px;
+  gap: .625rem;
   color: var(--ouro-escuro);
-  font-size: 10px;
+  font-size: .625rem;
   font-weight: var(--peso-negrito);
   letter-spacing: .22em;   /* .kicker tem umTracking próprio, mais aberto */
   text-transform: uppercase;
@@ -155,16 +173,16 @@ em {
   color: #f2cb6a;
 }
 
-/* no lugar do ícone, desenha um traço dourado de 40px */
+/* no lugar do ícone, desenha um traço dourado de 2.5rem */
 .kicker-gold > span:first-child {
-  width: 40px;
+  width: 2.5rem;
   height: 1px;
   background: currentColor;
 }
 
 /* "eyebrow" = etiqueta curta sobre o título de um card */
 .eyebrow {
-  font-size: 10px;
+  font-size: .625rem;
   font-weight: var(--peso-negrito);
   letter-spacing: var(--espacamento-letra-largo);
 }
@@ -180,7 +198,7 @@ em {
    ========================================================================== */
 
 /* O container centraliza o conteúdo e limita a largura máxima.
-   min() garante: "use 1152px, mas se a tela for menor, tire 48px de cada
+   min() garante: "use 72rem, mas se a tela for menor, tire 3rem de cada
    lado" — uma linha só, sem precisar de media query. */
 .container {
   width: min(var(--largura-max), calc(100% - var(--margem-lateral)));
@@ -188,7 +206,7 @@ em {
 }
 
 .section {
-  padding: 125px 0;   /* respiro vertical padrão entre seções */
+  padding: 7.8125rem 0;   /* respiro vertical padrão entre seções */
 }
 
 /* Cabeçalho padrão das seções: título à esquerda, texto de apoio à direita.
@@ -199,8 +217,8 @@ em {
   display: flex;
   align-items: end;
   justify-content: space-between;
-  gap: 36px;
-  margin-bottom: 50px;
+  gap: 2.25rem;
+  margin-bottom: 3.125rem;
 }
 
 /* Título grande das seções. O clamp() deixa o tamanho responsivo sozinho:
@@ -211,7 +229,7 @@ em {
 .history h2,
 .municipalities h2,
 .contact h2 {
-  margin: 17px 0 0;
+  margin: 1.0625rem 0 0;
   color: var(--verde-floresta);
   font: var(--peso-regular) clamp(3.2rem, 5.5vw, 5.6rem) /.92 var(--fonte-titulo-curta);
   letter-spacing: -.055em;
@@ -229,10 +247,10 @@ em {
 
 .section-heading > p,
 .culture-heading > p {
-  max-width: 280px;
+  max-width: 17.5rem;
   margin: 0;
   color: #54655b;
-  font-size: 14px;
+  font-size: .875rem;
   line-height: 1.65;
 }
 
@@ -247,10 +265,10 @@ em {
 .button {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 1.1em;
   border-radius: var(--raio-pilula);
-  padding: 15px 20px;
-  font-size: 11px;
+  padding: 1.35em 1.8em;   /* em: acompanha o font-size do próprio botão */
+  font-size: .6875rem;
   font-weight: var(--peso-negrito);
   text-transform: uppercase;
   letter-spacing: var(--espacamento-letra);
@@ -276,7 +294,7 @@ em {
 
 /* link de texto com seta, alternativa mais discreta ao botão */
 .text-link {
-  font-size: 11px;
+  font-size: .6875rem;
   font-weight: var(--peso-negrito);
   text-transform: uppercase;
   letter-spacing: var(--espacamento-letra);
@@ -288,11 +306,11 @@ em {
 .search {
   display: flex;
   align-items: center;
-  width: 250px;
+  width: 15.625rem;
   border: 1px solid var(--areia);
   border-radius: var(--raio-pilula);
   background: var(--creme);
-  padding: 0 14px;
+  padding: 0 .875rem;
   color: #89958b;
 }
 
@@ -301,9 +319,9 @@ em {
   border: 0;
   outline: 0;
   background: transparent;
-  padding: 12px 8px;
+  padding: .75rem .5rem;
   color: var(--verde-floresta);
-  font-size: 13px;
+  font-size: .8125rem;
 }
 
 /* Aviso flutuante (toast). Fica invisível (opacity 0) e "desliza" para
@@ -311,16 +329,16 @@ em {
 .toast {
   position: fixed;
   z-index: 30;
-  right: 22px;
-  bottom: 22px;
-  max-width: 340px;
-  transform: translateY(20px);
+  right: 1.375rem;
+  bottom: 1.375rem;
+  max-width: 21.25rem;
+  transform: translateY(1.25rem);
   opacity: 0;
   border-radius: var(--raio-pequeno);
   background: var(--verde-floresta);
   color: var(--creme);
-  padding: 15px 18px;
-  font-size: 13px;
+  padding: .9375rem 1.125rem;
+  font-size: .8125rem;
   box-shadow: 0 15px 35px rgba(0, 0, 0, .2);
   transition: .25s;
 }
@@ -347,7 +365,7 @@ em {
   background: rgba(23, 61, 50, .96);
   color: var(--creme-claro);
   border-bottom: 1px solid var(--branco-10);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(1rem);
 }
 
 .header-inner {
@@ -360,8 +378,8 @@ em {
 .brand {
   display: flex;
   align-items: center;
-  gap: 11px;
-  font-size: 11px;
+  gap: .6875rem;
+  font-size: .6875rem;
   line-height: 1.1;
   font-weight: var(--peso-negrito);
   letter-spacing: .2em;
@@ -371,8 +389,8 @@ em {
 .brand-mark {
   display: grid;
   place-items: center;   /* centraliza em uma linha e uma coluna */
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: var(--raio-circulo);
   background: var(--ouro);
   color: var(--verde-floresta);
@@ -383,8 +401,8 @@ em {
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 31px;
-  font-size: 11px;
+  gap: 1.9375rem;
+  font-size: .6875rem;
   font-weight: var(--peso-negrito);
   text-transform: uppercase;
   letter-spacing: .14em;
@@ -400,7 +418,7 @@ em {
 .main-nav a:not(.nav-cta):after {
   content: '';
   position: absolute;
-  bottom: -9px;
+  bottom: -.5625rem;
   left: 0;
   width: 100%;
   height: 1px;
@@ -418,7 +436,7 @@ em {
 .nav-cta {
   border: 1px solid var(--ouro);
   border-radius: var(--raio-pilula);
-  padding: 13px 16px;
+  padding: 1.2em 1.45em;   /* em: proporcional ao texto do menu */
   color: var(--ouro-claro);
 }
 
@@ -437,9 +455,9 @@ em {
 /* as três listras desenhadas com spans de 2px */
 .menu-toggle span {
   display: block;
-  width: 18px;
+  width: 1.125rem;
   height: 2px;
-  margin: 4px;
+  margin: .25rem;
   background: currentColor;
 }
 
@@ -450,9 +468,9 @@ em {
 
 .hero {
   position: relative;
-  min-height: 770px;
+  min-height: 48.125rem;
   /* o padding-top igual à altura do header evita que o menu cubra o texto */
-  padding: var(--altura-header) 0 52px;
+  padding: var(--altura-header) 0 3.25rem;
   overflow: hidden;
   background: var(--verde-floresta);
   color: var(--creme-claro);
@@ -486,19 +504,19 @@ em {
 .hero-grid {
   position: relative;
   z-index: 2;
-  min-height: 642px;
+  min-height: 40.125rem;
   display: grid;
   grid-template-columns: .92fr 1.08fr;
   align-items: center;
-  gap: 65px;
+  gap: 4.0625rem;
 }
 
 .hero-copy {
-  max-width: 530px;
+  max-width: 33.125rem;
 }
 
 .hero h1 {
-  margin: 27px 0 0;
+  margin: 1.6875rem 0 0;
   font-family: var(--fonte-titulo);
   font-size: clamp(4rem, 8.5vw, 7rem);
   font-weight: var(--peso-regular);
@@ -511,35 +529,35 @@ em {
 }
 
 .hero-copy > h1 + p {
-  max-width: 480px;
-  margin: 34px 0 0;
+  max-width: 30rem;
+  margin: 2.125rem 0 0;
   color: #d7e3d4;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 1.65;
 }
 
 .hero-actions {
   display: flex;
   align-items: center;
-  gap: 24px;
-  margin: 34px 0 0;
+  gap: 1.5rem;
+  margin: 2.125rem 0 0;
 }
 
 .hero-visual {
   position: relative;
-  max-width: 650px;
+  max-width: 40.625rem;
   width: 100%;
   margin-left: auto;
 }
 
-/* A foto tem três tratamentos somados: moldura de 7px, cantos arredondados
+/* A foto tem três tratamentos somados: moldura de .4375rem, cantos arredondados
    assimétricos (barriga em cima) e clip-path cortando os cantos em 45°. */
 .hero-image {
   position: relative;
   aspect-ratio: 1.08 / 1;   /* largura/altura: define a caixa sem altura fixa */
   margin: 0;
   overflow: hidden;
-  border: 7px solid rgba(245, 241, 233, .15);
+  border: .4375rem solid rgba(245, 241, 233, .15);
   border-radius: 42% 42% 10% 10%;
   box-shadow: 0 28px 80px rgba(0, 0, 0, .32);
   clip-path: polygon(7% 0, 93% 0, 100% 9%, 100% 91%, 94% 100%, 6% 100%, 0 91%, 0 9%);
@@ -566,19 +584,19 @@ em {
 .hero-image figcaption {
   position: absolute;
   z-index: 1;
-  bottom: 72px;   /* acima do selo de território, que invade a base da foto */
-  left: 35px;
-  right: 35px;
+  bottom: 4.5rem;   /* acima do selo de território, que invade a base da foto */
+  left: 2.1875rem;
+  right: 2.1875rem;
   display: flex;
   align-items: end;
   justify-content: space-between;
-  gap: 12px;
+  gap: .75rem;
 }
 
 .hero-image figcaption span,
 .territory-badge span {
   display: block;
-  font-size: 9px;
+  font-size: .5625rem;
   font-weight: var(--peso-negrito);
   letter-spacing: .2em;
   color: var(--ouro);
@@ -590,12 +608,12 @@ em {
 
 .hero-image figcaption strong {
   display: block;
-  margin-top: 4px;
-  font: italic 22px var(--fonte-titulo-curta);
+  margin-top: .25rem;
+  font: italic 1.375rem var(--fonte-titulo-curta);
 }
 
 .hero-image figcaption small {
-  font-size: 10px;
+  font-size: .625rem;
   font-weight: var(--peso-negrito);
   letter-spacing: .1em;
 }
@@ -607,13 +625,13 @@ em {
   z-index: 3;
   display: grid;
   place-items: center;
-  width: 110px;
-  height: 110px;
+  width: 6.875rem;
+  height: 6.875rem;
   border-radius: var(--raio-circulo);
   background: var(--ouro);
   color: var(--verde-floresta);
   text-align: center;
-  font-size: 13px;
+  font-size: .8125rem;
   font-weight: var(--peso-forte);
   line-height: 1.1;
   box-shadow: 0 10px 25px rgba(0, 0, 0, .18);
@@ -621,43 +639,43 @@ em {
 }
 
 .hero-stamp {
-  top: 14px;
-  right: 14px;
+  top: .875rem;
+  right: .875rem;
 }
 
 .hero-stamp small {
-  font-size: 9px;
+  font-size: .5625rem;
   letter-spacing: .08em;
 }
 
 .territory-badge {
   position: absolute;
   margin: 0;
-  bottom: -22px;
-  left: -37px;
+  bottom: -1.375rem;
+  left: -2.3125rem;
   z-index: 3;
   border: 1px solid rgba(211, 167, 69, .3);
-  border-radius: 16px;
+  border-radius: 1rem;
   background: var(--verde-medio);
-  padding: 13px 19px;
+  padding: .8125rem 1.1875rem;
   box-shadow: 0 14px 28px rgba(0, 0, 0, .16);
 }
 
 .territory-badge strong {
   display: block;
-  margin-top: 4px;
-  font: 24px var(--fonte-titulo-curta);
+  margin-top: .25rem;
+  font: 1.5rem var(--fonte-titulo-curta);
 }
 
 /* chamada para rolar a página, centralizada com translateX(-50%) */
 .scroll-cue {
   position: absolute;
   z-index: 3;
-  bottom: 14px;
+  bottom: .875rem;
   left: 50%;
   transform: translateX(-50%);
   color: var(--texto-claro-tenue);
-  font-size: 9px;
+  font-size: .5625rem;
   font-weight: var(--peso-negrito);
   text-align: center;
   letter-spacing: .3em;
@@ -665,9 +683,9 @@ em {
 
 .scroll-cue span {
   display: block;
-  margin-top: 7px;
+  margin-top: .4375rem;
   color: var(--ouro);
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 
 
@@ -684,7 +702,7 @@ em {
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  padding: 27px 0;
+  padding: 1.6875rem 0;
   list-style: none;
 }
 
@@ -692,7 +710,7 @@ em {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: .75rem;
   border-left: 1px solid var(--linha);
 }
 
@@ -703,11 +721,11 @@ em {
 
 .stats-grid strong {
   color: var(--ouro-escuro);
-  font: 30px var(--fonte-titulo-curta);
+  font: 1.875rem var(--fonte-titulo-curta);
 }
 
 .stats-grid span {
-  font-size: 9px;
+  font-size: .5625rem;
   font-weight: var(--peso-negrito);
   text-transform: uppercase;
   letter-spacing: .14em;
@@ -728,12 +746,12 @@ em {
 .experience-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 1.25rem;
 }
 
 .experience-card {
   position: relative;
-  min-height: 530px;
+  min-height: 33.125rem;
   overflow: hidden;   /* esconde a foto que passa da borda arredondada */
   border-radius: var(--raio-medio);
   background: var(--verde-floresta);
@@ -765,48 +783,48 @@ em {
 .card-number {
   position: absolute;
   z-index: 1;   /* acima do degradê */
-  top: 24px;
-  left: 24px;
+  top: 1.5rem;
+  left: 1.5rem;
   display: grid;
   place-items: center;
-  width: 37px;
-  height: 37px;
+  width: 2.3125rem;
+  height: 2.3125rem;
   border: 1px solid rgba(255, 255, 255, .3);
   border-radius: var(--raio-circulo);
-  font-size: 12px;
+  font-size: .75rem;
 }
 
 .card-content {
   position: absolute;
   z-index: 1;   /* acima do degradê */
-  right: 27px;
-  bottom: 26px;
-  left: 27px;
+  right: 1.6875rem;
+  bottom: 1.625rem;
+  left: 1.6875rem;
 }
 
 .card-content h3,
 .culture-photo h3 {
-  margin: 8px 0 0;
-  font: var(--peso-regular) 36px / 1 var(--fonte-titulo-curta);
+  margin: .5rem 0 0;
+  font: var(--peso-regular) 2.25rem / 1 var(--fonte-titulo-curta);
   letter-spacing: -.04em;
 }
 
 .card-content h3 + p {
-  max-width: 280px;
-  margin: 12px 0 0;
+  max-width: 17.5rem;
+  margin: .75rem 0 0;
   color: #d6e0d2;
-  font-size: 13px;
+  font-size: .8125rem;
   line-height: 1.55;
 }
 
 .card-meta {
   display: flex;
   justify-content: space-between;
-  margin: 19px 0 0;
-  padding-top: 14px;
+  margin: 1.1875rem 0 0;
+  padding-top: .875rem;
   border-top: 1px solid rgba(255, 255, 255, .22);
   color: #d3dfd4;
-  font-size: 10px;
+  font-size: .625rem;
   font-weight: var(--peso-negrito);
   text-transform: uppercase;
   letter-spacing: .12em;
@@ -825,16 +843,16 @@ em {
   display: grid;
   grid-template-columns: .9fr 1.1fr;
   align-items: center;
-  gap: 85px;
+  gap: 5.3125rem;
 }
 
 /* moldura: o padding cria a borda verde ao redor da foto */
 .territory-photo {
   position: relative;
-  max-width: 470px;
+  max-width: 29.375rem;
   margin: auto;
-  padding: 12px;
-  border-radius: 34px;
+  padding: .75rem;
+  border-radius: 2.125rem;
   background: var(--verde-floresta);
   box-shadow: 0 24px 55px rgba(41, 48, 33, .2);
 }
@@ -842,46 +860,46 @@ em {
 .territory-photo img {
   aspect-ratio: .95;
   object-fit: cover;
-  border-radius: 27px;
+  border-radius: 1.6875rem;
 }
 
 .photo-label {
   position: absolute;
-  left: 34px;
-  bottom: 32px;
-  padding: 11px 14px;
+  left: 2.125rem;
+  bottom: 2rem;
+  padding: .6875rem .875rem;
   border: 1px solid rgba(255, 255, 255, .2);
-  border-radius: 13px;
+  border-radius: .8125rem;
   background: rgba(23, 61, 50, .9);
   color: var(--ouro);
-  font-size: 10px;
+  font-size: .625rem;
   font-weight: var(--peso-negrito);
   letter-spacing: .15em;
 }
 
 .photo-label strong {
   display: block;
-  margin-top: 4px;
+  margin-top: .25rem;
   color: var(--creme);
-  font: 18px var(--fonte-titulo-curta);
+  font: 1.125rem var(--fonte-titulo-curta);
   letter-spacing: 0;
 }
 
 /* segundo círculo girado, menor que o do hero */
 .round-note {
-  right: -25px;
-  top: -24px;
-  width: 94px;
-  height: 94px;
-  font-size: 10px;
+  right: -1.5625rem;
+  top: -1.5rem;
+  width: 5.875rem;
+  height: 5.875rem;
+  font-size: .625rem;
 }
 
 .territory .lead,
 .history .lead {
-  max-width: 540px;
-  margin: 29px 0 0;
+  max-width: 33.75rem;
+  margin: 1.8125rem 0 0;
   color: var(--texto-suave);
-  font-size: 17px;
+  font-size: 1.0625rem;
   line-height: 1.65;
 }
 
@@ -889,34 +907,34 @@ em {
 .feature-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 26px 38px;
-  margin: 38px 0 0;
+  gap: 1.625rem 2.375rem;
+  margin: 2.375rem 0 0;
   padding: 0;
   list-style: none;
 }
 
 .feature-grid li {
   border-top: 1px solid var(--areia);
-  padding-top: 15px;
+  padding-top: .9375rem;
 }
 
 .feature-grid b {
   display: block;
   color: var(--ouro-escuro);
-  font-size: 22px;
+  font-size: 1.375rem;
 }
 
 .feature-grid strong {
   display: block;
-  margin-top: 8px;
+  margin-top: .5rem;
   color: #25493c;
-  font-size: 14px;
+  font-size: .875rem;
 }
 
 .feature-grid p {
-  margin: 5px 0 0;
+  margin: .3125rem 0 0;
   color: #56655b;
-  font-size: 12px;
+  font-size: .75rem;
   line-height: 1.5;
 }
 
@@ -949,13 +967,13 @@ em {
   display: grid;
   grid-template-columns: 1.1fr .9fr;
   grid-template-rows: 1fr 1fr;
-  gap: 20px;
+  gap: 1.25rem;
 }
 
 .culture-photo {
   grid-row: span 2;
   position: relative;
-  min-height: 440px;
+  min-height: 27.5rem;
   overflow: hidden;
   border-radius: var(--raio-grande);
   background: var(--verde-claro);
@@ -984,8 +1002,8 @@ em {
 .culture-photo > hgroup {
   position: absolute;
   z-index: 1;
-  bottom: 28px;
-  left: 28px;
+  bottom: 1.75rem;
+  left: 1.75rem;
 }
 
 .culture-photo hgroup p {
@@ -993,15 +1011,15 @@ em {
 }
 
 .culture-photo h3 {
-  font-size: 34px;
+  font-size: 2.125rem;
 }
 
 .culture-box {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 200px;
-  padding: 28px;
+  min-height: 12.5rem;
+  padding: 1.75rem;
   border-radius: var(--raio-grande);
 }
 
@@ -1015,13 +1033,15 @@ em {
   background: #214c3b;
 }
 
+/* com o texto agrupado na .culture-box-text, o space-between do card
+   deixa só dois blocos: ícone em cima e texto embaixo */
 .culture-box > b {
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 
 .culture-box h3 {
-  margin: 15px 0 0;
-  font: var(--peso-regular) 30px / 1 var(--fonte-titulo-curta);
+  margin: .9375rem 0 0;
+  font: var(--peso-regular) 1.875rem / 1 var(--fonte-titulo-curta);
 }
 
 .culture-box h3 em {
@@ -1033,9 +1053,9 @@ em {
 }
 
 .culture-box p {
-  max-width: 300px;
-  margin: 11px 0 0;
-  font-size: 13px;
+  max-width: 18.75rem;
+  margin: .6875rem 0 0;
+  font-size: .8125rem;
   line-height: 1.5;
   color: var(--texto-sobre-ouro);
 }
@@ -1059,28 +1079,28 @@ em {
 .history-grid {
   display: grid;
   grid-template-columns: .72fr 1.28fr;
-  gap: 80px;
+  gap: 5rem;
 }
 
 .timeline {
   margin: 0;
   border-left: 1px solid var(--areia);
-  padding-left: 48px;
+  padding-left: 3rem;
   list-style: none;
 }
 
 .timeline li {
   position: relative;
-  padding: 0 0 34px;
+  padding: 0 0 2.125rem;
 }
 
 .timeline li:before {
   content: '';
   position: absolute;
-  left: -55px;   /* desloca o círculo para cima da linha do tempo */
-  top: 3px;
-  width: 11px;
-  height: 11px;
+  left: -3.4375rem;   /* desloca o círculo para cima da linha do tempo */
+  top: .1875rem;
+  width: .6875rem;
+  height: .6875rem;
   border: 2px solid var(--creme);
   border-radius: var(--raio-circulo);
   background: var(--ouro-escuro);
@@ -1089,23 +1109,23 @@ em {
 
 .timeline span {
   color: var(--ouro-escuro);
-  font-size: 10px;
+  font-size: .625rem;
   font-weight: var(--peso-extra);
   text-transform: uppercase;
   letter-spacing: .2em;
 }
 
 .timeline h3 {
-  margin: 9px 0 0;
+  margin: .5625rem 0 0;
   color: var(--verde-floresta);
-  font: var(--peso-regular) 27px / 1 var(--fonte-titulo-curta);
+  font: var(--peso-regular) 1.6875rem / 1 var(--fonte-titulo-curta);
 }
 
 .timeline p {
-  max-width: 520px;
-  margin: 8px 0 0;
+  max-width: 32.5rem;
+  margin: .5rem 0 0;
   color: #55655a;
-  font-size: 13px;
+  font-size: .8125rem;
   line-height: 1.55;
 }
 
@@ -1122,13 +1142,13 @@ em {
 }
 
 .municipality-heading {
-  margin-bottom: 42px;
+  margin-bottom: 2.625rem;
 }
 
 .municipality-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+  gap: .9375rem;
   margin: 0;
   padding: 0;
   list-style: none;   /* tira as bolinhas e o recuo padrão da <ul> */
@@ -1136,10 +1156,10 @@ em {
 
 .municipality-grid article {
   position: relative;
-  min-height: 170px;
-  padding: 23px;
+  min-height: 10.625rem;
+  padding: 1.4375rem;
   border: 1px solid #d0c6b6;
-  border-radius: 23px;
+  border-radius: 1.4375rem;
   background: var(--creme);
   text-align: left;   /* alinha o conteúdo à esquerda, não ao centro */
   color: var(--verde-floresta);
@@ -1155,36 +1175,43 @@ em {
   display: none;
 }
 
-.municipality-grid article > span {
+/* div que agrupa etiqueta + região: ficam lado a lado no topo do card */
+.municipality-tags {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  margin-bottom: 1.5rem;
+}
+
+.municipality-tags > span {
   display: inline-block;
   border-radius: var(--raio-pilula);
   background: #dfe6d9;
-  padding: 5px 9px;
+  padding: .3125rem .5625rem;
   color: #3b6651;
-  font-size: 9px;
+  font-size: .5625rem;
   font-weight: var(--peso-forte);
   letter-spacing: .15em;
 }
 
 .municipality-grid small {
-  display: block;
-  margin-top: 28px;
   color: #705f4b;
-  font-size: 10px;
+  font-size: .625rem;
   font-weight: var(--peso-negrito);
   text-transform: uppercase;
   letter-spacing: .16em;
 }
 
 .municipality-grid h3 {
-  margin: 4px 0 0;
-  font: 25px var(--fonte-titulo-curta);   /* sem negrito, como o design original */
+  margin: .25rem 0 0;
+  font: 1.5625rem var(--fonte-titulo-curta);   /* sem negrito, como o design original */
 }
 
 .municipality-grid p {
-  margin: 7px 0 0;
+  margin: .4375rem 0 0;
   color: var(--texto-tenue);
-  font: normal 12px var(--fonte-texto);
+  font: normal .75rem var(--fonte-texto);
 }
 
 /* sem seta "→" nem efeito de hover: o card é informativo, não clicável.
@@ -1195,18 +1222,18 @@ em {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 15px;
-  margin: 24px 0 0;
-  padding: 19px 25px;
-  border-radius: 20px;
+  gap: .9375rem;
+  margin: 1.5rem 0 0;
+  padding: 1.1875rem 1.5625rem;
+  border-radius: 1.25rem;
   background: var(--verde-floresta);
   color: #d3dfd4;
-  font-size: 13px;
+  font-size: .8125rem;
 }
 
 .route-bar a {
   color: var(--ouro);
-  font-size: 10px;
+  font-size: .625rem;
   font-weight: var(--peso-forte);
   text-transform: uppercase;
   letter-spacing: .16em;
@@ -1225,13 +1252,13 @@ em {
   display: grid;
   grid-template-columns: .9fr 1.1fr;
   align-items: center;
-  gap: 80px;
+  gap: 5rem;
 }
 
 .itinerary-card {
   position: relative;
   overflow: hidden;
-  padding: 40px;
+  padding: 2.5rem;
   border-radius: var(--raio-grande);
   background: var(--verde-floresta);
   color: var(--creme);
@@ -1241,24 +1268,24 @@ em {
 .itinerary-card:after {
   content: '';
   position: absolute;
-  right: -40px;
-  top: -40px;
-  width: 170px;
-  height: 170px;
+  right: -2.5rem;
+  top: -2.5rem;
+  width: 10.625rem;
+  height: 10.625rem;
   border: 1px solid rgba(211, 167, 69, .25);
   border-radius: var(--raio-circulo);
 }
 
 .route-icon {
-  font-size: 30px;
+  font-size: 1.875rem;
   color: var(--ouro);
 }
 
 .itinerary-card small {
   display: block;
-  margin-top: 42px;
+  margin-top: 2.625rem;
   color: #bcd0b8;
-  font-size: 10px;
+  font-size: .625rem;
   font-weight: var(--peso-negrito);
   letter-spacing: .2em;
 }
@@ -1266,8 +1293,8 @@ em {
 .itinerary-card h2 {
   position: relative;
   z-index: 1;   /* fica acima do círculo decorativo */
-  margin: 11px 0 0;
-  font: var(--peso-regular) 46px / .9 var(--fonte-titulo-curta);
+  margin: .6875rem 0 0;
+  font: var(--peso-regular) 2.875rem / .9 var(--fonte-titulo-curta);
   letter-spacing: -.05em;
 }
 
@@ -1276,10 +1303,10 @@ em {
 }
 
 .itinerary-card p {
-  max-width: 350px;
-  margin: 23px 0 0;
+  max-width: 21.875rem;
+  margin: 1.4375rem 0 0;
   color: var(--texto-claro-tenue);
-  font-size: 13px;
+  font-size: .8125rem;
   line-height: 1.6;
 }
 
@@ -1292,44 +1319,49 @@ em {
 .itinerary-list li {
   display: grid;
   grid-template-columns: auto 1fr;
-  column-gap: 20px;
-  padding-bottom: 27px;
-  margin-bottom: 27px;
+  align-items: start;
+  column-gap: 1.25rem;
+  padding-bottom: 1.6875rem;
+  margin-bottom: 1.6875rem;
   border-bottom: 1px solid var(--linha);
 }
 
 .itinerary-list li > b {
-  grid-row: span 2;   /* o número ocupa a altura do título + texto */
   display: grid;
   place-items: center;
-  width: 43px;
-  height: 43px;
+  width: 2.6875rem;
+  height: 2.6875rem;
   border: 1px solid var(--ouro-escuro);
   border-radius: var(--raio-circulo);
   color: var(--ouro-escuro);
-  font: 20px var(--fonte-titulo-curta);
+  font: 1.25rem var(--fonte-titulo-curta);
 }
 
 .itinerary-list h3 {
   margin: 0;
   color: var(--verde-floresta);
-  font: var(--peso-regular) 26px / 1 var(--fonte-titulo-curta);
+  font: var(--peso-regular) 1.625rem / 1 var(--fonte-titulo-curta);
+}
+
+/* .step-text: div que agrupa título + descrição de cada passo */
+.step-text {
+  padding-top: .5rem;
 }
 
 .itinerary-list li p {
-  margin: 8px 0 0;
+  margin: .5rem 0 0;
   color: #56655b;
-  font-size: 13px;
+  font-size: .8125rem;
   line-height: 1.5;
 }
 
 .best-time {
   margin: 0;
-  padding: 14px;
-  border-radius: 14px;
+  padding: .875rem;
+  border-radius: .875rem;
   background: var(--seda);
   color: var(--texto-suave);
-  font-size: 12px;
+  font-size: .75rem;
 }
 
 .best-time strong {
@@ -1342,7 +1374,7 @@ em {
    ========================================================================== */
 
 .contact {
-  padding: 110px 0;
+  padding: 6.875rem 0;
   background: var(--ouro);
   color: var(--verde-floresta);
 }
@@ -1350,11 +1382,11 @@ em {
 .contact-grid {
   display: grid;
   grid-template-columns: .8fr 1.2fr;
-  gap: 80px;
+  gap: 5rem;
 }
 
 .contact h2 {
-  margin-top: 17px;
+  margin-top: 1.0625rem;
   color: var(--verde-floresta);
 }
 
@@ -1363,44 +1395,46 @@ em {
 }
 
 .contact-grid > header > h2 + p {
-  max-width: 390px;
-  margin: 28px 0 0;
+  max-width: 24.375rem;
+  margin: 1.75rem 0 0;
   color: var(--texto-sobre-ouro-escuro);
-  font-size: 15px;
+  font-size: .9375rem;
   line-height: 1.6;
 }
 
 .contact-details {
-  margin-top: 27px;
+  margin-top: 1.6875rem;
   font-style: normal;   /* <address> vem em itálico por padrão */
   color: var(--texto-sobre-ouro-escuro);
-  font-size: 13px;
+  font-size: .8125rem;
   line-height: 2;
 }
 
 .contact form {
-  padding: 30px;
+  padding: 1.875rem;
   border-radius: var(--raio-medio);
   background: var(--creme);
   box-shadow: 0 24px 60px rgba(91, 70, 24, .16);
 }
 
-/* dois campos lado a lado: a grade preenche por coluna, então cada
-   rótulo fica em cima do seu campo */
+/* .form-field: div que agrupa um rótulo com o seu campo */
+.form-field {
+  min-width: 0;   /* deixa o campo encolher dentro da grade */
+}
+
+/* dois .form-field lado a lado */
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  grid-auto-flow: column;
   align-items: start;   /* cada campo mantém a própria altura */
-  column-gap: 18px;
+  column-gap: 1.125rem;
 }
 
 .contact label {
   display: block;
   margin: 0;
   color: #536c5c;
-  font-size: 10px;
+  font-size: .625rem;
   font-weight: var(--peso-extra);
   text-transform: uppercase;
   letter-spacing: .13em;
@@ -1411,13 +1445,13 @@ em {
 .contact textarea {
   display: block;
   width: 100%;
-  margin: 8px 0 18px;
+  margin: .5rem 0 1.125rem;
   border: 1px solid var(--linha);
   border-radius: var(--raio-pequeno);
   background: #fbf9f4;
-  padding: 12px;
+  padding: .75rem;
   color: var(--verde-floresta);
-  font-size: 13px;
+  font-size: .8125rem;
   font-weight: 500;
   outline: none;   /* o foco será desenhado com box-shadow logo abaixo */
 }
@@ -1438,20 +1472,20 @@ em {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 1.25rem;
 }
 
 .form-bottom small {
-  max-width: 260px;
+  max-width: 16.25rem;
   color: var(--texto-tenue);
-  font-size: 10px;
+  font-size: .625rem;
   line-height: 1.5;
 }
 
 .form-success {
-  margin: 17px 0 0;
+  margin: 1.0625rem 0 0;
   color: #3b7650;
-  font-size: 13px;
+  font-size: .8125rem;
   font-weight: var(--peso-negrito);
 }
 
@@ -1461,7 +1495,7 @@ em {
    ========================================================================== */
 
 footer {
-  padding: 40px 0 22px;
+  padding: 2.5rem 0 1.375rem;
   background: var(--verde-profundo);
   color: #e8eee3;
 }
@@ -1469,30 +1503,30 @@ footer {
 .footer-top {
   display: flex;
   justify-content: space-between;
-  gap: 30px;
+  gap: 1.875rem;
   align-items: end;
 }
 
 .footer-top .brand {
-  font-size: 11px;
+  font-size: .6875rem;
 }
 
 .footer-top p {
-  max-width: 310px;
-  margin: 15px 0 0;
+  max-width: 19.375rem;
+  margin: .9375rem 0 0;
   color: #9fb3a0;
-  font-size: 12px;
+  font-size: .75rem;
   line-height: 1.6;
 }
 
 .footer-links {
   display: flex;
-  gap: 23px;
+  gap: 1.4375rem;
   margin: 0;
   padding: 0;
   list-style: none;
   color: #b9cdb6;
-  font-size: 10px;
+  font-size: .625rem;
   font-weight: var(--peso-negrito);
   text-transform: uppercase;
   letter-spacing: .15em;
@@ -1505,12 +1539,12 @@ footer {
 .footer-bottom {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
-  margin-top: 30px;
-  padding-top: 18px;
+  gap: 1.25rem;
+  margin-top: 1.875rem;
+  padding-top: 1.125rem;
   border-top: 1px solid var(--branco-10);
   color: #7d9684;
-  font-size: 10px;
+  font-size: .625rem;
   text-transform: uppercase;
   letter-spacing: .12em;
 }
@@ -1534,7 +1568,7 @@ footer {
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(18px);   /* começa 18px abaixo */
+    transform: translateY(1.125rem);   /* começa 1.125rem abaixo */
   }
   to {
     opacity: 1;
@@ -1546,19 +1580,23 @@ footer {
 /* ==========================================================================
    17. RESPONSIVIDADE
    --------------------------------------------------------------------------
-   Duas etapas: em 850px o site passa a "uma coluna por vez" e o menu vira
-   hambúrguer; em 560px tudo se ajusta para o celular. As regras dentro do
-   breakpoint têm prioridade porque vêm depois no arquivo.
+   Duas etapas: em 53.125em (850px) o site passa a "uma coluna por vez" e o
+   menu vira hambúrguer; em 35em (560px) tudo se ajusta para o celular. As
+   regras dentro do breakpoint têm prioridade porque vêm depois no arquivo.
+
+   Por que em nas media queries? Dentro de @media, em sempre usa a fonte
+   padrão do navegador (16px) e funciona igual em todos eles — inclusive
+   quando a pessoa dá zoom só no texto.
 
    Obs. para a apresentação: media queries NÃO aceitam var(), então as
    larguras dos breakpoints são escritas à mão aqui.
    ========================================================================== */
 
 /* ---------- Telas médias: tablets e janelas estreitas ---------- */
-@media (max-width: 850px) {
+@media (max-width: 53.125em) {
 
   .container {
-    width: min(100% - 34px, 650px);
+    width: min(100% - 2.125rem, 40.625rem);
   }
 
   /* o menu sai do fluxo e vira um painel dropdown (classe .open via JS) */
@@ -1571,7 +1609,7 @@ footer {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding: 12px 22px 22px;
+    padding: .75rem 1.375rem 1.375rem;
     background: var(--verde-floresta);
     border-top: 1px solid var(--branco-10);
   }
@@ -1579,12 +1617,12 @@ footer {
   .main-nav.open { display: flex; }
 
   .main-nav a {
-    padding: 14px 0;
+    padding: .875rem 0;
     border-bottom: 1px solid var(--branco-10);
   }
 
   .nav-cta {
-    margin-top: 12px;
+    margin-top: .75rem;
     text-align: center;
   }
 
@@ -1592,25 +1630,25 @@ footer {
 
   .hero {
     min-height: auto;
-    padding-bottom: 80px;
+    padding-bottom: 5rem;
   }
 
   .hero-grid {
     grid-template-columns: 1fr;   /* o hero vira uma coluna só */
-    gap: 55px;
-    padding-top: 60px;
+    gap: 3.4375rem;
+    padding-top: 3.75rem;
   }
 
   .hero-copy,
   .hero-visual {
-    max-width: 600px;
+    max-width: 37.5rem;
   }
 
   .hero-visual { margin: auto; }
 
   .scroll-cue { display: none; }
 
-  .section { padding: 88px 0; }
+  .section { padding: 5.5rem 0; }
 
   /* o título e o texto de apoio ficam empilhados */
   .section-heading,
@@ -1618,14 +1656,14 @@ footer {
   .municipality-heading { display: block; }
 
   .section-heading > p,
-  .culture-heading > p { margin-top: 22px; }
+  .culture-heading > p { margin-top: 1.375rem; }
 
   /* cards: dois por linha, e o terceiro ocupa a linha inteira */
   .experience-grid { grid-template-columns: 1fr 1fr; }
-  .experience-card { min-height: 450px; }
+  .experience-card { min-height: 28.125rem; }
   .experience-card:last-child {
     grid-column: 1 / -1;
-    min-height: 420px;
+    min-height: 26.25rem;
   }
 
   .territory-grid,
@@ -1633,10 +1671,10 @@ footer {
   .itinerary-grid,
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 50px;
+    gap: 3.125rem;
   }
 
-  .territory-photo { max-width: 500px; }
+  .territory-photo { max-width: 31.25rem; }
 
   /* a foto ocupa a linha inteira e os dois cards ficam lado a lado */
   .culture-grid {
@@ -1646,13 +1684,13 @@ footer {
   .culture-photo {
     grid-column: 1 / -1;
     grid-row: auto;
-    min-height: 400px;
+    min-height: 25rem;
   }
 
   .municipality-grid { grid-template-columns: 1fr 1fr; }
 
   .search {
-    margin-top: 24px;
+    margin-top: 1.5rem;
     width: 100%;
   }
 
@@ -1663,13 +1701,13 @@ footer {
 
   .footer-links { flex-wrap: wrap; }
 
-  .contact { padding: 88px 0; }
+  .contact { padding: 5.5rem 0; }
 }
 
 /* ---------- Celulares ---------- */
-@media (max-width: 560px) {
+@media (max-width: 35em) {
 
-  .container { width: calc(100% - 34px); }
+  .container { width: calc(100% - 2.125rem); }
 
   /* esconde o nome só na tela, mantém o selo "CR"; o leitor de tela
      continua lendo "CR Conheça Roraima" */
@@ -1683,36 +1721,36 @@ footer {
   }
 
   .hero h1 { font-size: 4.3rem; }
-  .hero-copy > h1 + p { font-size: 16px; }
+  .hero-copy > h1 + p { font-size: 1rem; }
 
   .hero-actions {
     align-items: flex-start;
     flex-direction: column;
-    gap: 17px;
+    gap: 1.0625rem;
   }
 
   .hero-image { aspect-ratio: .9; }
 
   /* selo dourado menor no celular */
   .hero-stamp {
-    right: 10px;
-    width: 90px;
-    height: 90px;
-    font-size: 10px;
+    right: .625rem;
+    width: 5.625rem;
+    height: 5.625rem;
+    font-size: .625rem;
   }
 
-  .territory-badge { left: 10px; }
+  .territory-badge { left: .625rem; }
 
   /* números em 2 colunas, alternando o alinhamento */
   .stats-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 22px 0;
+    gap: 1.375rem 0;
   }
   .stats-grid > li:nth-child(3) { border-left: 0; }
   .stats-grid > li:nth-child(odd) { justify-content: flex-start; }
   .stats-grid > li:nth-child(even) { justify-content: flex-end; }
-  .stats-grid strong { font-size: 25px; }
-  .stats-grid span { font-size: 8px; }
+  .stats-grid strong { font-size: 1.5625rem; }
+  .stats-grid span { font-size: .5rem; }
 
   .section h2,
   .territory h2,
@@ -1725,18 +1763,18 @@ footer {
   .experience-card,
   .experience-card:last-child {
     grid-column: auto;
-    min-height: 480px;
+    min-height: 30rem;
   }
 
   .culture-grid { grid-template-columns: 1fr; }
-  .culture-box { min-height: 190px; }
+  .culture-box { min-height: 11.875rem; }
 
-  .feature-grid { gap: 24px 16px; }
-  .history-grid { gap: 42px; }
+  .feature-grid { gap: 1.5rem 1rem; }
+  .history-grid { gap: 2.625rem; }
 
   /* a linha do tempo encolhe junto com o texto */
-  .timeline { padding-left: 32px; }
-  .timeline li:before { left: -39px; }
+  .timeline { padding-left: 2rem; }
+  .timeline li:before { left: -2.4375rem; }
 
   .municipality-grid { grid-template-columns: 1fr; }
 
@@ -1745,14 +1783,10 @@ footer {
     flex-direction: column;
   }
 
-  .itinerary-card { padding: 30px; }
-  .itinerary-card h2 { font-size: 39px; }
+  .itinerary-card { padding: 1.875rem; }
+  .itinerary-card h2 { font-size: 2.4375rem; }
 
-  .form-row {
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-    grid-auto-flow: row;
-  }
+  .form-row { grid-template-columns: 1fr; }
 
   .form-bottom {
     align-items: flex-start;
@@ -1762,7 +1796,7 @@ footer {
   .footer-bottom {
     align-items: flex-start;
     flex-direction: column;
-    gap: 8px;
+    gap: .5rem;
   }
 }
 
@@ -1799,7 +1833,7 @@ footer {
 .main-nav ul {
   display: flex;
   align-items: center;
-  gap: 31px;
+  gap: 1.9375rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1807,7 +1841,7 @@ footer {
 
 /* tabela de municípios */
 .table-wrapper {
-  margin-top: 40px;
+  margin-top: 2.5rem;
   overflow-x: auto;   /* rola só a tabela em telas estreitas */
   border: 1px solid var(--linha);
   border-radius: var(--raio-pequeno);
@@ -1816,15 +1850,15 @@ footer {
 .municipality-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 14px;
+  font-size: .875rem;
   color: var(--verde-floresta);
 }
 
 .municipality-table caption {
-  padding: 16px 18px;
+  padding: 1rem 1.125rem;
   text-align: left;
   color: var(--texto-tenue);
-  font-size: 12px;
+  font-size: .75rem;
   font-weight: var(--peso-negrito);
   text-transform: uppercase;
   letter-spacing: .12em;
@@ -1832,7 +1866,7 @@ footer {
 
 .municipality-table th,
 .municipality-table td {
-  padding: 13px 18px;
+  padding: .8125rem 1.125rem;
   border-top: 1px solid var(--linha);
   text-align: left;
   white-space: nowrap;
@@ -1841,7 +1875,7 @@ footer {
 .municipality-table thead th {
   background: var(--verde-floresta);
   color: var(--creme);
-  font-size: 11px;
+  font-size: .6875rem;
   text-transform: uppercase;
   letter-spacing: .1em;
 }
@@ -1852,18 +1886,18 @@ footer {
 
 /* formulário: blocos com fieldset e legend */
 .contact fieldset {
-  margin: 0 0 22px;
-  padding: 0 0 4px;
+  margin: 0 0 1.375rem;
+  padding: 0 0 .25rem;
   border: 0;
   border-bottom: 1px solid var(--linha);
 }
 
 .contact legend {
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
   padding: 0;
   color: var(--verde-floresta);
   font-family: var(--fonte-titulo, serif);
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 700;
 }
 
@@ -1875,10 +1909,10 @@ footer {
 }
 
 .contact .checkbox-title {
-  margin: 0 0 10px;
+  margin: 0 0 .625rem;
   font-family: var(--fonte-texto);
   color: #536c5c;
-  font-size: 10px;
+  font-size: .625rem;
   font-weight: var(--peso-extra);
   text-transform: uppercase;
   letter-spacing: .13em;
@@ -1887,14 +1921,14 @@ footer {
 .checkbox-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 20px;
-  margin-bottom: 18px;
+  gap: .625rem 1.25rem;
+  margin-bottom: 1.125rem;
 }
 
 .contact .checkbox-group input {
   flex: none;   /* a caixinha nunca encolhe, mesmo com texto longo */
-  width: 18px;
-  height: 18px;
+  width: 1.125rem;
+  height: 1.125rem;
   margin: 0;
   accent-color: var(--verde-floresta);
 }
@@ -1904,9 +1938,9 @@ footer {
 .contact .checkbox-group label {
   display: inline-flex;
   align-items: flex-start;
-  gap: 8px;
-  line-height: 18px;   /* mesma altura da caixinha: alinha com a 1ª linha */
-  font-size: 13px;
+  gap: .5rem;
+  line-height: 1.125rem;   /* mesma altura da caixinha: alinha com a 1ª linha */
+  font-size: .8125rem;
   font-weight: 500;
   text-transform: none;
   letter-spacing: 0;
@@ -1919,7 +1953,7 @@ footer {
   border-color: #b8432f;
 }
 
-@media (max-width: 850px) {
+@media (max-width: 53.125em) {
   .main-nav ul {
     flex-direction: column;
     align-items: stretch;
@@ -1938,8 +1972,8 @@ footer {
 /* a tabela rola no celular; com tabindex="0" ela recebe foco pelo teclado
    e o anel mostra onde o foco está */
 .table-wrapper:focus-visible {
-  outline: 3px solid var(--ouro-escuro);
-  outline-offset: 3px;
+  outline: .1875rem solid var(--ouro-escuro);
+  outline-offset: .1875rem;
 }
 
 /* na seção Cultura o fundo é verde-escuro: o destaque do título usa o
@@ -1951,22 +1985,22 @@ footer {
 /* o header é fixo: ao clicar numa âncora do menu, a seção para abaixo
    dele em vez de ficar escondida (WCAG 2.4.11 — foco não encoberto) */
 html {
-  scroll-padding-top: calc(var(--altura-header) + 16px);
+  scroll-padding-top: calc(var(--altura-header) + 1rem);
 }
 
 /* o input da busca não tem contorno próprio; o anel aparece na cápsula
    inteira quando o campo recebe foco (WCAG 2.4.7 — foco visível) */
 .search:focus-within {
-  outline: 3px solid var(--ouro-escuro);
+  outline: .1875rem solid var(--ouro-escuro);
   outline-offset: 2px;
 }
 
 
 /* celular: interesses em 2 colunas alinhadas */
-@media (max-width: 560px) {
+@media (max-width: 35em) {
   .checkbox-fieldset .checkbox-group {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px 16px;
+    gap: .75rem 1rem;
   }
 }
