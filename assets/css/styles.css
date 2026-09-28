@@ -2004,3 +2004,127 @@ html {
     gap: .75rem 1rem;
   }
 }
+
+
+/* ========================================================================== 
+   19. CAMADA VISUAL — brilho, profundidade e microinterações
+   ========================================================================== */
+:root {
+  --ouro-brilho: #f4cf70;
+  --sombra-suave: 0 1.5rem 4rem rgba(16, 45, 37, .12);
+  --sombra-flutuante: 0 1.25rem 3rem rgba(16, 45, 37, .18);
+}
+
+body {
+  background:
+    radial-gradient(circle at 88% 8%, rgba(211, 167, 69, .10), transparent 22rem),
+    radial-gradient(circle at 4% 48%, rgba(45, 96, 73, .07), transparent 25rem),
+    var(--creme);
+}
+
+::selection { background: var(--ouro); color: var(--verde-profundo); }
+
+.site-header {
+  background: rgba(16, 45, 37, .78);
+  border-bottom-color: rgba(248, 232, 189, .16);
+  box-shadow: 0 .75rem 2rem rgba(4, 19, 14, .08);
+  transition: background .3s ease, box-shadow .3s ease, transform .3s ease;
+}
+.site-header.is-scrolled {
+  background: rgba(16, 45, 37, .94);
+  box-shadow: 0 .8rem 2.5rem rgba(4, 19, 14, .22);
+}
+.brand-mark {
+  background: linear-gradient(135deg, var(--ouro-brilho), var(--ouro));
+  box-shadow: 0 0 0 .35rem rgba(211, 167, 69, .12), 0 .5rem 1.25rem rgba(211, 167, 69, .18);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.brand:hover .brand-mark { transform: rotate(-8deg) scale(1.06); box-shadow: 0 0 0 .5rem rgba(211, 167, 69, .15), 0 .6rem 1.5rem rgba(211, 167, 69, .28); }
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 72% 30%, rgba(211, 167, 69, .13), transparent 19rem),
+    radial-gradient(circle at 15% 88%, rgba(68, 122, 88, .18), transparent 22rem),
+    var(--verde-floresta);
+}
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  border: 1px solid rgba(248, 232, 189, .13);
+  border-radius: 50%;
+}
+.hero::before { width: 38rem; height: 38rem; right: -18rem; top: 7rem; box-shadow: 0 0 0 3rem rgba(248, 232, 189, .025), 0 0 0 7rem rgba(248, 232, 189, .018); }
+.hero::after { width: 20rem; height: 20rem; left: -14rem; bottom: -9rem; }
+.hero-copy, .hero-visual { position: relative; z-index: 1; }
+.hero-image {
+  border: 1px solid rgba(248, 232, 189, .24);
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, .28), 0 0 0 .6rem rgba(248, 232, 189, .04);
+}
+.hero-image::after { opacity: .4; }
+.hero-image img { transition: transform .9s cubic-bezier(.2,.7,.2,1), filter .6s ease; }
+.hero-image:hover img { transform: scale(1.045); filter: saturate(1.12) contrast(1.04); }
+.hero-stamp { animation: floatBadge 5s ease-in-out infinite; box-shadow: 0 .75rem 2rem rgba(0,0,0,.16); }
+@keyframes floatBadge { 0%, 100% { transform: rotate(9deg) translateY(0); } 50% { transform: rotate(7deg) translateY(-.45rem); } }
+
+.button { position: relative; overflow: hidden; isolation: isolate; box-shadow: 0 .7rem 1.5rem rgba(8, 31, 23, .12); }
+.button::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,.36), transparent 72%); transform: translateX(-120%); transition: transform .65s ease; }
+.button:hover::after { transform: translateX(120%); }
+.button-gold { background: linear-gradient(135deg, var(--ouro-brilho), var(--ouro)); }
+
+.stats { position: relative; background: linear-gradient(90deg, #0d2a21, #173d32 45%, #0d2a21); box-shadow: 0 .9rem 2rem rgba(16,45,37,.14); }
+.stats li { transition: transform .25s ease, color .25s ease; }
+.stats li:hover { transform: translateY(-.3rem); }
+.stats li strong { text-shadow: 0 0 .9rem rgba(244, 207, 112, .16); }
+
+.experience-card,
+.culture-photo,
+.culture-box,
+.municipality-grid article,
+.itinerary-card,
+.contact form {
+  box-shadow: var(--sombra-suave);
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+.experience-card:hover,
+.culture-photo:hover,
+.culture-box:hover,
+.municipality-grid article:hover,
+.itinerary-card:hover,
+.contact form:hover {
+  transform: translateY(-.45rem);
+  box-shadow: var(--sombra-flutuante);
+}
+.experience-card::after { content: ''; position: absolute; inset: 0; pointer-events: none; border: 1px solid rgba(248, 232, 189, .12); border-radius: inherit; }
+.experience-card img { transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .7s ease; }
+.experience-card:hover img { transform: scale(1.07); filter: saturate(1.12); }
+.card-number { transition: color .3s ease, transform .3s ease; }
+.experience-card:hover .card-number { color: var(--ouro-brilho); transform: translateX(.15rem); }
+
+.territory-photo { box-shadow: var(--sombra-flutuante); }
+.territory-photo img { transition: transform .8s ease, filter .8s ease; }
+.territory-photo:hover img { transform: scale(1.035); filter: saturate(1.1); }
+.feature-grid li { border-radius: 1rem; transition: background .3s ease, transform .3s ease; }
+.feature-grid li:hover { background: rgba(211, 167, 69, .08); transform: translateX(.25rem); }
+
+.municipality-grid article { border-color: rgba(200, 189, 173, .72); background: rgba(255,255,255,.32); }
+.municipality-grid article:hover { border-color: rgba(211, 167, 69, .72); background: rgba(255,255,255,.72); }
+.search { box-shadow: 0 .5rem 1.5rem rgba(16,45,37,.06); transition: box-shadow .25s ease, transform .25s ease; }
+.search:focus-within { box-shadow: 0 .75rem 1.75rem rgba(16,45,37,.13); transform: translateY(-.1rem); }
+
+.reveal-on-scroll { opacity: 1; transform: none; }
+body.js-ready .reveal-on-scroll { opacity: 0; transform: translateY(1.4rem); transition: opacity .75s ease, transform .75s cubic-bezier(.2,.7,.2,1); }
+body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
+
+@media (max-width: 53.125em) {
+  .hero::before { right: -25rem; }
+  .experience-card:hover, .culture-photo:hover, .culture-box:hover, .municipality-grid article:hover, .itinerary-card:hover, .contact form:hover { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-stamp { animation: none; }
+  .hero-image img, .experience-card img, .territory-photo img { transition: none; }
+}

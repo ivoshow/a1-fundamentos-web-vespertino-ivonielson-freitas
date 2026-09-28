@@ -59,3 +59,28 @@ form?.addEventListener('submit', (event) => {
   form.reset();
   showToast('Mensagem recebida. Obrigado por escrever para o Conheça Roraima.');
 });
+
+
+// Camada de polish: revela blocos conforme entram na viewport e dá contexto ao header.
+document.body.classList.add('js-ready');
+
+const observedSections = document.querySelectorAll('.section, .stats, footer');
+observedSections.forEach((section) => section.classList.add('reveal-on-scroll'));
+
+if ('IntersectionObserver' in window) {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  observedSections.forEach((section) => revealObserver.observe(section));
+} else {
+  observedSections.forEach((section) => section.classList.add('is-visible'));
+}
+
+const header = document.querySelector('.site-header');
+const syncHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 18);
+syncHeader();
+window.addEventListener('scroll', syncHeader, { passive: true });
