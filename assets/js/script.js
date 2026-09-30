@@ -137,15 +137,11 @@ document.querySelectorAll('dialog').forEach((dialog) => {
 });
 
 // ==========================================================================
-// DADOS EM JSON
-// fetch() só funciona com o site servido por HTTP (Vercel, Live Server...);
-// abrindo o arquivo direto (file://) o navegador bloqueia a leitura.
+// CONTEÚDO JÁ ESCRITO NO HTML
+// Agenda, municípios, depoimentos e galeria estão todos no index.html (dá
+// para ver com Ctrl+U). O JavaScript não cria esses cards: só lê o que já
+// está na página para ordenar, filtrar e preencher os modais.
 // ==========================================================================
-async function loadJSON(path) {
-  const response = await fetch(path);
-  if (!response.ok) throw new Error(`Erro ${response.status} ao carregar ${path}`);
-  return response.json();
-}
 
 // cria um elemento já com classe e texto; textContent nunca interpreta HTML
 function createElement(tag, className, text) {
@@ -156,9 +152,10 @@ function createElement(tag, className, text) {
 }
 
 // ==========================================================================
-// AGENDA CULTURAL (assets/data/eventos.json)
-// As datas do JSON são "mês-dia" e se repetem todo ano. O JS descobre a
-// próxima ocorrência de cada evento a partir de hoje e ordena a lista.
+// AGENDA CULTURAL
+// As datas ficam em data-inicio e data-fim no formato "mês-dia" e se repetem
+// todo ano. O JS descobre a próxima ocorrência de cada evento a partir de
+// hoje, ordena a lista e escreve a contagem de dias.
 // ==========================================================================
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -170,15 +167,15 @@ function dateFromMonthDay(monthDay, year) {
 // testa o ano passado, o atual e o próximo: a primeira ocorrência que ainda
 // não terminou é a que vale (o ano passado cobre eventos que atravessam a
 // virada do ano, como dezembro a março)
-function nextOccurrence(evento, today) {
+function nextOccurrence(card, today) {
   const year = today.getFullYear();
   for (const y of [year - 1, year, year + 1]) {
-    const start = dateFromMonthDay(evento.inicio, y);
-    let end = dateFromMonthDay(evento.fim, y);
-    if (end < start) end = dateFromMonthDay(evento.fim, y + 1);
+    const start = dateFromMonthDay(card.dataset.inicio, y);
+    let end = dateFromMonthDay(card.dataset.fim, y);
+    if (end < start) end = dateFromMonthDay(card.dataset.fim, y + 1);
     if (end >= today) {
       const daysUntil = Math.round((start - today) / DAY_MS);
-      return { ...evento, start, end, daysUntil, status: daysUntil <= 0 ? 'now' : 'soon' };
+      return { card, start, daysUntil, status: daysUntil <= 0 ? 'now' : 'soon' };
     }
   }
   return null;
@@ -190,64 +187,33 @@ function countdownText(evento) {
   return `Faltam ${evento.daysUntil} dias`;
 }
 
-const longDate = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long' });
-
-function periodText(evento) {
-  const period = evento.start.getTime() === evento.end.getTime()
-    ? longDate.format(evento.start)
-    : `De ${longDate.format(evento.start)} a ${longDate.format(evento.end)}`;
-  return evento.aproximada ? `${period} (data aproximada)` : period;
-}
-
-// uma única leitura do JSON, compartilhada pela agenda e pelo modal
-const upcomingEvents = loadJSON('assets/data/eventos.json')
-  .then((eventos) => {
-    const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());   // meia-noite de hoje
-    return eventos
-      .map((evento) => nextOccurrence(evento, today))
-      .filter(Boolean)
-      .sort((a, b) => a.start - b.start);
-  })
-  .catch((error) => {
-    console.error(error);
-    return null;
-  });
-
-const shortDay = new Intl.DateTimeFormat('pt-BR', { day: '2-digit' });
-const shortMonth = new Intl.DateTimeFormat('pt-BR', { month: 'short' });
-
-function renderEventCard(evento) {
-  const item = createElement('li', `agenda-card${evento.status === 'now' ? ' is-now' : ''}`);
-
-  // <time datetime> deixa a data legível também para máquinas (buscadores, leitores)
-  const date = createElement('time', 'agenda-date');
-  const { start } = evento;
-  // montado à mão: toISOString() converte para UTC e poderia "voltar" um dia
-  date.dateTime = `${start.getFullYear()}-${String(start.getMonth() + 1).padStart(2, '0')}-${String(start.getDate()).padStart(2, '0')}`;
-  date.append(
-    createElement('strong', '', shortDay.format(evento.start)),
-    createElement('span', '', shortMonth.format(evento.start).replace('.', '')),
-  );
-
-  const body = createElement('div', 'agenda-body');
-  const meta = createElement('p', 'agenda-meta');
-  meta.append(createElement('span', 'agenda-tag', evento.categoria), createElement('span', '', evento.local));
-  body.append(
-    meta,
-    createElement('h3', '', evento.nome),
-    createElement('p', 'agenda-description', evento.descricao),
-    createElement('p', 'agenda-period', periodText(evento)),
-  );
-
-  item.append(date, body, createElement('p', 'agenda-countdown', countdownText(evento)));
-  return item;
+// montado à mão: toISOString() converte para UTC e poderia "voltar" um dia
+function isoDate(date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 }
 
 const agendaList = document.querySelector('#agenda-list');
-
 const agendaToggle = document.querySelector('#agenda-toggle');
 const AGENDA_VISIBLE = 4;   // quantos eventos aparecem antes de "Ver agenda completa"
+
+const now = new Date();
+const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());   // meia-noite de hoje
+
+const upcomingEvents = [...(agendaList?.children ?? [])]
+  .map((card) => nextOccurrence(card, today))
+  .filter(Boolean)
+  .sort((a, b) => a.start - b.start);
+
+upcomingEvents.forEach((evento) => {
+  const { card } = evento;
+  card.classList.toggle('is-now', evento.status === 'now');
+  // o HTML traz só mês-dia; aqui a data ganha o ano da próxima ocorrência
+  card.querySelector('.agenda-date').dateTime = isoDate(evento.start);
+  card.querySelector('.agenda-countdown').textContent = countdownText(evento);
+});
+
+// append move o elemento que já existe: é assim que a lista é reordenada
+agendaList?.append(...upcomingEvents.map((evento) => evento.card));
 
 function setAgendaExpanded(expanded) {
   // do 5º evento em diante, o card só aparece com a agenda expandida
@@ -259,20 +225,11 @@ function setAgendaExpanded(expanded) {
   agendaToggle.classList.toggle('is-expanded', expanded);
 }
 
-upcomingEvents.then((eventos) => {
-  if (!agendaList) return;
-  if (!eventos) {
-    document.querySelector('#agenda-error').hidden = false;
-    return;
-  }
-  agendaList.replaceChildren(...eventos.map(renderEventCard));
-
-  // o botão só aparece se houver mais eventos do que os visíveis
-  if (eventos.length > AGENDA_VISIBLE) {
-    agendaToggle.hidden = false;
-    setAgendaExpanded(false);
-  }
-});
+// o botão só aparece se houver mais eventos do que os visíveis
+if (agendaToggle && upcomingEvents.length > AGENDA_VISIBLE) {
+  agendaToggle.hidden = false;
+  setAgendaExpanded(false);
+}
 
 agendaToggle?.addEventListener('click', () => {
   setAgendaExpanded(agendaToggle.getAttribute('aria-expanded') !== 'true');
@@ -300,45 +257,43 @@ function markWelcomeSeen() {
 
 // troca o destaque fixo do HTML pelo próximo evento da agenda
 function fillWelcomeWithEvent(evento) {
+  const { card } = evento;
   const image = welcomeModal.querySelector('#welcome-image');
-  image.src = evento.imagem;
-  image.alt = evento.imagemAlt;
-  welcomeModal.querySelector('#welcome-place').textContent = `${evento.local} · Roraima`;
+  image.src = card.dataset.imagem;
+  image.alt = card.dataset.imagemAlt;
+  const local = card.querySelector('.agenda-meta span:last-child').textContent;
+  welcomeModal.querySelector('#welcome-place').textContent = `${local} · Roraima`;
   welcomeModal.querySelector('#welcome-kicker').textContent = evento.status === 'now'
     ? 'Acontecendo agora'
     : `Próximo evento · ${countdownText(evento).toLowerCase()}`;
 
   const em = document.createElement('em');
-  em.textContent = `${evento.nome}.`;
+  em.textContent = `${card.querySelector('h3').textContent}.`;
   welcomeModal.querySelector('#welcome-title').replaceChildren('Não perca:', document.createElement('br'), em);
-  welcomeModal.querySelector('#welcome-text').textContent = `${evento.descricao} ${periodText(evento)}.`;
+  const description = card.querySelector('.agenda-description').textContent;
+  const period = card.querySelector('.agenda-period').textContent;
+  welcomeModal.querySelector('#welcome-text').textContent = `${description} ${period}.`;
 
   welcomeModal.querySelector('#welcome-cta').href = '#agenda';
   welcomeModal.querySelector('#welcome-cta-text').textContent = 'Ver a agenda';
 }
 
 if (welcomeModal?.showModal && !welcomeAlreadySeen()) {
-  // espera no mínimo 600ms (a página "assenta") e no máximo 2s pela agenda;
-  // se o JSON demorar ou falhar, o modal abre com o destaque fixo do HTML
-  const minimumDelay = new Promise((resolve) => setTimeout(resolve, 600));
-  const timeout = new Promise((resolve) => setTimeout(() => resolve(null), 2000));
-
-  Promise.all([minimumDelay, Promise.race([upcomingEvents, timeout])]).then(([, eventos]) => {
-    if (eventos?.length) fillWelcomeWithEvent(eventos[0]);
-    welcomeModal.showModal();
-  });
+  if (upcomingEvents.length) fillWelcomeWithEvent(upcomingEvents[0]);
+  // espera 600ms para a página "assentar" antes de abrir
+  setTimeout(() => welcomeModal.showModal(), 600);
 
   // o evento close dispara em qualquer forma de fechar: botões, Esc ou clique fora
   welcomeModal.addEventListener('close', markWelcomeSeen);
 }
 
 // ==========================================================================
-// MUNICÍPIOS (assets/data/municipios.json)
-// Um único arquivo de dados gera os cards do slider, a tabela de distâncias
-// e o conteúdo do modal "Saiba mais". Mudou um dado? Muda nos três lugares.
+// MUNICÍPIOS
+// Cada card traz, escondido (hidden), o conteúdo do modal "Saiba mais":
+// distância, descrição e o que fazer. A tabela de distâncias também já está
+// no HTML, em ordem alfabética.
 // ==========================================================================
 const municipalityGrid = document.querySelector('#municipality-grid');
-const municipalityTableBody = document.querySelector('.municipality-table tbody');
 const regionFilters = document.querySelector('#region-filters');
 const search = document.querySelector('#municipality-search');
 const searchStatus = document.querySelector('#municipality-status');
@@ -346,80 +301,25 @@ const municipalityModal = document.querySelector('#municipality-modal');
 const slideButtons = document.querySelectorAll('[data-slide]');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-let municipios = [];
+const municipalityCards = [...(municipalityGrid?.children ?? [])];
 let activeRegion = 'Todas';
 
 // tira acentos e maiúsculas: "uiramuta" encontra "Uiramutã"
 const normalize = (text) => text.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLocaleLowerCase('pt-BR');
-
-function distanceText(municipio, style) {
-  if (municipio.distanciaKm === null) return style === 'short' ? '—' : 'Capital do estado';
-  return style === 'short' ? `≈ ${municipio.distanciaKm} km` : `≈ ${municipio.distanciaKm} km de Boa Vista`;
-}
-
-function renderMunicipalityCard(municipio) {
-  const item = createElement('li');
-  item.dataset.id = municipio.id;
-
-  const tags = createElement('div', 'municipality-tags');
-  tags.append(createElement('span', '', municipio.categoria), createElement('small', '', municipio.regiao));
-
-  const button = createElement('button', 'municipality-more', 'Saiba mais');
-  button.type = 'button';
-  button.dataset.municipio = municipio.id;
-  button.setAttribute('aria-haspopup', 'dialog');
-  const arrow = createElement('span', '', '→');
-  arrow.setAttribute('aria-hidden', 'true');
-  // o espaço vai como texto solto: dentro do span inline-block ele seria ignorado
-  button.append(createElement('span', 'sr-only', ` sobre ${municipio.nome}`), ' ', arrow);
-
-  const article = createElement('article');
-  article.append(tags, createElement('h3', '', municipio.nome), createElement('p', '', municipio.resumo), button);
-  item.append(article);
-  return item;
-}
-
-function renderMunicipalityRow(municipio) {
-  const row = createElement('tr');
-  const name = createElement('th', '', municipio.nome);
-  name.scope = 'row';
-  row.append(
-    name,
-    createElement('td', '', municipio.regiao),
-    createElement('td', '', distanceText(municipio, 'short')),
-    createElement('td', '', municipio.destaque),
-  );
-  return row;
-}
-
-function renderRegionFilters() {
-  // new Set remove repetições: sobra uma entrada por região, na ordem do JSON
-  const regions = ['Todas', ...new Set(municipios.map((municipio) => municipio.regiao))];
-  regionFilters.replaceChildren(...regions.map((region) => {
-    const total = region === 'Todas'
-      ? municipios.length
-      : municipios.filter((municipio) => municipio.regiao === region).length;
-    const button = createElement('button', 'filter-chip', region);
-    button.type = 'button';
-    button.dataset.region = region;
-    // aria-pressed diz ao leitor de tela qual filtro está ativo
-    button.setAttribute('aria-pressed', String(region === activeRegion));
-    const count = createElement('span', 'filter-count', String(total));
-    count.setAttribute('aria-label', `${total} municípios`);
-    button.append(count);
-    return button;
-  }));
-}
 
 // busca + filtro de região trabalham juntos: o card aparece se passar nos dois
 function applyMunicipalityFilters() {
   const term = normalize(search?.value.trim() ?? '');
   let found = 0;
 
-  municipios.forEach((municipio) => {
-    const content = normalize(`${municipio.nome} ${municipio.regiao} ${municipio.categoria} ${municipio.resumo}`);
-    const match = (activeRegion === 'Todas' || municipio.regiao === activeRegion) && (!term || content.includes(term));
-    municipalityGrid.querySelector(`[data-id="${municipio.id}"]`).hidden = !match;
+  municipalityCards.forEach((card) => {
+    // busca no que aparece no card: categoria, região, nome e resumo
+    const visibleText = [...card.querySelectorAll('.municipality-tags > *, h3, article > p')]
+      .map((element) => element.textContent)
+      .join(' ');
+    const match = (activeRegion === 'Todas' || card.dataset.region === activeRegion)
+      && (!term || normalize(visibleText).includes(term));
+    card.hidden = !match;
     if (match) found += 1;
   });
 
@@ -442,38 +342,20 @@ function updateSlideButtons() {
   });
 }
 
-// preenche o <dialog> "Saiba mais" com os dados do município clicado
-function fillMunicipalityModal(municipio) {
+// copia para o <dialog> "Saiba mais" o conteúdo do card clicado
+function fillMunicipalityModal(card) {
   const field = (name) => municipalityModal.querySelector(`#municipality-modal-${name}`);
-  field('tag').textContent = municipio.categoria;
-  field('region').textContent = municipio.regiao;
-  field('title').textContent = municipio.nome;
-  field('distance').textContent = distanceText(municipio, 'long');
-  field('description').textContent = municipio.descricao;
-  field('activities').replaceChildren(...municipio.atividades.map((atividade) => createElement('li', '', atividade)));
+  const [tag, region] = card.querySelectorAll('.municipality-tags > *');
+  field('tag').textContent = tag.textContent;
+  field('region').textContent = region.textContent;
+  field('title').textContent = card.querySelector('h3').textContent;
+  field('distance').textContent = card.querySelector('.municipality-distance').textContent;
+  field('description').textContent = card.querySelector('.municipality-description').textContent;
+  const activities = card.querySelectorAll('.municipality-activities li');
+  field('activities').replaceChildren(...[...activities].map((item) => item.cloneNode(true)));
 }
 
-async function initMunicipios() {
-  if (!municipalityGrid) return;
-
-  try {
-    municipios = await loadJSON('assets/data/municipios.json');
-  } catch (error) {
-    console.error(error);
-    document.querySelector('#municipality-error').hidden = false;
-    document.querySelector('.slider-controls').hidden = true;
-    return;
-  }
-
-  municipalityGrid.replaceChildren(...municipios.map(renderMunicipalityCard));
-
-  // a tabela usa uma cópia ordenada; localeCompare respeita acentos do português
-  const alphabetical = [...municipios].sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
-  municipalityTableBody?.replaceChildren(...alphabetical.map(renderMunicipalityRow));
-
-  renderRegionFilters();
-  updateSlideButtons();
-}
+if (municipalityGrid) updateSlideButtons();
 
 slideButtons.forEach((button) => {
   button.addEventListener('click', () => {
@@ -498,78 +380,21 @@ regionFilters?.addEventListener('click', (event) => {
   applyMunicipalityFilters();
 });
 
-// delegação de evento: um único ouvinte na lista atende todos os botões
-// "Saiba mais", inclusive os que foram criados depois pelo JavaScript
+// delegação de evento: um único ouvinte na lista atende todos os botões "Saiba mais"
 municipalityGrid?.addEventListener('click', (event) => {
-  const button = event.target.closest('[data-municipio]');
-  const municipio = button && municipios.find((item) => item.id === button.dataset.municipio);
-  if (!municipio || !municipalityModal?.showModal) return;
-  fillMunicipalityModal(municipio);
+  const card = event.target.closest('.municipality-more')?.closest('li');
+  if (!card || !municipalityModal?.showModal) return;
+  fillMunicipalityModal(card);
   municipalityModal.showModal();
 });
 
-initMunicipios();
-
 // ==========================================================================
-// DEPOIMENTOS (assets/data/depoimentos.json)
-// Os cards são criados a partir do JSON, depois duplicados para o giro
-// contínuo; as fotos dos avatares vêm da API pública randomuser.me.
+// DEPOIMENTOS
+// Os cards estão no HTML; o JS só decide se giram ou ficam parados e
+// troca as iniciais pelas fotos da API pública randomuser.me.
 // ==========================================================================
 const testimonialsTrack = document.querySelector('#testimonials-track');
-
-// "Mariana Albuquerque" → "MA": primeira letra do primeiro e do último nome
-function initials(name) {
-  const parts = name.trim().split(/\s+/);
-  return (parts[0][0] + (parts.length > 1 ? parts.at(-1)[0] : '')).toUpperCase();
-}
-
-function renderTestimonial(depoimento) {
-  const quote = createElement('blockquote');
-  quote.append(createElement('p', '', depoimento.texto));
-
-  const avatar = createElement('span', 'testimonial-avatar', initials(depoimento.nome));
-  avatar.dataset.gender = depoimento.genero;
-  avatar.setAttribute('aria-hidden', 'true');
-
-  const who = createElement('span');
-  who.append(createElement('strong', '', depoimento.nome), createElement('small', '', depoimento.origem));
-
-  const caption = createElement('figcaption');
-  caption.append(avatar, who);
-
-  const figure = createElement('figure', 'testimonial-card');
-  figure.append(quote, caption);
-
-  const item = createElement('li');
-  item.append(figure);
-  return item;
-}
-
-async function initTestimonials() {
-  if (!testimonialsTrack) return;
-
-  let depoimentos;
-  try {
-    depoimentos = await loadJSON('assets/data/depoimentos.json');
-  } catch (error) {
-    console.error(error);
-    document.querySelector('#testimonials-error').hidden = false;
-    return;
-  }
-
-  testimonialOriginals = depoimentos.map(renderTestimonial);
-  layoutTestimonials();
-  loadTestimonialAvatars(testimonialOriginals.length);
-
-  // ao redimensionar, refaz a escolha entre parado e girando
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(layoutTestimonials, 200);
-  });
-}
-
-let testimonialOriginals = [];
+const testimonialOriginals = [...(testimonialsTrack?.children ?? [])];
 
 // O giro contínuo precisa de uma cópia dos cards para o laço não ter "pulo".
 // Só que, se os cards não enchem a largura da tela, a cópia aparece ao lado
@@ -595,8 +420,6 @@ function layoutTestimonials() {
   });
   testimonialsTrack.classList.add('is-animated');
 }
-
-initTestimonials();
 
 async function loadTestimonialAvatars(total) {
   const genders = testimonialOriginals.map((item) => item.querySelector('.testimonial-avatar').dataset.gender);
@@ -635,10 +458,23 @@ async function loadTestimonialAvatars(total) {
   }
 }
 
+if (testimonialsTrack) {
+  layoutTestimonials();
+  loadTestimonialAvatars(testimonialOriginals.length);
+
+  // ao redimensionar, refaz a escolha entre parado e girando
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(layoutTestimonials, 200);
+  });
+}
+
 // ==========================================================================
-// GALERIA (assets/data/galeria.json)
-// Mosaico de miniaturas com filtro por tema. Ao clicar, a foto grande abre
-// no visualizador (<dialog>), que navega pelas setas, pelo teclado (← →) e
+// GALERIA
+// Mosaico de miniaturas com filtro por tema. Cada <li> guarda em data-*
+// a foto grande, a descrição e o crédito. Ao clicar, a foto abre no
+// visualizador (<dialog>), que navega pelas setas, pelo teclado (← →) e
 // pelo arrasto do dedo no celular.
 // ==========================================================================
 const galleryGrid = document.querySelector('#gallery-grid');
@@ -646,69 +482,32 @@ const galleryFilters = document.querySelector('#gallery-filters');
 const lightbox = document.querySelector('#lightbox');
 const lightboxImage = document.querySelector('#lightbox-image');
 
-let galeria = [];
-let galleryView = [];          // fotos visíveis com o filtro atual
+const galleryItems = [...(galleryGrid?.children ?? [])];
+let galleryView = galleryItems;   // fotos visíveis com o filtro atual
 let galleryCategory = 'Todas';
 let galleryIndex = 0;
 
-function renderGalleryFilters() {
-  const countOf = (category) => galeria.filter((foto) => foto.categoria === category).length;
-  // temas do que tem mais fotos para o que tem menos
-  const themes = [...new Set(galeria.map((foto) => foto.categoria))].sort((a, b) => countOf(b) - countOf(a));
-  const categories = ['Todas', ...themes];
-  galleryFilters.replaceChildren(...categories.map((category) => {
-    const total = category === 'Todas' ? galeria.length : countOf(category);
-    const button = createElement('button', 'filter-chip', category);
-    button.type = 'button';
-    button.dataset.category = category;
-    button.setAttribute('aria-pressed', String(category === galleryCategory));
-    const count = createElement('span', 'filter-count', String(total));
-    count.setAttribute('aria-label', `${total} fotos`);
-    button.append(count);
-    return button;
-  }));
-}
-
 function renderGallery() {
   galleryView = galleryCategory === 'Todas'
-    ? galeria
-    : galeria.filter((foto) => foto.categoria === galleryCategory);
+    ? galleryItems
+    : galleryItems.filter((item) => item.dataset.category === galleryCategory);
 
-  // recriar a lista faz a animação de entrada tocar de novo a cada filtro
-  galleryGrid.replaceChildren(...galleryView.map((foto, index) => {
-    const item = createElement('li', { largo: 'is-wide', alto: 'is-tall' }[foto.formato] ?? '');
-    item.style.setProperty('--i', index);
-
-    const button = createElement('button', 'gallery-item');
-    button.type = 'button';
-    button.dataset.index = index;
-
-    const img = createElement('img');
-    img.src = foto.miniatura;
-    img.alt = foto.alt;
-    img.loading = 'lazy';
-    img.decoding = 'async';
-
-    const caption = createElement('span', 'gallery-caption');
-    caption.append(createElement('strong', '', foto.titulo), createElement('small', '', foto.local));
-
-    const zoom = createElement('span', 'gallery-zoom', '⤢');
-    zoom.setAttribute('aria-hidden', 'true');
-
-    button.append(img, caption, zoom);
-    item.append(button);
-    return item;
-  }));
+  galleryView.forEach((item, index) => {
+    item.style.setProperty('--i', index);   // atraso da animação de entrada
+    item.querySelector('.gallery-item').dataset.index = index;
+  });
+  // reinserir os itens faz a animação de entrada tocar de novo a cada filtro
+  galleryGrid.replaceChildren(...galleryView);
 }
 
 // crédito: "Foto: autor · licença · ver original" (as licenças CC pedem autor e link)
-function renderCredit(credito) {
+function renderCredit({ autor, licenca, licencaUrl, fonte }) {
   const credit = document.querySelector('#lightbox-credit');
-  if (!credito) {
+  if (!autor) {
     credit.replaceChildren();
     return;
   }
-  const parts = [document.createTextNode(`Foto: ${credito.autor}`)];
+  const parts = [document.createTextNode(`Foto: ${autor}`)];
   const link = (text, href) => {
     const a = createElement('a', '', text);
     a.href = href;
@@ -716,53 +515,41 @@ function renderCredit(credito) {
     a.rel = 'noopener';
     return a;
   };
-  if (credito.licenca) {
-    parts.push(' · ', credito.licencaUrl ? link(credito.licenca, credito.licencaUrl) : credito.licenca);
-  }
-  if (credito.fonte) parts.push(' · ', link('ver original', credito.fonte));
+  if (licenca) parts.push(' · ', licencaUrl ? link(licenca, licencaUrl) : licenca);
+  if (fonte) parts.push(' · ', link('ver original', fonte));
   credit.replaceChildren(...parts);
 }
 
 function showPhoto(index) {
   // o índice "dá a volta": depois da última vem a primeira
   galleryIndex = (index + galleryView.length) % galleryView.length;
-  const foto = galleryView[galleryIndex];
+  const item = galleryView[galleryIndex];
+  const { imagem } = item.dataset;
 
   // esmaece durante a troca; se a foto já estiver carregada (mesmo arquivo
   // ou em cache), o evento load não dispara, então a classe sai na hora
-  if (lightboxImage.getAttribute('src') !== foto.imagem) {
+  if (lightboxImage.getAttribute('src') !== imagem) {
     lightboxImage.classList.add('is-loading');
     lightboxImage.onload = () => lightboxImage.classList.remove('is-loading');
-    lightboxImage.src = foto.imagem;
+    lightboxImage.src = imagem;
   }
   if (lightboxImage.complete) lightboxImage.classList.remove('is-loading');
-  lightboxImage.alt = foto.alt;
+  lightboxImage.alt = item.querySelector('img').alt;
 
-  document.querySelector('#lightbox-category').textContent = foto.categoria;
-  document.querySelector('#lightbox-local').textContent = foto.local;
-  document.querySelector('#lightbox-title').textContent = foto.titulo;
-  document.querySelector('#lightbox-description').textContent = foto.descricao;
+  document.querySelector('#lightbox-category').textContent = item.dataset.category;
+  document.querySelector('#lightbox-local').textContent = item.querySelector('.gallery-caption small').textContent;
+  document.querySelector('#lightbox-title').textContent = item.querySelector('.gallery-caption strong').textContent;
+  document.querySelector('#lightbox-description').textContent = item.dataset.descricao;
   document.querySelector('#lightbox-counter').textContent = `${galleryIndex + 1} / ${galleryView.length}`;
-  renderCredit(foto.credito);
+  renderCredit(item.dataset);
 
   // pré-carrega as vizinhas: a troca de foto fica instantânea
   [galleryIndex - 1, galleryIndex + 1].forEach((i) => {
-    new Image().src = galleryView[(i + galleryView.length) % galleryView.length].imagem;
+    new Image().src = galleryView[(i + galleryView.length) % galleryView.length].dataset.imagem;
   });
 }
 
-async function initGaleria() {
-  if (!galleryGrid) return;
-  try {
-    galeria = await loadJSON('assets/data/galeria.json');
-  } catch (error) {
-    console.error(error);
-    document.querySelector('#gallery-error').hidden = false;
-    return;
-  }
-  renderGalleryFilters();
-  renderGallery();
-}
+if (galleryGrid) renderGallery();
 
 galleryFilters?.addEventListener('click', (event) => {
   const button = event.target.closest('[data-category]');
@@ -800,7 +587,6 @@ lightbox?.addEventListener('pointerup', (event) => {
   if (Math.abs(distance) > 50 && event.pointerType !== 'mouse') showPhoto(galleryIndex + (distance < 0 ? 1 : -1));
 });
 
-initGaleria();
 
 // "Viu outro valor?": o link leva até #contato e, antes disso, deixa o
 // formulário pré-preenchido com o destino do card.

@@ -12,15 +12,9 @@ Avaliação A1 da disciplina **Fundamentos de Desenvolvimento Web** (turno vespe
 
 ## Como executar
 
-Os municípios, a agenda cultural e os depoimentos são carregados de arquivos JSON (`assets/data/`) com `fetch()`, que só funciona com o site servido por HTTP. Abrir o `index.html` direto (`file://`) não carrega esses dados.
+Todo o conteúdo (agenda cultural, municípios, depoimentos e galeria) está escrito direto no `index.html`, então aparece no código-fonte da página (Ctrl+U). O JavaScript só adiciona a interatividade: ordena a agenda pela data de hoje, filtra, busca e abre os modais.
 
-Use a extensão **Live Server** do VS Code ou, na pasta do projeto:
-
-```
-python3 -m http.server 8000
-```
-
-e acesse `http://localhost:8000`.
+Basta abrir o `index.html` no navegador. Não é preciso servidor.
 
 ## Autor
 

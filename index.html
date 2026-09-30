@@ -43,7 +43,7 @@
 <body>
     <header class="site-header">
         <div class="container header-inner">
-            <a class="brand" href="#inicio"><span class="brand-mark">CR</span> <span>CONHEÇA<br>RORAIMA</span></a>
+            <a class="brand" href="#top"><span class="brand-mark">CR</span> <span>CONHEÇA<br>RORAIMA</span></a>
             <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu"><span></span><span></span><span></span></button>
             <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
                 <ul>
@@ -78,7 +78,7 @@
         </div>
     </header>
 
-    <main id="inicio">
+    <main>
         <section class="hero hero-noise">
             <div class="container hero-grid">
                 <header class="hero-copy reveal">
@@ -212,11 +212,68 @@
                     <p>Festas, celebrações e temporadas que movimentam Roraima. A lista se atualiza sozinha conforme a data de hoje.</p>
                 </header>
                 <ol class="agenda-grid" id="agenda-list">
-                    <!-- preenchido pelo JavaScript a partir de assets/data/eventos.json -->
+                    <li class="agenda-card" data-inicio="04-19" data-fim="04-19" data-imagem="assets/img/artesanato-roraima.webp" data-imagem-alt="Colares de sementes e contas do artesanato regional de Roraima">
+                        <time class="agenda-date" datetime="04-19"><strong>19</strong><span>abr</span></time>
+                        <div class="agenda-body">
+                            <p class="agenda-meta"><span class="agenda-tag">CULTURA</span><span>Todo o estado</span></p>
+                            <h3>Dia dos Povos Indígenas</h3>
+                            <p class="agenda-description">Feiras de artesanato, rodas de conversa e apresentações celebram os povos originários que fazem de Roraima um território de muitas vozes.</p>
+                            <p class="agenda-period">19 de abril</p>
+                        </div>
+                        <p class="agenda-countdown"></p>
+                    </li>
+                    <li class="agenda-card" data-inicio="06-01" data-fim="06-30" data-imagem="assets/img/orla-taumanan-boa-vista.webp" data-imagem-alt="Orla Taumanan, às margens do Rio Branco, em Boa Vista">
+                        <time class="agenda-date" datetime="06-01"><strong>01</strong><span>jun</span></time>
+                        <div class="agenda-body">
+                            <p class="agenda-meta"><span class="agenda-tag">FESTA</span><span>Boa Vista</span></p>
+                            <h3>Boa Vista Junina</h3>
+                            <p class="agenda-description">O grande arraial da capital reúne quadrilhas, comidas típicas e shows em noites de festa ao longo de junho.</p>
+                            <p class="agenda-period">De 1 de junho a 30 de junho (data aproximada)</p>
+                        </div>
+                        <p class="agenda-countdown"></p>
+                    </li>
+                    <li class="agenda-card" data-inicio="07-09" data-fim="07-09" data-imagem="assets/img/orla-taumanan-boa-vista.webp" data-imagem-alt="Orla Taumanan, às margens do Rio Branco, em Boa Vista">
+                        <time class="agenda-date" datetime="07-09"><strong>09</strong><span>jul</span></time>
+                        <div class="agenda-body">
+                            <p class="agenda-meta"><span class="agenda-tag">CELEBRAÇÃO</span><span>Boa Vista</span></p>
+                            <h3>Aniversário de Boa Vista</h3>
+                            <p class="agenda-description">A capital comemora sua fundação com programação cultural, feiras e shows abertos ao público.</p>
+                            <p class="agenda-period">9 de julho</p>
+                        </div>
+                        <p class="agenda-countdown"></p>
+                    </li>
+                    <li class="agenda-card" data-inicio="10-05" data-fim="10-05" data-imagem="assets/img/monte-roraima-aereo.webp" data-imagem-alt="Vista aérea do Monte Roraima entre nuvens">
+                        <time class="agenda-date" datetime="10-05"><strong>05</strong><span>out</span></time>
+                        <div class="agenda-body">
+                            <p class="agenda-meta"><span class="agenda-tag">CELEBRAÇÃO</span><span>Todo o estado</span></p>
+                            <h3>Aniversário do Estado de Roraima</h3>
+                            <p class="agenda-description">Data em que Roraima se tornou estado, com a Constituição de 1988. Eventos cívicos e culturais tomam as cidades.</p>
+                            <p class="agenda-period">5 de outubro</p>
+                        </div>
+                        <p class="agenda-countdown"></p>
+                    </li>
+                    <li class="agenda-card" data-inicio="12-01" data-fim="03-31" data-imagem="assets/img/trilha-monte-roraima.webp" data-imagem-alt="Paisagem natural de Roraima">
+                        <time class="agenda-date" datetime="12-01"><strong>01</strong><span>dez</span></time>
+                        <div class="agenda-body">
+                            <p class="agenda-meta"><span class="agenda-tag">NATUREZA</span><span>Rio Branco e afluentes</span></p>
+                            <h3>Temporada de praias de rio</h3>
+                            <p class="agenda-description">Na estação seca, o nível dos rios baixa e surgem praias de areia branca, perfeitas para banho, pesca e fim de tarde.</p>
+                            <p class="agenda-period">De 1 de dezembro a 31 de março (data aproximada)</p>
+                        </div>
+                        <p class="agenda-countdown"></p>
+                    </li>
+                    <li class="agenda-card" data-inicio="12-01" data-fim="12-25" data-imagem="assets/img/orla-taumanan-boa-vista.webp" data-imagem-alt="Orla Taumanan, às margens do Rio Branco, em Boa Vista">
+                        <time class="agenda-date" datetime="12-01"><strong>01</strong><span>dez</span></time>
+                        <div class="agenda-body">
+                            <p class="agenda-meta"><span class="agenda-tag">FESTA</span><span>Boa Vista</span></p>
+                            <h3>Natal iluminado</h3>
+                            <p class="agenda-description">Praças e avenidas da capital ganham luzes e decoração natalina, com programação para toda a família.</p>
+                            <p class="agenda-period">De 1 de dezembro a 25 de dezembro (data aproximada)</p>
+                        </div>
+                        <p class="agenda-countdown"></p>
+                    </li>
                 </ol>
                 <button class="agenda-toggle" id="agenda-toggle" type="button" aria-expanded="false" aria-controls="agenda-list" hidden>Ver agenda completa <span aria-hidden="true">↓</span></button>
-                <noscript><p class="data-message">Ative o JavaScript para ver os próximos eventos.</p></noscript>
-                <p class="data-message" id="agenda-error" hidden>Não foi possível carregar a agenda agora. Tente recarregar a página.</p>
                 <p class="agenda-note"><span aria-hidden="true">ⓘ</span> Eventos marcados como “data aproximada” mudam de ano para ano. Confirme a programação oficial antes de viajar.</p>
             </div>
         </section>
@@ -261,12 +318,288 @@
                         <input id="municipality-search" type="search" placeholder="Busque um município" maxlength="40">
                     </search>
                 </header>
-                <div class="filter-bar" id="region-filters" role="group" aria-label="Filtrar municípios por região"></div>
-                <noscript><p class="data-message">Ative o JavaScript para ver os 15 municípios de Roraima.</p></noscript>
-                <p class="data-message" id="municipality-error" hidden>Não foi possível carregar os municípios agora. Tente recarregar a página.</p>
+                <div class="filter-bar" id="region-filters" role="group" aria-label="Filtrar municípios por região">
+                    <button class="filter-chip" type="button" data-region="Todas" aria-pressed="true">Todas<span class="filter-count" aria-label="15 municípios">15</span></button>
+                    <button class="filter-chip" type="button" data-region="Capital" aria-pressed="false">Capital<span class="filter-count" aria-label="1 municípios">1</span></button>
+                    <button class="filter-chip" type="button" data-region="Norte" aria-pressed="false">Norte<span class="filter-count" aria-label="4 municípios">4</span></button>
+                    <button class="filter-chip" type="button" data-region="Leste" aria-pressed="false">Leste<span class="filter-count" aria-label="1 municípios">1</span></button>
+                    <button class="filter-chip" type="button" data-region="Centro" aria-pressed="false">Centro<span class="filter-count" aria-label="2 municípios">2</span></button>
+                    <button class="filter-chip" type="button" data-region="Oeste" aria-pressed="false">Oeste<span class="filter-count" aria-label="1 municípios">1</span></button>
+                    <button class="filter-chip" type="button" data-region="Centro-Sul" aria-pressed="false">Centro-Sul<span class="filter-count" aria-label="2 municípios">2</span></button>
+                    <button class="filter-chip" type="button" data-region="Sul" aria-pressed="false">Sul<span class="filter-count" aria-label="4 municípios">4</span></button>
+                </div>
                 <div class="municipality-slider">
                 <ul class="municipality-grid" id="municipality-grid" aria-label="Municípios de Roraima">
-                    <!-- preenchido pelo JavaScript a partir de assets/data/municipios.json -->
+                    <li data-id="boa-vista" data-region="Capital">
+                        <article>
+                            <div class="municipality-tags"><span>URBANO</span><small>Capital</small></div>
+                            <h3>Boa Vista</h3>
+                            <p>Orla Taumanan · centro histórico</p>
+                            <div class="municipality-details" hidden>
+                                <p class="municipality-distance">Capital do estado</p>
+                                <p class="municipality-description">Única capital brasileira totalmente ao norte da Linha do Equador, Boa Vista foi planejada em formato de leque às margens do Rio Branco. Tem ruas largas, praças arborizadas e um pôr do sol famoso na orla.</p>
+                                <ul class="municipality-activities">
+                                <li>Caminhar pela Orla Taumanan no fim da tarde</li>
+                                <li>Conhecer a Praça do Centro Cívico e o Monumento aos Pioneiros</li>
+                                <li>Passear pelo Parque Anauá</li>
+                                <li>Provar a culinária regional nas feiras da cidade</li>
+                                </ul>
+                            </div>
+                            <button class="municipality-more" type="button" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Boa Vista</span> <span aria-hidden="true">→</span></button>
+                        </article>
+                    </li>
+                    <li data-id="pacaraima" data-region="Norte">
+                        <article>
+                            <div class="municipality-tags"><span>AVENTURA</span><small>Norte</small></div>
+                            <h3>Pacaraima</h3>
+                            <p>Monte Roraima · fronteira</p>
+                            <div class="municipality-details" hidden>
+                                <p class="municipality-distance">≈ 215 km de Boa Vista</p>
+                                <p class="municipality-description">Na fronteira com a Venezuela, Pacaraima fica no alto da serra e tem clima mais ameno que o resto do estado. É o ponto de partida brasileiro para quem sonha com o Monte Roraima.</p>
+                                <ul class="municipality-activities">
+                                <li>Organizar a expedição ao Monte Roraima</li>
+                                <li>Visitar o Marco BV-8, na divisa com a Venezuela</li>
+                                <li>Aproveitar o clima fresco da serra</li>
+                                <li>Conhecer comunidades indígenas da região</li>
+                                </ul>
+                            </div>
+                            <button class="municipality-more" type="button" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Pacaraima</span> <span aria-hidden="true">→</span></button>
+                        </article>
+                    </li>
+                    <li data-id="uiramuta" data-region="Norte">
+                        <article>
+                            <div class="municipality-tags"><span>NATUREZA</span><small>Norte</small></div>
+                            <h3>Uiramutã</h3>
+                            <p>Cachoeiras · serras · Makunaima</p>
+                            <div class="municipality-details" hidden>
+                                <p class="municipality-distance">≈ 300 km de Boa Vista</p>
+                                <p class="municipality-description">No coração da Terra Indígena Raposa Serra do Sol, Uiramutã é terra de serras, cachoeiras e da tradição de Makunaima. Lá está o Monte Caburaí, ponto mais ao norte do Brasil.</p>
+                                <ul class="municipality-activities">
+                                <li>Banhar-se nas cachoeiras da região</li>
+                                <li>Contemplar as serras e o lavrado</li>
+                                <li>Conhecer a cultura dos povos Macuxi e Ingarikó</li>
+                                <li>Ver de perto o extremo norte do país</li>
+                                </ul>
+                            </div>
+                            <button class="municipality-more" type="button" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Uiramutã</span> <span aria-hidden="true">→</span></button>
+                        </article>
+                    </li>
+                    <li data-id="amajari" data-region="Norte">
+                        <article>
+                            <div class="municipality-tags"><span>NATUREZA</span><small>Norte</small></div>
+                            <h3>Amajari</h3>
+                            <p>Serra do Tepequém · Maracá</p>
+                            <div class="municipality-details" hidden>
+                                <p class="municipality-distance">≈ 160 km de Boa Vista</p>
+                                <p class="municipality-description">Amajari abriga a Serra do Tepequém, antiga área de garimpo que virou refúgio de trilhas e cachoeiras, e a Estação Ecológica de Maracá, uma das áreas protegidas mais importantes do estado.</p>
+                                <ul class="municipality-activities">
+                                <li>Subir a Serra do Tepequém</li>
+                                <li>Banhar-se na Cachoeira do Paiva</li>
+                                <li>Fazer trilhas pelos mirantes da serra</li>
+                                <li>Observar a fauna perto de Maracá</li>
+                                </ul>
+                            </div>
+                            <button class="municipality-more" type="button" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Amajari</span> <span aria-hidden="true">→</span></button>
+                        </article>
+                    </li>
+                    <li data-id="normandia" data-region="Norte">
+                        <article>
+                            <div class="municipality-tags"><span>LAGOS</span><small>Norte</small></div>
+                            <h3>Normandia</h3>
+                            <p>Lago Caracaranã · fronteira</p>
+                            <div class="municipality-details" hidden>
+                                <p class="municipality-distance">≈ 185 km de Boa Vista</p>
+                                <p class="municipality-description">Na fronteira com a Guiana, Normandia é famosa pelo Lago Caracaranã, de águas claras e areia branca cercado pelo lavrado. Um dos cartões-postais do norte de Roraima.</p>
+                                <ul class="municipality-activities">
+                                <li>Passar o dia no Lago Caracaranã</li>
+                                <li>Acampar sob o céu aberto do lavrado</li>
+                                <li>Conhecer comunidades indígenas da região</li>
+                                <li>Fotografar o pôr do sol na fronteira</li>
+                                </ul>
+                            </div>
+                            <button class="municipality-more" type="button" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Normandia</span> <span aria-hidden="true">→</span></button>
+                        </article>
+                    </li>
+                    <li data-id="bonfim" data-region="Leste">
+                        <article>
+                            <div class="municipality-tags"><span>FRONTEIRA</span><small>Leste</small></div>
+                            <h3>Bonfim</h3>
+                            <p>Rio Tacutu · Guiana</p>
+                            <div class="municipality-details" hidden>
+                                <p class="municipality-distance">≈ 125 km de Boa Vista</p>
+                                <p class="municipality-description">Bonfim fica às margens do Rio Tacutu, ligado por ponte à cidade de Lethem, na Guiana. É um lugar de encontro entre o português, o inglês e as línguas indígenas.</p>
+                                <ul class="municipality-activities">
+                                <li>Cruzar a ponte sobre o Rio Tacutu até a Guiana</li>
+                                <li>Fazer compras em Lethem</li>
+                                <li>Curtir as praias do Rio Tacutu</li>
+                                <li>Explorar o lavrado e as serras próximas</li>
+                                </ul>
+                            </div>
+                            <button class="municipality-more" type="button" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Bonfim</span> <span aria-hidden="true">→</span></button>
+                        </article>
+                    </li>
+                    <li data-id="canta" data-region="Centro">
+                        <article>
+                            <div class="municipality-tags"><span>TRILHAS</span><small>Centro</small></div>
+                            <h3>Cantá</h3>
+                            <p>Serra Grande · balneários</p>
+                            <div class="municipality-details" hidden>
+                                <p class="municipality-distance">≈ 35 km de Boa Vista</p>
+                                <p class="municipality-description">Vizinho da capital, do outro lado do Rio Branco, Cantá é a escapada perfeita de fim de semana, com a Serra Grande, balneários e sítios de agricultura familiar.</p>
+                                <ul class="municipality-activities">
+                                <li>Fazer a trilha da Serra Grande</li>
+                                <li>Aproveitar os balneários e igarapés</li>
+                                <li>Comprar produtos direto dos agricultores</li>
+                                <li>Atravessar a Ponte dos Macuxi com vista para o rio</li>
+                                </ul>
+                            </div>
+                            <button class="municipality-more" type="button" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Cantá</span> <span aria-hidden="true">→</span></button>
+                        </article>
+                    </li>
+                    <li data-id="alto-alegre" data-region="Oeste">
+                        <article>
+                            <div class="municipality-tags"><span>CULTURA</span><small>Oeste</small></div>
+                            <h3>Alto Alegre</h3>
+                            <p>Taiano · igarapés</p>
+                            <div class="municipality-details" hidden>
+                                <p class="municipality-distance">≈ 90 km de Boa Vista</p>
+                                <p class="municipality-description">Alto Alegre reúne vilas do interior, como o Taiano, igarapés de água fria e parte da Terra Indígena Yanomami. Um município de ritmo tranquilo e forte vida comunitária.</p>
+                                <ul class="municipality-activities">
+                                <li>Conhecer a Vila do Taiano</li>
+                                <li>Refrescar-se nos igarapés da região</li>
+                                <li>Participar das festas tradicionais da cidade</li>
+                                <li>Provar a produção da agricultura familiar</li>
+                                </ul>
+                            </div>
+                            <button class="municipality-more" type="button" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Alto Alegre</span> <span aria-hidden="true">→</span></button>
+                        </article>
+                    </li>
+                    <li data-id="mucajai" data-region="Centro">
+                        <article>
+                            <div class="municipality-tags"><span>RIOS</span><small>Centro</small></div>
+                            <h3>Mucajaí</h3>
+                            <p>Rio Mucajaí · praias de rio</p>
+                            <div class="municipality-details" hidden>
+                                <p class="municipality-distance">≈ 55 km de Boa Vista</p>
+                                <p class="municipality-description">Cortado pelo rio que lhe dá nome, Mucajaí fica na BR-174 e é conhecido pelas praias de rio que surgem no verão, atraindo famílias de todo o estado.</p>
+                                <ul class="municipality-activities">
+                                <li>Curtir as praias do Rio Mucajaí no verão</li>
+                                <li>Pescar com guias locais</li>
+                                <li>Parar para comer na beira da BR-174</li>
+                                <li>Visitar balneários e igarapés</li>
+                                </ul>
+                            </div>
+                            <button class="municipality-more" type="button" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Mucajaí</span> <span aria-hidden="true">→</span></button>
+                        </article>
+                    </li>
+                    <li data-id="iracema" data-region="Centro-Sul">
+                        <article>
+                            <div class="municipality-tags"><span>RIOS</span><small>Centro-Sul</small></div>
+                            <h3>Iracema</h3>
+                            <p>Igarapés · BR-174</p>
+                            <div class="municipality-details" hidden>
+                                <p class="municipality-distance">≈ 100 km de Boa Vista</p>
+                                <p class="municipality-description">Pequena e acolhedora, Iracema é parada tradicional para quem percorre a BR-174. Tem igarapés, áreas de pesca e o jeito calmo das cidades do interior.</p>
+                                <ul class="municipality-activities">
+                                <li>Banhar-se nos igarapés da região</li>
+                                <li>Pescar nos rios próximos</li>
+                                <li>Fazer uma pausa na viagem pela BR-174</li>
+                                <li>Conhecer a produção rural do município</li>
+                                </ul>
+                            </div>
+                            <button class="municipality-more" type="button" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Iracema</span> <span aria-hidden="true">→</span></button>
+                        </article>
+                    </li>
+                    <li data-id="caracarai" data-region="Centro-Sul">
+                        <article>
+                            <div class="municipality-tags"><span>RIOS</span><small>Centro-Sul</small></div>
+                            <h3>Caracaraí</h3>
+                            <p>Rio Branco · pesca · floresta</p>
+                            <div class="municipality-details" hidden>
+                                <p class="municipality-distance">≈ 140 km de Boa Vista</p>
+                                <p class="municipality-description">Cidade-porto do Rio Branco, Caracaraí é a porta para a floresta amazônica em Roraima. Abriga o Parque Nacional do Viruá e as corredeiras do Bem-Querer.</p>
+                                <ul class="municipality-activities">
+                                <li>Ver as Corredeiras do Bem-Querer</li>
+                                <li>Explorar o Parque Nacional do Viruá</li>
+                                <li>Fazer pesca esportiva no Rio Branco</li>
+                                <li>Passear de barco pelo porto da cidade</li>
+                                </ul>
+                            </div>
+                            <button class="municipality-more" type="button" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Caracaraí</span> <span aria-hidden="true">→</span></button>
+                        </article>
+                    </li>
+                    <li data-id="rorainopolis" data-region="Sul">
+                        <article>
+                            <div class="municipality-tags"><span>FLORESTA</span><small>Sul</small></div>
+                            <h3>Rorainópolis</h3>
+                            <p>Portal da Amazônia · BR-174</p>
+                            <div class="municipality-details" hidden>
+                                <p class="municipality-distance">≈ 290 km de Boa Vista</p>
+                                <p class="municipality-description">Primeira grande cidade para quem chega de Manaus pela BR-174, Rorainópolis é o portal da Amazônia em Roraima, cercada de floresta e comunidades ribeirinhas.</p>
+                                <ul class="municipality-activities">
+                                <li>Conhecer comunidades ribeirinhas do baixo Rio Branco</li>
+                                <li>Explorar trilhas na floresta</li>
+                                <li>Provar peixes da culinária amazônica</li>
+                                <li>Usar a cidade como base para o sul do estado</li>
+                                </ul>
+                            </div>
+                            <button class="municipality-more" type="button" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Rorainópolis</span> <span aria-hidden="true">→</span></button>
+                        </article>
+                    </li>
+                    <li data-id="sao-luiz" data-region="Sul">
+                        <article>
+                            <div class="municipality-tags"><span>FLORESTA</span><small>Sul</small></div>
+                            <h3>São Luiz</h3>
+                            <p>Rio Anauá · Perimetral Norte</p>
+                            <div class="municipality-details" hidden>
+                                <p class="municipality-distance">≈ 305 km de Boa Vista</p>
+                                <p class="municipality-description">Também chamado de São Luiz do Anauá, o município fica às margens do Rio Anauá, na região da Perimetral Norte, com paisagens de floresta e produção agrícola.</p>
+                                <ul class="municipality-activities">
+                                <li>Passear às margens do Rio Anauá</li>
+                                <li>Conhecer a produção rural da região</li>
+                                <li>Banhar-se nos igarapés</li>
+                                <li>Seguir viagem pela Perimetral Norte (BR-210)</li>
+                                </ul>
+                            </div>
+                            <button class="municipality-more" type="button" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre São Luiz</span> <span aria-hidden="true">→</span></button>
+                        </article>
+                    </li>
+                    <li data-id="sao-joao-da-baliza" data-region="Sul">
+                        <article>
+                            <div class="municipality-tags"><span>FLORESTA</span><small>Sul</small></div>
+                            <h3>São João da Baliza</h3>
+                            <p>Cachoeiras · agricultura</p>
+                            <div class="municipality-details" hidden>
+                                <p class="municipality-distance">≈ 330 km de Boa Vista</p>
+                                <p class="municipality-description">Na BR-210, São João da Baliza é um município de floresta, cachoeiras e agricultura familiar, com festas populares que reúnem moradores de todo o sul do estado.</p>
+                                <ul class="municipality-activities">
+                                <li>Visitar cachoeiras e igarapés da região</li>
+                                <li>Participar das festas populares</li>
+                                <li>Conhecer sítios de agricultura familiar</li>
+                                <li>Explorar a floresta do sul de Roraima</li>
+                                </ul>
+                            </div>
+                            <button class="municipality-more" type="button" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre São João da Baliza</span> <span aria-hidden="true">→</span></button>
+                        </article>
+                    </li>
+                    <li data-id="caroebe" data-region="Sul">
+                        <article>
+                            <div class="municipality-tags"><span>FESTAS</span><small>Sul</small></div>
+                            <h3>Caroebe</h3>
+                            <p>Festa da Banana · cachoeiras</p>
+                            <div class="municipality-details" hidden>
+                                <p class="municipality-distance">≈ 360 km de Boa Vista</p>
+                                <p class="municipality-description">No extremo sudeste de Roraima, Caroebe é grande produtor de banana e celebra isso na tradicional Festa da Banana. Tem cachoeiras e muita floresta ao redor.</p>
+                                <ul class="municipality-activities">
+                                <li>Participar da Festa da Banana</li>
+                                <li>Banhar-se nas cachoeiras do município</li>
+                                <li>Provar doces e pratos feitos com banana</li>
+                                <li>Conhecer o extremo sul do estado</li>
+                                </ul>
+                            </div>
+                            <button class="municipality-more" type="button" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Caroebe</span> <span aria-hidden="true">→</span></button>
+                        </article>
+                    </li>
                 </ul>
                 <div class="slider-controls">
                     <button class="slider-button" type="button" data-slide="-1" aria-controls="municipality-grid" aria-label="Municípios anteriores">←</button>
@@ -286,7 +619,96 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- preenchido pelo JavaScript (ordem alfabética) -->
+                            <tr>
+                                <th scope="row">Alto Alegre</th>
+                                <td>Oeste</td>
+                                <td>≈ 90 km</td>
+                                <td>Vila do Taiano e igarapés</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Amajari</th>
+                                <td>Norte</td>
+                                <td>≈ 160 km</td>
+                                <td>Serra do Tepequém e Maracá</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Boa Vista</th>
+                                <td>Capital</td>
+                                <td>—</td>
+                                <td>Orla Taumanan</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Bonfim</th>
+                                <td>Leste</td>
+                                <td>≈ 125 km</td>
+                                <td>Fronteira com a Guiana</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Cantá</th>
+                                <td>Centro</td>
+                                <td>≈ 35 km</td>
+                                <td>Trilhas da Serra Grande</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Caracaraí</th>
+                                <td>Centro-Sul</td>
+                                <td>≈ 140 km</td>
+                                <td>Rio Branco e pesca esportiva</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Caroebe</th>
+                                <td>Sul</td>
+                                <td>≈ 360 km</td>
+                                <td>Festa da Banana</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Iracema</th>
+                                <td>Centro-Sul</td>
+                                <td>≈ 100 km</td>
+                                <td>Igarapés e pesca</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Mucajaí</th>
+                                <td>Centro</td>
+                                <td>≈ 55 km</td>
+                                <td>Praias do Rio Mucajaí</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Normandia</th>
+                                <td>Norte</td>
+                                <td>≈ 185 km</td>
+                                <td>Lago Caracaranã</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Pacaraima</th>
+                                <td>Norte</td>
+                                <td>≈ 215 km</td>
+                                <td>Acesso ao Monte Roraima</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Rorainópolis</th>
+                                <td>Sul</td>
+                                <td>≈ 290 km</td>
+                                <td>Portal da Amazônia</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">São João da Baliza</th>
+                                <td>Sul</td>
+                                <td>≈ 330 km</td>
+                                <td>Cachoeiras e agricultura familiar</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">São Luiz</th>
+                                <td>Sul</td>
+                                <td>≈ 305 km</td>
+                                <td>Rio Anauá</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Uiramutã</th>
+                                <td>Norte</td>
+                                <td>≈ 300 km</td>
+                                <td>Cachoeiras e serras</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -446,13 +868,44 @@
                     <p>Viajantes de todo o Brasil contam o que encontraram por aqui.</p>
                 </header>
             </div>
-            <div class="container">
-                <noscript><p class="data-message">Ative o JavaScript para ler os depoimentos.</p></noscript>
-                <p class="data-message" id="testimonials-error" hidden>Não foi possível carregar os depoimentos agora. Tente recarregar a página.</p>
-            </div>
             <div class="testimonials-viewport">
                 <ul class="testimonials-track" id="testimonials-track">
-                    <!-- preenchido pelo JavaScript a partir de assets/data/depoimentos.json -->
+                    <li>
+                        <figure class="testimonial-card">
+                            <blockquote><p>Subir o Monte Roraima foi a viagem da minha vida. Acordar acima das nuvens, no topo de um tepui, é algo que não sai da memória.</p></blockquote>
+                            <figcaption><span class="testimonial-avatar" data-gender="female" aria-hidden="true">MA</span><span><strong>Mariana Albuquerque</strong><small>Recife, PE</small></span></figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="testimonial-card">
+                            <blockquote><p>Boa Vista me surpreendeu: cidade tranquila, pôr do sol lindo na Orla Taumanan e uma culinária que eu não conhecia.</p></blockquote>
+                            <figcaption><span class="testimonial-avatar" data-gender="male" aria-hidden="true">RM</span><span><strong>Rafael Monteiro</strong><small>Curitiba, PR</small></span></figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="testimonial-card">
+                            <blockquote><p>O Lago Caracaranã parece cenário de filme. Água clara, areia branca e aquele céu enorme do lavrado.</p></blockquote>
+                            <figcaption><span class="testimonial-avatar" data-gender="female" aria-hidden="true">LC</span><span><strong>Luana Costa</strong><small>Manaus, AM</small></span></figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="testimonial-card">
+                            <blockquote><p>Aprendi muito com as comunidades indígenas. Conhecer Roraima é, antes de tudo, aprender a escutar.</p></blockquote>
+                            <figcaption><span class="testimonial-avatar" data-gender="male" aria-hidden="true">TN</span><span><strong>Thiago Nascimento</strong><small>São Paulo, SP</small></span></figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="testimonial-card">
+                            <blockquote><p>A Serra do Tepequém tem cachoeiras incríveis e um friozinho gostoso à noite. Já quero voltar com a família.</p></blockquote>
+                            <figcaption><span class="testimonial-avatar" data-gender="female" aria-hidden="true">CF</span><span><strong>Camila Ferreira</strong><small>Belo Horizonte, MG</small></span></figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="testimonial-card">
+                            <blockquote><p>Atravessar para Lethem pela ponte de Bonfim foi uma experiência única: três culturas em um só dia.</p></blockquote>
+                            <figcaption><span class="testimonial-avatar" data-gender="male" aria-hidden="true">DR</span><span><strong>Diego Ribeiro</strong><small>Porto Alegre, RS</small></span></figcaption>
+                        </figure>
+                    </li>
                 </ul>
             </div>
         </section>
@@ -465,12 +918,60 @@
                         <h2 id="gallery-title">Para ver<br><em>antes de vir.</em></h2></hgroup>
                     <p>Serras, rios, cidades e encontros. Toque em uma foto para ampliar e navegar pela galeria.</p>
                 </header>
-                <div class="filter-bar" id="gallery-filters" role="group" aria-label="Filtrar fotos por tema"></div>
+                <div class="filter-bar" id="gallery-filters" role="group" aria-label="Filtrar fotos por tema">
+                    <button class="filter-chip" type="button" data-category="Todas" aria-pressed="true">Todas<span class="filter-count" aria-label="15 fotos">15</span></button>
+                    <button class="filter-chip" type="button" data-category="Natureza" aria-pressed="false">Natureza<span class="filter-count" aria-label="6 fotos">6</span></button>
+                    <button class="filter-chip" type="button" data-category="Boa Vista" aria-pressed="false">Boa Vista<span class="filter-count" aria-label="5 fotos">5</span></button>
+                    <button class="filter-chip" type="button" data-category="Viajantes" aria-pressed="false">Viajantes<span class="filter-count" aria-label="2 fotos">2</span></button>
+                    <button class="filter-chip" type="button" data-category="Cultura" aria-pressed="false">Cultura<span class="filter-count" aria-label="2 fotos">2</span></button>
+                </div>
                 <ul class="gallery-grid" id="gallery-grid">
-                    <!-- preenchido pelo JavaScript a partir de assets/data/galeria.json -->
+                    <li class="is-wide" data-category="Natureza" data-imagem="assets/img/galeria/tepuis-kukenan-roraima.webp" data-descricao="O amanhecer revela os dois tepuis lado a lado, na trilha que leva ao topo do Monte Roraima." data-autor="Paolo Costa Baldi" data-licenca="CC BY-SA 3.0" data-licenca-url="https://creativecommons.org/licenses/by-sa/3.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Kukenan_Roraima_GS.jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/tepuis-kukenan-roraima-mini.webp" alt="Os tepuis Kukenán e Roraima ao amanhecer, com a savana em primeiro plano" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Tepuis Kukenán e Roraima</strong><small>Monte Roraima</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    </li>
+                    <li class="is-tall" data-category="Viajantes" data-imagem="assets/img/viagem-de-moto.webp" data-descricao="Aventura de moto por estrada de terra, entre o capim alto e o céu nublado.">
+                        <button class="gallery-item" type="button"><img src="assets/img/viagem-de-moto.webp" alt="Casal posa ao lado de uma moto em estrada de terra cercada de vegetação" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Pé na estrada</strong><small>Roraima</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    </li>
+                    <li data-category="Natureza" data-imagem="assets/img/galeria/cachoeira-do-paiva.webp" data-descricao="Entre pedras e mata fechada, uma das quedas d’água mais visitadas da Serra do Tepequém." data-autor="Bruno.karklis" data-licenca="CC BY-SA 4.0" data-licenca-url="https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Cachoeira_do_Paiva_-_Tepequ%C3%A9m_(cropped).jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/cachoeira-do-paiva-mini.webp" alt="Cachoeira do Paiva descendo entre pedras e mata densa" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Cachoeira do Paiva</strong><small>Amajari</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    </li>
+                    <li class="is-wide" data-category="Boa Vista" data-imagem="assets/img/galeria/ponte-dos-macuxi.webp" data-descricao="O pôr do sol dourado sobre o Rio Branco, sob a ponte que liga a capital ao Cantá." data-autor="George Amaro" data-licenca="CC BY 2.0" data-licenca-url="https://creativecommons.org/licenses/by/2.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Ponte_dos_Macuxis,_Boa_Vista.jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/ponte-dos-macuxi-mini.webp" alt="Ponte dos Macuxi sobre o Rio Branco ao pôr do sol, refletida na água" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Ponte dos Macuxi</strong><small>Boa Vista</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    </li>
+                    <li class="is-wide" data-category="Natureza" data-imagem="assets/img/galeria/lago-caracarana-entardecer.webp" data-descricao="Fim de tarde no lago da Terra Indígena Raposa Serra do Sol, com o céu refletido na água." data-autor="Guignipper" data-licenca="CC BY-SA 3.0" data-licenca-url="https://creativecommons.org/licenses/by-sa/3.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Crespusculo.jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/lago-caracarana-entardecer-mini.webp" alt="Silhueta de árvore à beira do Lago Caracaranã sob céu dramático ao entardecer" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Entardecer no Lago Caracaranã</strong><small>Normandia</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    </li>
+                    <li data-category="Boa Vista" data-imagem="assets/img/galeria/orla-taumanan-aerea.webp" data-descricao="O calçadão às margens do Rio Branco, ponto de encontro da capital no fim do dia." data-autor="Ederson Brito/MTur" data-licenca="Domínio público" data-fonte="https://commons.wikimedia.org/wiki/File:EDERSON_BRITO_ORLA_TAUMANAN_BOA_VISTA_RR_(27203212678).jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/orla-taumanan-aerea-mini.webp" alt="Vista aérea da Orla Taumanan e do Rio Branco em Boa Vista" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Orla Taumanan vista do alto</strong><small>Boa Vista</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    </li>
+                    <li data-category="Natureza" data-imagem="assets/img/galeria/monte-roraima-topo.webp" data-descricao="Paredões de arenito e o vale lá embaixo, perto do ponto mais alto do tepui." data-autor="Tinhojv" data-licenca="CC BY-SA 4.0" data-licenca-url="https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Monte_Roraima,_ponto_mais_alto.jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/monte-roraima-topo-mini.webp" alt="Paredões de rocha no topo do Monte Roraima com vale e nuvens ao fundo" loading="lazy" decoding="async"><span class="gallery-caption"><strong>No topo do Monte Roraima</strong><small>Monte Roraima</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    </li>
+                    <li data-category="Natureza" data-imagem="assets/img/galeria/praia-raposa-serra-do-sol.webp" data-descricao="Praia de água doce na Terra Indígena Raposa Serra do Sol, com as serras no horizonte." data-autor="Roosevelt Pinheiro" data-licenca="CC BY 3.0 br" data-licenca-url="https://creativecommons.org/licenses/by/3.0/br/" data-fonte="https://commons.wikimedia.org/wiki/File:Raposa_sol.JPG">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/praia-raposa-serra-do-sol-mini.webp" alt="Praia de areia branca à beira de um lago, com serras ao fundo" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Areia branca no lavrado</strong><small>Raposa Serra do Sol</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    </li>
+                    <li data-category="Boa Vista" data-imagem="assets/img/galeria/catedral-cristo-redentor.webp" data-descricao="A arquitetura moderna da catedral da capital ganha outro brilho iluminada à noite." data-autor="Jason R Nascimento" data-licenca="CC BY-SA 3.0" data-licenca-url="https://creativecommons.org/licenses/by-sa/3.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Catedral_Cristo_Redentor_004_-_panoramio.jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/catedral-cristo-redentor-mini.webp" alt="Fachada curva da Catedral Cristo Redentor iluminada à noite" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Catedral Cristo Redentor</strong><small>Boa Vista</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    </li>
+                    <li class="is-tall" data-category="Viajantes" data-imagem="assets/img/beira-do-rio.webp" data-descricao="Pedras, areia e mata: na seca, as margens dos rios viram mirantes naturais.">
+                        <button class="gallery-item" type="button"><img src="assets/img/beira-do-rio.webp" alt="Casal sorri sobre pedras à beira de um rio, com mata e céu azul ao fundo" loading="lazy" decoding="async"><span class="gallery-caption"><strong>À beira do rio</strong><small>Roraima</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    </li>
+                    <li data-category="Cultura" data-imagem="assets/img/galeria/monumento-aos-pioneiros.webp" data-descricao="Painel esculpido no Centro Cívico que homenageia quem ajudou a construir Roraima." data-autor="Rogério Regis" data-licenca="CC BY-SA 3.0" data-licenca-url="https://creativecommons.org/licenses/by-sa/3.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Monumento_aos_Pioneiros_-_panoramio.jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/monumento-aos-pioneiros-mini.webp" alt="Painel em relevo do Monumento aos Pioneiros com figuras esculpidas" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Monumento aos Pioneiros</strong><small>Boa Vista</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    </li>
+                    <li data-category="Natureza" data-imagem="assets/img/galeria/serra-do-tepequem.webp" data-descricao="Campos abertos, céu imenso e riachos de pedras avermelhadas no alto da serra." data-autor="Carlos Marques" data-licenca="CC BY-SA 2.0" data-licenca-url="https://creativecommons.org/licenses/by-sa/2.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Paisagem_da_Serra_do_Tepequ%C3%A9m.jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/serra-do-tepequem-mini.webp" alt="Riacho entre pedras avermelhadas no alto da Serra do Tepequém, sob céu com nuvens" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Serra do Tepequém</strong><small>Amajari</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    </li>
+                    <li data-category="Boa Vista" data-imagem="assets/img/galeria/praca-das-aguas.webp" data-descricao="Espaço de lazer da capital, com fontes, quiosques e painéis de energia solar." data-autor="Prefeitura de Boa Vista/Divulgação" data-licenca="CC BY-SA 4.0" data-licenca-url="https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Pra%C3%A7a_das_%C3%81guas_em_Boa_Vista.jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/praca-das-aguas-mini.webp" alt="Praça das Águas em Boa Vista, com pórtico e quiosque de vidro" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Praça das Águas</strong><small>Boa Vista</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    </li>
+                    <li data-category="Cultura" data-imagem="assets/img/artesanato-roraima.webp" data-descricao="Colares de sementes e contas feitos à mão: a natureza da região transformada em arte." data-autor="Ederson Brito/MTur" data-licenca="Domínio público" data-fonte="https://commons.wikimedia.org/wiki/File:EDERSON_BRITO_ARTESANATO_BOA_VISTA_RR_(39266621760).jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/artesanato-roraima.webp" alt="Colares de sementes e contas do artesanato regional de Roraima" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Arte que conta histórias</strong><small>Roraima</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    </li>
+                    <li data-category="Boa Vista" data-imagem="assets/img/boa-vista-centro-civico.webp" data-descricao="A capital planejada em formato de leque, com a Praça do Centro Cívico ao centro." data-autor="Jorge Macedo/Divulgação">
+                        <button class="gallery-item" type="button"><img src="assets/img/boa-vista-centro-civico.webp" alt="Vista aérea do centro de Boa Vista, com a Praça do Centro Cívico e o Rio Branco ao fundo" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Boa Vista vista do alto</strong><small>Boa Vista</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    </li>
                 </ul>
-                <noscript><p class="data-message">Ative o JavaScript para ver a galeria de fotos.</p></noscript>
-                <p class="data-message" id="gallery-error" hidden>Não foi possível carregar a galeria agora. Tente recarregar a página.</p>
             </div>
         </section>
 
@@ -562,12 +1063,12 @@
 
     <footer>
         <div class="container footer-top">
-            <div class="footer-brand"><a class="brand" href="#inicio"><span class="brand-mark">CR</span> <span>CONHEÇA RORAIMA</span></a>
+            <div class="footer-brand"><a class="brand" href="#top"><span class="brand-mark">CR</span> <span>CONHEÇA RORAIMA</span></a>
                 <p>Um portal para olhar o extremo norte com curiosidade, respeito e vontade de voltar.</p>
             </div>
             <nav aria-label="Links do rodapé">
                 <ul class="footer-links">
-                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#top">Início</a></li>
                     <li><a href="#historia">História</a></li>
                     <li><a href="#contato">Contato</a></li>
                     <li><a href="privacidade.html">Privacidade</a></li>

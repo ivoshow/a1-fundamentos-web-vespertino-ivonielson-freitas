@@ -2641,20 +2641,11 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   color: var(--verde-floresta);
 }
 
-/* aviso quando o JSON não carrega (ou o JavaScript está desligado) */
-.data-message {
-  padding: 1rem 1.25rem;
-  border: 1px dashed var(--areia);
-  border-radius: var(--raio-pequeno);
-  color: var(--texto-suave);
-  font-size: .875rem;
-}
-
 
 /* ==========================================================================
    25. AGENDA CULTURAL
    --------------------------------------------------------------------------
-   Cards gerados a partir de eventos.json. O evento que está acontecendo
+   Cards escritos no HTML e reordenados pelo JS. O evento que está acontecendo
    agora ganha a classe .is-now e fica em destaque.
    ========================================================================== */
 
@@ -2765,6 +2756,8 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   letter-spacing: .1em;
   text-transform: uppercase;
 }
+/* a contagem é escrita pelo JS; sem JS, a pílula vazia não aparece */
+.agenda-countdown:empty { display: none; }
 
 /* evento acontecendo agora: card verde e contagem com ponto pulsante */
 .agenda-card.is-now {
