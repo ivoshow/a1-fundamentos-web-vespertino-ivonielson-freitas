@@ -1,6 +1,15 @@
 /* ==========================================================================
    CONHEÇA RORAIMA — styles.css
    --------------------------------------------------------------------------
+   Autor: Ivonielson Freitas
+
+   0. Tokens · 1. Reset · 2. Tipografia · 3. Layout · 4. Componentes
+   5. Cabeçalho · 6. Hero · 7. Números · 8. Experiências · 9. Território
+   10. Cultura · 11. História · 12. Municípios · 13. Roteiro · 14. Contato
+   15. Rodapé · 16. Animações · 17. Camada visual · 18. Modal de boas-vindas
+   19. Modal do município · 20. Depoimentos · 21. Orçamento · 22. Submenus
+   23. WhatsApp · 24. Filtros e dados · 25. Agenda · 26. Responsividade
+   ========================================================================== */
 
 /* ==========================================================================
    0. DESIGN TOKENS  (:root)
@@ -16,57 +25,53 @@
   /* ---- Paleta: verdes da floresta e do rio ---- */
   --verde-profundo: #102d25;   /* quase preto: rodapé e degradês das fotos */
   --verde-floresta: #173d32;   /* COR PRINCIPAL da marca (25 usos)        */
-  --verde-medio: #244d3d;      /* cartões sobrepostos                      */
-  --verde-claro: #2d6049;      /* apoio em fundo escuro                    */
-  --texto-sobre-ouro: #294637; /* texto escuro sobre o fundo dourado       */
+  --verde-medio: #244d3d;   /* cartões sobrepostos                      */
+  --verde-claro: #2d6049;   /* apoio em fundo escuro                    */
+  --texto-sobre-ouro: #294637;   /* texto escuro sobre o fundo dourado       */
   --texto-sobre-ouro-escuro: #2b4538;
-
   /* ---- Paleta: dourado, cor de destaque ---- */
-  --ouro: #d3a745;         /* CTAs, ícones, sublinhados (21 usos) */
+  --ouro: #d3a745;   /* CTAs, ícones, sublinhados (21 usos) */
   --ouro-claro: #f8e8bd;   /* dourado suave, usado no menu         */
-  --ouro-escuro: #845820;  /* texto dourado sobre fundo claro     */
-
+  --ouro-escuro: #845820;   /* texto dourado sobre fundo claro     */
   /* ---- Paleta: neutros e areias ---- */
-  --creme: #f5f1e9;        /* fundo claro padrão da página  */
-  --creme-claro: #f9f6ed;  /* texto claro sobre fundo escuro */
-  --seda: #e6dfd1;         /* fundo de seção alternativo     */
-  --areia: #c8bdad;        /* bordas de apoio                 */
-  --linha: #d9d3c8;        /* linhas divisórias               */
-  --branco-10: rgba(255, 255, 255, .1); /* linhas sobre fundo escuro */
-
+  --creme: #f5f1e9;   /* fundo claro padrão da página  */
+  --creme-claro: #f9f6ed;   /* texto claro sobre fundo escuro */
+  --seda: #e6dfd1;   /* fundo de seção alternativo     */
+  --areia: #c8bdad;   /* bordas de apoio                 */
+  --linha: #d9d3c8;   /* linhas divisórias               */
+  --branco-10: rgba(255, 255, 255, .1);   /* linhas sobre fundo escuro */
   /* ---- Paleta: textos ---- */
-  --texto: #1b332d;             /* texto padrão do site  */
-  --texto-suave: #52675b;       /* parágrafos de destaque */
-  --texto-tenue: #59655c;       /* legendas e notas       */
-  --texto-claro-suave: #d3dfd4; /* texto claro: legibilidade média */
-  --texto-claro-tenue: #c5d4c1; /* texto claro: legibilidade baixa  */
-
+  --texto: #1b332d;   /* texto padrão do site  */
+  --texto-suave: #52675b;   /* parágrafos de destaque */
+  --texto-tenue: #59655c;   /* legendas e notas       */
+  --texto-claro-suave: #d3dfd4;   /* texto claro: legibilidade média */
+  --texto-claro-tenue: #c5d4c1;   /* texto claro: legibilidade baixa  */
   /* ---- Tipografia ---- */
   --fonte-texto: 'DM Sans', system-ui, sans-serif;   /* textos e interface */
-  --fonte-titulo: 'Libre Baskerville', Georgia, serif;/* títulos           */
+  --fonte-titulo: 'Libre Baskerville', Georgia, serif;   /* títulos           */
   --fonte-titulo-curta: 'Libre Baskerville', serif;   /* atalhos com font:  */
   --peso-regular: 400;
   --peso-negrito: 700;   /* títulos de bloco e navegação */
   --peso-extra: 800;
-  --peso-forte: 900;     /* números e etiquetas bem marcados */
-  --espacamento-letra: .15em;       /* rótulos em MAIÚSCULA */
-  --espacamento-letra-largo: .2em;  /* "kickers" e sobretítulos */
-
+  --peso-forte: 900;   /* números e etiquetas bem marcados */
+  --espacamento-letra: .15em;   /* rótulos em MAIÚSCULA */
+  --espacamento-letra-largo: .2em;   /* "kickers" e sobretítulos */
   /* ---- Formas (cantos arredondados) ---- */
-  --raio-circulo: 50%;     /* botões redondos e marcadores circulares */
-  --raio-pilula: 999px;    /* botões e etiquetas em formato de cápsula */
-  --raio-grande: 1.875rem;     /* cards de destaque */
+  --raio-circulo: 50%;   /* botões redondos e marcadores circulares */
+  --raio-pilula: 999px;   /* botões e etiquetas em formato de cápsula */
+  --raio-grande: 1.875rem;   /* cards de destaque */
   --raio-medio: 1.75rem;
   --raio-pequeno: .75rem;
-
   /* ---- Movimento ---- */
-  --transicao: .2s;         /* hover rápido (botões, links) */
+  --transicao: .2s;   /* hover rápido (botões, links) */
   --transicao-lenta: .7s;   /* zoom lento das fotos ao passar o mouse */
-
   /* ---- Medidas de layout ---- */
-  --largura-max: 72rem;    /* largura máxima do conteúdo */
+  --largura-max: 72rem;   /* largura máxima do conteúdo */
   --margem-lateral: 3rem;   /* respiro nas bordas da tela */
-  --altura-header: 4.75rem;    /* altura fixa do cabeçalho */
+  --altura-header: 4.75rem;   /* altura fixa do cabeçalho */
+  --ouro-brilho: #f4cf70;
+  --sombra-suave: 0 1.5rem 4rem rgba(16, 45, 37, .12);
+  --sombra-flutuante: 0 1.25rem 3rem rgba(16, 45, 37, .18);
 }
 
 /* --------------------------------------------------------------------------
@@ -89,7 +94,7 @@
 /* ==========================================================================
    1. RESET E BASE
    --------------------------------------------------------------------------
-   Poucas regras, mas Hwang delas resolvem o comportamento "bruto" do
+   Poucas regras, mas elas resolvem o comportamento "bruto" do
    navegador, para que todo o resto do arquivo parta de uma base previsível.
    ========================================================================== */
 
@@ -104,11 +109,16 @@
 html {
   /* rolagem suave ao usar as âncoras do menu (#cultura, #contato...) */
   scroll-behavior: smooth;
+  /* o header é fixo: ao clicar numa âncora do menu, a seção para abaixo
+   dele em vez de ficar escondida (WCAG 2.4.11 — foco não encoberto) */
+  scroll-padding-top: calc(var(--altura-header) + 1rem);
 }
 
 body {
-  margin: 0;
-  background: var(--creme);
+  background:
+    radial-gradient(circle at 88% 8%, rgba(211, 167, 69, .10), transparent 22rem),
+    radial-gradient(circle at 4% 48%, rgba(45, 96, 73, .07), transparent 25rem),
+    var(--creme);
   color: var(--texto);
   font-family: var(--fonte-texto);
   -webkit-font-smoothing: antialiased;
@@ -137,6 +147,12 @@ button {
   cursor: pointer;
 }
 
+/* o atributo hidden sempre esconde: sem isso, um display definido no CSS
+   (grid, flex...) venceria o hidden e o elemento continuaria na tela */
+[hidden] {
+  display: none !important;
+}
+
 
 /* ==========================================================================
    2. TIPOGRAFIA E UTILITÁRIOS
@@ -154,18 +170,13 @@ em {
 /* "kicker" = pequeno rótulo acima dos títulos, que prepara a leitura */
 .kicker {
   display: inline-flex;
-  margin: 0;
   align-items: center;
   gap: .625rem;
   color: var(--ouro-escuro);
   font-size: .625rem;
   font-weight: var(--peso-negrito);
-  letter-spacing: .22em;   /* .kicker tem umTracking próprio, mais aberto */
+  letter-spacing: .22em;   /* .kicker tem espaçamento próprio, mais aberto */
   text-transform: uppercase;
-}
-
-.kicker span {
-  color: currentColor;   /* currentColor = herda a cor do .kicker */
 }
 
 /* variante dourada, usada sobre fundo escuro */
@@ -191,6 +202,19 @@ em {
 .eyebrow.gold { color: #e3bd61; }
 .eyebrow.green { color: #b9d3ad; }
 .eyebrow.terracotta { color: #edab7c; }
+
+/* texto lido por leitores de tela, mas invisível na tela */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 
 /* ==========================================================================
@@ -248,7 +272,6 @@ em {
 .section-heading > p,
 .culture-heading > p {
   max-width: 17.5rem;
-  margin: 0;
   color: #54655b;
   font-size: .875rem;
   line-height: 1.65;
@@ -273,6 +296,10 @@ em {
   text-transform: uppercase;
   letter-spacing: var(--espacamento-letra);
   transition: var(--transicao);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 .7rem 1.5rem rgba(8, 31, 23, .12);
 }
 
 /* hover: o botão "sobe" 2px — micro-feedback de que o item é clicável */
@@ -281,7 +308,7 @@ em {
 }
 
 .button-gold {
-  background: var(--ouro);
+  background: linear-gradient(135deg, var(--ouro-brilho), var(--ouro));
   color: var(--verde-floresta);
 }
 .button-gold:hover { background: #e0bd63; }
@@ -312,6 +339,8 @@ em {
   background: var(--creme);
   padding: 0 .875rem;
   color: #89958b;
+  box-shadow: 0 .5rem 1.5rem rgba(16,45,37,.06);
+  transition: box-shadow .25s ease, transform .25s ease;
 }
 
 .search input {
@@ -324,13 +353,22 @@ em {
   font-size: .8125rem;
 }
 
+/* o input da busca não tem contorno próprio; o anel aparece na cápsula
+   inteira quando o campo recebe foco (WCAG 2.4.7 — foco visível) */
+.search:focus-within {
+  outline: .1875rem solid var(--ouro-escuro);
+  outline-offset: 2px;
+  box-shadow: 0 .75rem 1.75rem rgba(16,45,37,.13);
+  transform: translateY(-.1rem);
+}
+
 /* Aviso flutuante (toast). Fica invisível (opacity 0) e "desliza" para
    cima quando a classe .show é adicionada pelo JavaScript. */
 .toast {
   position: fixed;
   z-index: 30;
   right: 1.375rem;
-  bottom: 1.375rem;
+  bottom: 5.75rem;   /* acima do botão flutuante do WhatsApp */
   max-width: 21.25rem;
   transform: translateY(1.25rem);
   opacity: 0;
@@ -362,10 +400,13 @@ em {
   z-index: 20;   /* acima do conteúdo, abaixo do toast */
   top: 0;
   width: 100%;
-  background: rgba(23, 61, 50, .96);
+  background: rgba(16, 45, 37, .78);
   color: var(--creme-claro);
   border-bottom: 1px solid var(--branco-10);
   backdrop-filter: blur(1rem);
+  border-bottom-color: rgba(248, 232, 189, .16);
+  box-shadow: 0 .75rem 2rem rgba(4, 19, 14, .08);
+  transition: background .3s ease, box-shadow .3s ease, transform .3s ease;
 }
 
 .header-inner {
@@ -392,10 +433,11 @@ em {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: var(--raio-circulo);
-  background: var(--ouro);
+  background: linear-gradient(135deg, var(--ouro-brilho), var(--ouro));
   color: var(--verde-floresta);
   letter-spacing: -.08em;
-  box-shadow: 0 0 0 4px rgba(211, 167, 69, .12);
+  box-shadow: 0 0 0 .35rem rgba(211, 167, 69, .12), 0 .5rem 1.25rem rgba(211, 167, 69, .18);
+  transition: transform .3s ease, box-shadow .3s ease;
 }
 
 .main-nav {
@@ -408,6 +450,17 @@ em {
   letter-spacing: .14em;
   color: #dfe9db;
 }
+
+/* menu: a lista <ul> assume o papel de linha flexível */
+.main-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 1.9375rem;
+  list-style: none;
+}
+
+/* nenhum item do menu quebra em duas linhas */
+.main-nav a { white-space: nowrap; }
 
 /* position:relative cria o "referencial" para o sublinhado animado */
 .main-nav a:not(.nav-cta) {
@@ -472,17 +525,17 @@ em {
   /* o padding-top igual à altura do header evita que o menu cubra o texto */
   padding: var(--altura-header) 0 3.25rem;
   overflow: hidden;
-  background: var(--verde-floresta);
+  background:
+    radial-gradient(circle at 72% 30%, rgba(211, 167, 69, .13), transparent 19rem),
+    radial-gradient(circle at 15% 88%, rgba(68, 122, 88, .18), transparent 22rem),
+    var(--verde-floresta);
   color: var(--creme-claro);
 }
 
 /* camada de brilhos dourado/verde nos cantos (degradê radial) */
 .hero:after {
-  content: '';
-  position: absolute;
-  inset: 0;            /* atalho para top/right/bottom/left: 0 */
+  inset: 0;   /* atalho para top/right/bottom/left: 0 */
   z-index: 0;
-  pointer-events: none; /* a camada não "rouba" cliques do conteúdo */
   background:
     radial-gradient(circle at 15% 15%, rgba(211, 167, 69, .28), transparent 30%),
     radial-gradient(circle at 80% 80%, rgba(82, 123, 82, .35), transparent 35%);
@@ -490,12 +543,9 @@ em {
 
 /* camada de "grão": um SVG de ruído gerado no próprio CSS (data URI) */
 .hero-noise:before {
-  content: '';
-  position: absolute;
   inset: 0;
   z-index: 1;
   opacity: .08;
-  pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E");
 }
 
@@ -544,7 +594,6 @@ em {
 }
 
 .hero-visual {
-  position: relative;
   max-width: 40.625rem;
   width: 100%;
   margin-left: auto;
@@ -555,22 +604,22 @@ em {
 .hero-image {
   position: relative;
   aspect-ratio: 1.08 / 1;   /* largura/altura: define a caixa sem altura fixa */
-  margin: 0;
   overflow: hidden;
-  border: .4375rem solid rgba(245, 241, 233, .15);
   border-radius: 42% 42% 10% 10%;
-  box-shadow: 0 28px 80px rgba(0, 0, 0, .32);
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, .28), 0 0 0 .6rem rgba(248, 232, 189, .04);
   clip-path: polygon(7% 0, 93% 0, 100% 9%, 100% 91%, 94% 100%, 6% 100%, 0 91%, 0 9%);
+  border: 1px solid rgba(248, 232, 189, .24);
 }
 
 .hero-image img {
   height: 100%;
   object-fit: cover;   /* cobre a caixa sem distorcer a proporção */
-  transition: var(--transicao-lenta);
+  transition: transform .9s cubic-bezier(.2,.7,.2,1), filter .6s ease;
 }
 
 .hero-image:hover img {
-  transform: scale(1.05);   /* zoom suave na foto */
+  transform: scale(1.045);   /* zoom suave na foto */
+  filter: saturate(1.12) contrast(1.04);
 }
 
 /* escurece a parte de baixo para o texto da legenda ficar legível */
@@ -600,10 +649,6 @@ em {
   font-weight: var(--peso-negrito);
   letter-spacing: .2em;
   color: var(--ouro);
-}
-
-.hero-image figcaption p {
-  margin: 0;
 }
 
 .hero-image figcaption strong {
@@ -641,6 +686,8 @@ em {
 .hero-stamp {
   top: .875rem;
   right: .875rem;
+  animation: floatBadge 5s ease-in-out infinite;
+  box-shadow: 0 .75rem 2rem rgba(0,0,0,.16);
 }
 
 .hero-stamp small {
@@ -650,7 +697,6 @@ em {
 
 .territory-badge {
   position: absolute;
-  margin: 0;
   bottom: -1.375rem;
   left: -2.3125rem;
   z-index: 3;
@@ -694,8 +740,10 @@ em {
    ========================================================================== */
 
 .stats {
-  background: var(--creme);
+  background: linear-gradient(90deg, #0d2a21, #173d32 45%, #0d2a21);
   border-bottom: 1px solid var(--linha);
+  position: relative;
+  box-shadow: 0 .9rem 2rem rgba(16,45,37,.14);
 }
 
 /* grade de 4 colunas iguais */
@@ -763,19 +811,17 @@ em {
   height: 100%;
   object-fit: cover;
   opacity: .82;
-  transition: var(--transicao-lenta);
+  transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .7s ease;
 }
 
 .experience-card:hover img {
-  transform: scale(1.06);
+  transform: scale(1.07);
   opacity: 1;
+  filter: saturate(1.12);
 }
 
 /* degradê que garante contraste para o texto do card */
 .experience-card:after {
-  content: '';
-  position: absolute;
-  inset: 0;
   background: linear-gradient(to top, var(--verde-profundo) 4%, rgba(16, 45, 37, .2) 70%, transparent);
 }
 
@@ -792,6 +838,7 @@ em {
   border: 1px solid rgba(255, 255, 255, .3);
   border-radius: var(--raio-circulo);
   font-size: .75rem;
+  transition: color .3s ease, transform .3s ease;
 }
 
 .card-content {
@@ -854,13 +901,14 @@ em {
   padding: .75rem;
   border-radius: 2.125rem;
   background: var(--verde-floresta);
-  box-shadow: 0 24px 55px rgba(41, 48, 33, .2);
+  box-shadow: var(--sombra-flutuante);
 }
 
 .territory-photo img {
   aspect-ratio: .95;
   object-fit: cover;
   border-radius: 1.6875rem;
+  transition: transform .8s ease, filter .8s ease;
 }
 
 .photo-label {
@@ -909,13 +957,14 @@ em {
   grid-template-columns: 1fr 1fr;
   gap: 1.625rem 2.375rem;
   margin: 2.375rem 0 0;
-  padding: 0;
   list-style: none;
 }
 
 .feature-grid li {
   border-top: 1px solid var(--areia);
   padding-top: .9375rem;
+  border-radius: 1rem;
+  transition: background .3s ease, transform .3s ease;
 }
 
 .feature-grid b {
@@ -951,6 +1000,12 @@ em {
 /* precisa vir DEPOIS do .section h2 para vencer o mesmo peso de seletor */
 .culture h2 {
   color: var(--creme-claro);
+}
+
+/* na seção Cultura o fundo é verde-escuro: o destaque do título usa o
+   dourado claro, que tem contraste suficiente nesse fundo */
+.culture h2 em {
+  color: var(--ouro);
 }
 
 .culture-heading > p {
@@ -1004,10 +1059,6 @@ em {
   z-index: 1;
   bottom: 1.75rem;
   left: 1.75rem;
-}
-
-.culture-photo hgroup p {
-  margin: 0;
 }
 
 .culture-photo h3 {
@@ -1083,7 +1134,6 @@ em {
 }
 
 .timeline {
-  margin: 0;
   border-left: 1px solid var(--areia);
   padding-left: 3rem;
   list-style: none;
@@ -1164,7 +1214,11 @@ em {
 }
 .municipality-grid::-webkit-scrollbar { display: none; }
 
-.municipality-grid li { scroll-snap-align: start; }
+.municipality-grid li {
+  scroll-snap-align: start;
+  /* o <li> vira grid para o card ocupar a altura toda da linha */
+  display: grid;
+}
 
 .slider-controls {
   display: flex;
@@ -1181,7 +1235,6 @@ em {
   background: var(--creme);
   color: var(--verde-floresta);
   font-size: 1.1rem;
-  cursor: pointer;
   transition: var(--transicao);
 }
 .slider-button:hover:not(:disabled) { background: var(--verde-floresta); color: var(--creme); }
@@ -1195,19 +1248,13 @@ em {
   padding: 1.4375rem;
   border: 1px solid #d0c6b6;
   border-radius: 1.4375rem;
-  background: var(--creme);
+  background: rgba(255,255,255,.32);
   text-align: left;   /* alinha o conteúdo à esquerda, não ao centro */
   color: var(--verde-floresta);
-}
-
-/* o <li> vira grid para o card ocupar a altura toda da linha */
-.municipality-grid li {
-  display: grid;
-}
-
-/* o display:grid acima venceria o hidden do HTML; aqui a busca volta a esconder */
-.municipality-grid li[hidden] {
-  display: none;
+  border-color: rgba(200, 189, 173, .72);
+  /* dentro do slider a rolagem corta o que passa da faixa: sombra mais curta */
+  box-shadow: 0 .5rem 1rem rgba(16, 45, 37, .07);
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
 }
 
 /* div que agrupa etiqueta + região: ficam lado a lado no topo do card */
@@ -1220,7 +1267,6 @@ em {
 }
 
 .municipality-tags > span {
-  display: inline-block;
   border-radius: var(--raio-pilula);
   background: #dfe6d9;
   padding: .3125rem .5625rem;
@@ -1249,19 +1295,69 @@ em {
   font: normal .75rem var(--fonte-texto);
 }
 
+/* tabela de municípios */
+.table-wrapper {
+  margin-top: 2.5rem;
+  overflow-x: auto;   /* rola só a tabela em telas estreitas */
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-pequeno);
+}
+
+.municipality-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .875rem;
+  color: var(--verde-floresta);
+}
+
+.municipality-table caption {
+  padding: 1rem 1.125rem;
+  text-align: left;
+  color: var(--texto-tenue);
+  font-size: .75rem;
+  font-weight: var(--peso-negrito);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+
+.municipality-table th,
+.municipality-table td {
+  padding: .8125rem 1.125rem;
+  border-top: 1px solid var(--linha);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.municipality-table thead th {
+  background: var(--verde-floresta);
+  color: var(--creme);
+  font-size: .6875rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+.municipality-table tbody tr:nth-child(even) {
+  background: rgba(23, 61, 50, .04);
+}
+
+/* a tabela rola no celular; com tabindex="0" ela recebe foco pelo teclado
+   e o anel mostra onde o foco está */
+.table-wrapper:focus-visible {
+  outline: .1875rem solid var(--ouro-escuro);
+  outline-offset: .1875rem;
+}
+
 /* o card em si não é clicável: só o botão "Saiba mais" abre o modal.
    margin-top:auto empurra o botão para o rodapé do card. */
 .municipality-more {
   align-self: flex-start;
   margin-top: auto;
   padding: 1.25rem 0 0;
-  border: 0;
   background: none;
   color: var(--ouro-escuro);
   font: var(--peso-negrito) .6875rem var(--fonte-texto);
   letter-spacing: var(--espacamento-letra);
   text-transform: uppercase;
-  cursor: pointer;
 }
 .municipality-more:hover { color: var(--verde-floresta); }
 .municipality-more span[aria-hidden] { display: inline-block; transition: transform var(--transicao); }
@@ -1345,6 +1441,9 @@ em {
   margin: .6875rem 0 0;
   font: var(--peso-regular) 2.875rem / .9 var(--fonte-titulo-curta);
   letter-spacing: -.05em;
+  /* título do card de roteiro: .section h2 pinta de verde (mesma cor do fundo
+   do card); aqui o texto volta a ser creme para ficar legível */
+  color: var(--creme);
 }
 
 .itinerary-card h2 em {
@@ -1360,8 +1459,6 @@ em {
 }
 
 .itinerary-list ol {
-  margin: 0;
-  padding: 0;
   list-style: none;
 }
 
@@ -1387,7 +1484,6 @@ em {
 }
 
 .itinerary-list h3 {
-  margin: 0;
   color: var(--verde-floresta);
   font: var(--peso-regular) 1.625rem / 1 var(--fonte-titulo-curta);
 }
@@ -1405,7 +1501,6 @@ em {
 }
 
 .best-time {
-  margin: 0;
   padding: .875rem;
   border-radius: .875rem;
   background: var(--seda);
@@ -1436,7 +1531,6 @@ em {
 
 .contact h2 {
   margin-top: 1.0625rem;
-  color: var(--verde-floresta);
 }
 
 .contact h2 em {
@@ -1463,7 +1557,6 @@ em {
   padding: 1.875rem;
   border-radius: var(--raio-medio);
   background: var(--creme);
-  box-shadow: 0 24px 60px rgba(91, 70, 24, .16);
 }
 
 /* .form-field: div que agrupa um rótulo com o seu campo */
@@ -1481,7 +1574,6 @@ em {
 
 .contact label {
   display: block;
-  margin: 0;
   color: #536c5c;
   font-size: .625rem;
   font-weight: var(--peso-extra);
@@ -1538,404 +1630,6 @@ em {
   font-weight: var(--peso-negrito);
 }
 
-
-/* ==========================================================================
-   15. RODAPÉ
-   ========================================================================== */
-
-footer {
-  padding: 2.5rem 0 1.375rem;
-  background: var(--verde-profundo);
-  color: #e8eee3;
-}
-
-.footer-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 1.875rem;
-  align-items: end;
-}
-
-.footer-top .brand {
-  font-size: .6875rem;
-}
-
-.footer-top p {
-  max-width: 19.375rem;
-  margin: .9375rem 0 0;
-  color: #9fb3a0;
-  font-size: .75rem;
-  line-height: 1.6;
-}
-
-.footer-links {
-  display: flex;
-  gap: 1.4375rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  color: #b9cdb6;
-  font-size: .625rem;
-  font-weight: var(--peso-negrito);
-  text-transform: uppercase;
-  letter-spacing: .15em;
-}
-
-.footer-links a:hover {
-  color: var(--ouro);
-}
-
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  gap: 1.25rem;
-  margin-top: 1.875rem;
-  padding-top: 1.125rem;
-  border-top: 1px solid var(--branco-10);
-  color: #7d9684;
-  font-size: .625rem;
-  text-transform: uppercase;
-  letter-spacing: .12em;
-}
-
-
-/* ==========================================================================
-   16. ANIMAÇÕES
-   --------------------------------------------------------------------------
-   .reveal está escrita direto no HTML do hero: a animação roda uma vez,
-   assim que a página carrega, sem depender de JavaScript.
-   ========================================================================== */
-
-.reveal {
-  animation: fadeUp .7s ease-out both;
-}
-
-.delay-1 {
-  animation-delay: .12s;   /* escalona a entrada do segundo item do hero */
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(1.125rem);   /* começa 1.125rem abaixo */
-  }
-  to {
-    opacity: 1;
-    transform: none;               /* termina no lugar */
-  }
-}
-
-
-/* ==========================================================================
-   17. RESPONSIVIDADE
-   --------------------------------------------------------------------------
-   Duas etapas: em 53.125em (850px) o site passa a "uma coluna por vez" e o
-   menu vira hambúrguer; em 35em (560px) tudo se ajusta para o celular. As
-   regras dentro do breakpoint têm prioridade porque vêm depois no arquivo.
-
-   Por que em nas media queries? Dentro de @media, em sempre usa a fonte
-   padrão do navegador (16px) e funciona igual em todos eles — inclusive
-   quando a pessoa dá zoom só no texto.
-
-   Obs. para a apresentação: media queries NÃO aceitam var(), então as
-   larguras dos breakpoints são escritas à mão aqui.
-   ========================================================================== */
-
-/* ---------- Telas médias: tablets e janelas estreitas ---------- */
-@media (max-width: 53.125em) {
-
-  .container {
-    width: min(100% - 2.125rem, 40.625rem);
-  }
-
-  /* o menu sai do fluxo e vira um painel dropdown (classe .open via JS) */
-  .main-nav {
-    display: none;
-    position: absolute;
-    top: var(--altura-header);
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    padding: .75rem 1.375rem 1.375rem;
-    background: var(--verde-floresta);
-    border-top: 1px solid var(--branco-10);
-  }
-
-  .main-nav.open { display: flex; }
-
-  .main-nav a {
-    padding: .875rem 0;
-    border-bottom: 1px solid var(--branco-10);
-  }
-
-  .nav-cta {
-    margin-top: .75rem;
-    text-align: center;
-  }
-
-  .menu-toggle { display: block; }
-
-  .hero {
-    min-height: auto;
-    padding-bottom: 5rem;
-  }
-
-  .hero-grid {
-    grid-template-columns: 1fr;   /* o hero vira uma coluna só */
-    gap: 3.4375rem;
-    padding-top: 3.75rem;
-  }
-
-  .hero-copy,
-  .hero-visual {
-    max-width: 37.5rem;
-  }
-
-  .hero-visual { margin: auto; }
-
-  .scroll-cue { display: none; }
-
-  .section { padding: 5.5rem 0; }
-
-  /* o título e o texto de apoio ficam empilhados */
-  .section-heading,
-  .culture-heading,
-  .municipality-heading { display: block; }
-
-  .section-heading > p,
-  .culture-heading > p { margin-top: 1.375rem; }
-
-  /* cards: dois por linha, e o terceiro ocupa a linha inteira */
-  .experience-grid { grid-template-columns: 1fr 1fr; }
-  .experience-card { min-height: 28.125rem; }
-  .experience-card:last-child {
-    grid-column: 1 / -1;
-    min-height: 26.25rem;
-  }
-
-  .territory-grid,
-  .history-grid,
-  .itinerary-grid,
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 3.125rem;
-  }
-
-  .territory-photo { max-width: 31.25rem; }
-
-  /* a foto ocupa a linha inteira e os dois cards ficam lado a lado */
-  .culture-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: none;
-  }
-  .culture-photo {
-    grid-column: 1 / -1;
-    grid-row: auto;
-    min-height: 25rem;
-  }
-
-  .municipality-grid { --cards-visiveis: 2; }
-
-  .search {
-    margin-top: 1.5rem;
-    width: 100%;
-  }
-
-  .footer-top {
-    align-items: start;
-    flex-direction: column;
-  }
-
-  .footer-links { flex-wrap: wrap; }
-
-  .contact { padding: 5.5rem 0; }
-}
-
-/* ---------- Celulares ---------- */
-@media (max-width: 35em) {
-
-  .container { width: calc(100% - 2.125rem); }
-
-  /* esconde o nome só na tela, mantém o selo "CR"; o leitor de tela
-     continua lendo "CR Conheça Roraima" */
-  .brand > span:last-child {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-  }
-
-  .hero h1 { font-size: 4.3rem; }
-  .hero-copy > h1 + p { font-size: 1rem; }
-
-  .hero-actions {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 1.0625rem;
-  }
-
-  .hero-image { aspect-ratio: .9; }
-
-  /* selo dourado menor no celular */
-  .hero-stamp {
-    right: .625rem;
-    width: 5.625rem;
-    height: 5.625rem;
-    font-size: .625rem;
-  }
-
-  .territory-badge { left: .625rem; }
-
-  /* números em 2 colunas, alternando o alinhamento */
-  .stats-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 1.375rem 0;
-  }
-  .stats-grid > li:nth-child(3) { border-left: 0; }
-  .stats-grid > li:nth-child(odd) { justify-content: flex-start; }
-  .stats-grid > li:nth-child(even) { justify-content: flex-end; }
-  .stats-grid strong { font-size: 1.5625rem; }
-  .stats-grid span { font-size: .5rem; }
-
-  .section h2,
-  .territory h2,
-  .culture h2,
-  .history h2,
-  .municipalities h2,
-  .contact h2 { font-size: 3.35rem; }
-
-  .experience-grid { grid-template-columns: 1fr; }
-  .experience-card,
-  .experience-card:last-child {
-    grid-column: auto;
-    min-height: 30rem;
-  }
-
-  .culture-grid { grid-template-columns: 1fr; }
-  .culture-box { min-height: 11.875rem; }
-
-  .feature-grid { gap: 1.5rem 1rem; }
-  .history-grid { gap: 2.625rem; }
-
-  /* a linha do tempo encolhe junto com o texto */
-  .timeline { padding-left: 2rem; }
-  .timeline li:before { left: -2.4375rem; }
-
-  .municipality-grid { --cards-visiveis: 1.15; }  /* mostra a pontinha do próximo card */
-
-  .route-bar {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .itinerary-card { padding: 1.875rem; }
-  .itinerary-card h2 { font-size: 2.4375rem; }
-
-  .form-row { grid-template-columns: 1fr; }
-
-  .form-bottom {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .footer-bottom {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: .5rem;
-  }
-}
-
-/* ---------- Acessibilidade: respeita quem prefere menos movimento ---------- */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *:before,
-  *:after {
-    scroll-behavior: auto !important;
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-
-/* ==========================================================================
-   18. AJUSTES DE SEMÂNTICA E ACESSIBILIDADE (Avaliação A1)
-   ========================================================================== */
-
-/* texto lido por leitores de tela, mas invisível na tela */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* menu: a lista <ul> assume o papel de linha flexível */
-.main-nav ul {
-  display: flex;
-  align-items: center;
-  gap: 1.9375rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-/* nenhum item do menu quebra em duas linhas */
-.main-nav a { white-space: nowrap; }
-
-/* tabela de municípios */
-.table-wrapper {
-  margin-top: 2.5rem;
-  overflow-x: auto;   /* rola só a tabela em telas estreitas */
-  border: 1px solid var(--linha);
-  border-radius: var(--raio-pequeno);
-}
-
-.municipality-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: .875rem;
-  color: var(--verde-floresta);
-}
-
-.municipality-table caption {
-  padding: 1rem 1.125rem;
-  text-align: left;
-  color: var(--texto-tenue);
-  font-size: .75rem;
-  font-weight: var(--peso-negrito);
-  text-transform: uppercase;
-  letter-spacing: .12em;
-}
-
-.municipality-table th,
-.municipality-table td {
-  padding: .8125rem 1.125rem;
-  border-top: 1px solid var(--linha);
-  text-align: left;
-  white-space: nowrap;
-}
-
-.municipality-table thead th {
-  background: var(--verde-floresta);
-  color: var(--creme);
-  font-size: .6875rem;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-}
-
-.municipality-table tbody tr:nth-child(even) {
-  background: rgba(23, 61, 50, .04);
-}
-
 /* formulário: blocos com fieldset e legend */
 .contact fieldset {
   margin: 0 0 1.375rem;
@@ -1946,8 +1640,6 @@ footer {
 
 .contact legend {
   margin-bottom: 1rem;
-  padding: 0;
-  color: var(--verde-floresta);
   font-family: var(--fonte-titulo, serif);
   font-size: 1.125rem;
   font-weight: 700;
@@ -2005,102 +1697,106 @@ footer {
   border-color: #b8432f;
 }
 
-@media (max-width: 53.125em) {
-  .main-nav ul {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-  }
 
-  .main-nav a { display: block; }
+/* ==========================================================================
+   15. RODAPÉ
+   ========================================================================== */
+
+footer {
+  padding: 2.5rem 0 1.375rem;
+  background: var(--verde-profundo);
+  color: #e8eee3;
 }
 
-/* título do card de roteiro: .section h2 pinta de verde (mesma cor do fundo
-   do card); aqui o texto volta a ser creme para ficar legível */
-.itinerary-card h2 {
-  color: var(--creme);
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.875rem;
+  align-items: end;
 }
 
-/* a tabela rola no celular; com tabindex="0" ela recebe foco pelo teclado
-   e o anel mostra onde o foco está */
-.table-wrapper:focus-visible {
-  outline: .1875rem solid var(--ouro-escuro);
-  outline-offset: .1875rem;
+.footer-top p {
+  max-width: 19.375rem;
+  margin: .9375rem 0 0;
+  color: #9fb3a0;
+  font-size: .75rem;
+  line-height: 1.6;
 }
 
-/* na seção Cultura o fundo é verde-escuro: o destaque do título usa o
-   dourado claro, que tem contraste suficiente nesse fundo */
-.culture h2 em {
+.footer-links {
+  display: flex;
+  gap: 1.4375rem;
+  list-style: none;
+  color: #b9cdb6;
+  font-size: .625rem;
+  font-weight: var(--peso-negrito);
+  text-transform: uppercase;
+  letter-spacing: .15em;
+}
+
+.footer-links a:hover {
   color: var(--ouro);
 }
 
-/* o header é fixo: ao clicar numa âncora do menu, a seção para abaixo
-   dele em vez de ficar escondida (WCAG 2.4.11 — foco não encoberto) */
-html {
-  scroll-padding-top: calc(var(--altura-header) + 1rem);
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-top: 1.875rem;
+  padding-top: 1.125rem;
+  border-top: 1px solid var(--branco-10);
+  color: #7d9684;
+  font-size: .625rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
 }
 
-/* o input da busca não tem contorno próprio; o anel aparece na cápsula
-   inteira quando o campo recebe foco (WCAG 2.4.7 — foco visível) */
-.search:focus-within {
-  outline: .1875rem solid var(--ouro-escuro);
-  outline-offset: 2px;
+/* crédito de autoria no rodapé */
+.footer-credit a {
+  color: var(--ouro);
+  font-weight: var(--peso-negrito);
+  transition: color var(--transicao);
+}
+.footer-credit a:hover { color: var(--ouro-claro); }
+
+
+/* ==========================================================================
+   16. ANIMAÇÕES
+   --------------------------------------------------------------------------
+   .reveal está escrita direto no HTML do hero: a animação roda uma vez,
+   assim que a página carrega, sem depender de JavaScript.
+   ========================================================================== */
+
+.reveal {
+  animation: fadeUp .7s ease-out both;
 }
 
+.delay-1 {
+  animation-delay: .12s;   /* escalona a entrada do segundo item do hero */
+}
 
-/* celular: interesses em 2 colunas alinhadas */
-@media (max-width: 35em) {
-  .checkbox-fieldset .checkbox-group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: .75rem 1rem;
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(1.125rem);   /* começa 1.125rem abaixo */
+  }
+  to {
+    opacity: 1;
+    transform: none;               /* termina no lugar */
   }
 }
 
 
-/* ========================================================================== 
-   19. CAMADA VISUAL — brilho, profundidade e microinterações
+/* ==========================================================================
+   17. CAMADA VISUAL — brilho, profundidade e microinterações
    ========================================================================== */
-:root {
-  --ouro-brilho: #f4cf70;
-  --sombra-suave: 0 1.5rem 4rem rgba(16, 45, 37, .12);
-  --sombra-flutuante: 0 1.25rem 3rem rgba(16, 45, 37, .18);
-}
-
-body {
-  background:
-    radial-gradient(circle at 88% 8%, rgba(211, 167, 69, .10), transparent 22rem),
-    radial-gradient(circle at 4% 48%, rgba(45, 96, 73, .07), transparent 25rem),
-    var(--creme);
-}
 
 ::selection { background: var(--ouro); color: var(--verde-profundo); }
-
-.site-header {
-  background: rgba(16, 45, 37, .78);
-  border-bottom-color: rgba(248, 232, 189, .16);
-  box-shadow: 0 .75rem 2rem rgba(4, 19, 14, .08);
-  transition: background .3s ease, box-shadow .3s ease, transform .3s ease;
-}
 .site-header.is-scrolled {
   background: rgba(16, 45, 37, .94);
   box-shadow: 0 .8rem 2.5rem rgba(4, 19, 14, .22);
 }
-.brand-mark {
-  background: linear-gradient(135deg, var(--ouro-brilho), var(--ouro));
-  box-shadow: 0 0 0 .35rem rgba(211, 167, 69, .12), 0 .5rem 1.25rem rgba(211, 167, 69, .18);
-  transition: transform .3s ease, box-shadow .3s ease;
-}
 .brand:hover .brand-mark { transform: rotate(-8deg) scale(1.06); box-shadow: 0 0 0 .5rem rgba(211, 167, 69, .15), 0 .6rem 1.5rem rgba(211, 167, 69, .28); }
-
-.hero {
-  position: relative;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 72% 30%, rgba(211, 167, 69, .13), transparent 19rem),
-    radial-gradient(circle at 15% 88%, rgba(68, 122, 88, .18), transparent 22rem),
-    var(--verde-floresta);
-}
 .hero::before,
 .hero::after {
   content: '';
@@ -2112,22 +1808,10 @@ body {
 .hero::before { width: 38rem; height: 38rem; right: -18rem; top: 7rem; box-shadow: 0 0 0 3rem rgba(248, 232, 189, .025), 0 0 0 7rem rgba(248, 232, 189, .018); }
 .hero::after { width: 20rem; height: 20rem; left: -14rem; bottom: -9rem; }
 .hero-copy, .hero-visual { position: relative; z-index: 1; }
-.hero-image {
-  border: 1px solid rgba(248, 232, 189, .24);
-  box-shadow: 0 2rem 5rem rgba(0, 0, 0, .28), 0 0 0 .6rem rgba(248, 232, 189, .04);
-}
 .hero-image::after { opacity: .4; }
-.hero-image img { transition: transform .9s cubic-bezier(.2,.7,.2,1), filter .6s ease; }
-.hero-image:hover img { transform: scale(1.045); filter: saturate(1.12) contrast(1.04); }
-.hero-stamp { animation: floatBadge 5s ease-in-out infinite; box-shadow: 0 .75rem 2rem rgba(0,0,0,.16); }
 @keyframes floatBadge { 0%, 100% { transform: rotate(9deg) translateY(0); } 50% { transform: rotate(7deg) translateY(-.45rem); } }
-
-.button { position: relative; overflow: hidden; isolation: isolate; box-shadow: 0 .7rem 1.5rem rgba(8, 31, 23, .12); }
 .button::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,.36), transparent 72%); transform: translateX(-120%); transition: transform .65s ease; }
 .button:hover::after { transform: translateX(120%); }
-.button-gold { background: linear-gradient(135deg, var(--ouro-brilho), var(--ouro)); }
-
-.stats { position: relative; background: linear-gradient(90deg, #0d2a21, #173d32 45%, #0d2a21); box-shadow: 0 .9rem 2rem rgba(16,45,37,.14); }
 .stats li { transition: transform .25s ease, color .25s ease; }
 .stats li:hover { transform: translateY(-.3rem); }
 .stats li strong { text-shadow: 0 0 .9rem rgba(244, 207, 112, .16); }
@@ -2135,7 +1819,6 @@ body {
 .experience-card,
 .culture-photo,
 .culture-box,
-.municipality-grid article,
 .itinerary-card,
 .contact form {
   box-shadow: var(--sombra-suave);
@@ -2151,52 +1834,45 @@ body {
   box-shadow: var(--sombra-flutuante);
 }
 .experience-card::after { content: ''; position: absolute; inset: 0; pointer-events: none; border: 1px solid rgba(248, 232, 189, .12); border-radius: inherit; }
-.experience-card img { transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .7s ease; }
-.experience-card:hover img { transform: scale(1.07); filter: saturate(1.12); }
-.card-number { transition: color .3s ease, transform .3s ease; }
 .experience-card:hover .card-number { color: var(--ouro-brilho); transform: translateX(.15rem); }
-
-.territory-photo { box-shadow: var(--sombra-flutuante); }
-.territory-photo img { transition: transform .8s ease, filter .8s ease; }
 .territory-photo:hover img { transform: scale(1.035); filter: saturate(1.1); }
-.feature-grid li { border-radius: 1rem; transition: background .3s ease, transform .3s ease; }
 .feature-grid li:hover { background: rgba(211, 167, 69, .08); transform: translateX(.25rem); }
-
-.municipality-grid article { border-color: rgba(200, 189, 173, .72); background: rgba(255,255,255,.32); }
-.municipality-grid article:hover { border-color: rgba(211, 167, 69, .72); background: rgba(255,255,255,.72); }
-.search { box-shadow: 0 .5rem 1.5rem rgba(16,45,37,.06); transition: box-shadow .25s ease, transform .25s ease; }
-.search:focus-within { box-shadow: 0 .75rem 1.75rem rgba(16,45,37,.13); transform: translateY(-.1rem); }
+.municipality-grid article:hover {
+  border-color: rgba(211, 167, 69, .72);
+  background: rgba(255,255,255,.72);
+  box-shadow: 0 .6rem 1.1rem rgba(16, 45, 37, .12);
+}
 
 .reveal-on-scroll { opacity: 1; transform: none; }
 body.js-ready .reveal-on-scroll { opacity: 0; transform: translateY(1.4rem); transition: opacity .75s ease, transform .75s cubic-bezier(.2,.7,.2,1); }
 body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
 
-@media (max-width: 53.125em) {
-  .hero::before { right: -25rem; }
-  .experience-card:hover, .culture-photo:hover, .culture-box:hover, .municipality-grid article:hover, .itinerary-card:hover, .contact form:hover { transform: none; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-stamp { animation: none; }
-  .hero-image img, .experience-card img, .territory-photo img { transition: none; }
-}
-
 
 /* ==========================================================================
-   MODAL DE BOAS-VINDAS
+   18. MODAL DE BOAS-VINDAS
    --------------------------------------------------------------------------
    Usa o elemento nativo <dialog>: com showModal() o navegador já cuida do
    foco preso dentro do modal, da tecla Esc e do fundo (::backdrop).
    ========================================================================== */
 
-.welcome-modal {
-  width: min(52rem, calc(100% - 2rem));
-  padding: 0;
+/* base comum aos dois modais (boas-vindas e detalhes do município) */
+.welcome-modal,
+.municipality-modal {
   max-height: calc(100dvh - 2rem);
   margin: auto;
   overflow: auto;
-  border: 1px solid rgba(248, 232, 189, .24);
   border-radius: var(--raio-grande);
+}
+
+.welcome-modal::backdrop,
+.municipality-modal::backdrop {
+  background: rgba(8, 24, 19, .72);
+  backdrop-filter: blur(4px);
+}
+
+.welcome-modal {
+  width: min(52rem, calc(100% - 2rem));
+  border: 1px solid rgba(248, 232, 189, .24);
   background:
     radial-gradient(circle at 85% 15%, rgba(211, 167, 69, .16), transparent 18rem),
     var(--verde-floresta);
@@ -2208,11 +1884,6 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   display: grid;
   grid-template-columns: 1fr 1.15fr;
   animation: modalIn .45s cubic-bezier(.2, .7, .2, 1);
-}
-
-.welcome-modal::backdrop {
-  background: rgba(8, 24, 19, .72);
-  backdrop-filter: blur(4px);
 }
 
 .welcome-image {
@@ -2270,7 +1941,6 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
 }
 
 .welcome-dismiss {
-  border: 0;
   background: none;
   color: var(--texto-claro-suave);
   font: inherit;
@@ -2278,12 +1948,10 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   font-weight: var(--peso-negrito);
   letter-spacing: var(--espacamento-letra);
   text-transform: uppercase;
-  cursor: pointer;
 }
 .welcome-dismiss:hover { color: var(--ouro); }
 
-.welcome-close,
-.modal-close {
+.welcome-close, .modal-close {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -2295,7 +1963,6 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   color: var(--creme-claro);
   font-size: 1.4rem;
   line-height: 1;
-  cursor: pointer;
   transition: var(--transicao);
 }
 .welcome-close:hover,
@@ -2312,43 +1979,22 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   to { opacity: 1; transform: none; }
 }
 
-@media (max-width: 35em) {
-  .welcome-modal[open] { grid-template-columns: 1fr; }
-  .welcome-image img { height: 11rem; }
-  .welcome-content { padding: 2rem 1.5rem; }
-}
-
-
-/* dentro do slider a rolagem corta o que passa da faixa: sombra mais curta */
-.municipality-grid article { box-shadow: 0 .5rem 1rem rgba(16, 45, 37, .07); }
-.municipality-grid article:hover { box-shadow: 0 .6rem 1.1rem rgba(16, 45, 37, .12); }
-
 
 /* ==========================================================================
-   MODAL DE DETALHES DO MUNICÍPIO
+   19. MODAL DE DETALHES DO MUNICÍPIO
    --------------------------------------------------------------------------
    Um único <dialog>; o JavaScript troca o conteúdo conforme o card clicado.
    ========================================================================== */
 
 .municipality-modal {
   width: min(36rem, calc(100% - 2rem));
-  max-height: calc(100dvh - 2rem);
-  margin: auto;
-  padding: 0;
-  overflow: auto;
   border: 0;
-  border-radius: var(--raio-grande);
   background: var(--creme);
   color: var(--texto);
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, .35);
 }
 
 .municipality-modal[open] { animation: modalIn .35s cubic-bezier(.2, .7, .2, 1); }
-
-.municipality-modal::backdrop {
-  background: rgba(8, 24, 19, .72);
-  backdrop-filter: blur(4px);
-}
 
 .municipality-modal-header {
   padding: 2.25rem 2.25rem 1.75rem;
@@ -2423,14 +2069,9 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   font-size: .75rem;
 }
 
-@media (max-width: 35em) {
-  .municipality-modal-header { padding: 1.75rem 1.5rem 1.5rem; }
-  .municipality-modal-body { padding: 1.5rem; }
-}
-
 
 /* ==========================================================================
-   DEPOIMENTOS
+   20. DEPOIMENTOS
    --------------------------------------------------------------------------
    Faixa contínua (marquee): o JavaScript duplica os cards e a animação
    desloca a faixa até o início da cópia, então o laço não tem "pulo".
@@ -2499,7 +2140,6 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
 .testimonial-card blockquote p {
   position: relative;
   padding-top: 1.75rem;
-  color: var(--texto);
   font: italic .9375rem/1.65 var(--fonte-titulo);
 }
 
@@ -2555,20 +2195,9 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   object-fit: cover;
 }
 
-@media (max-width: 35em) {
-  .testimonial-card { width: 17rem; padding: 1.5rem; }
-}
-
-/* quem prefere menos movimento: sem giro automático, rolagem manual
-   e sem os cards duplicados */
-@media (prefers-reduced-motion: reduce) {
-  .testimonials-viewport:has(.is-animated) { overflow-x: auto; }
-  .testimonials-track [aria-hidden="true"] { display: none; }
-}
-
 
 /* ==========================================================================
-   QUANTO CUSTA (ORÇAMENTO)
+   21. QUANTO CUSTA (ORÇAMENTO)
    --------------------------------------------------------------------------
    Cards de roteiro com faixa de investimento ($ a $$$). Não mostram preço
    fechado: o botão leva ao formulário de contato já preenchido.
@@ -2597,7 +2226,6 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   border: 1px solid var(--linha);
   border-radius: 1.4375rem;
   background: #fbf8f1;
-  color: var(--texto);
   box-shadow: var(--sombra-suave);
   transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
 }
@@ -2716,26 +2344,19 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   margin-top: auto;
 }
 
-.pricing-note {
-  max-width: 44rem;
+/* aviso no pé da seção (o da agenda cultural usa o mesmo estilo) */
+.pricing-note,
+.agenda-note {
   margin-top: 2rem;
   color: var(--texto-tenue);
   font-size: .75rem;
   line-height: 1.6;
 }
-
-@media (max-width: 68em) {
-  .pricing-grid { grid-template-columns: repeat(2, 1fr); row-gap: 2rem; }
-}
-
-@media (max-width: 35em) {
-  .pricing-grid { grid-template-columns: 1fr; }
-  .pricing-card:hover { transform: none; }
-}
+.pricing-note { max-width: 44rem; }
 
 
 /* ==========================================================================
-   MENU COM SUBMENUS
+   22. MENU COM SUBMENUS
    --------------------------------------------------------------------------
    Padrão "disclosure": cada grupo é um <button> com aria-expanded que abre
    uma <ul> de links. A classe .open é colocada pelo JavaScript (clique,
@@ -2749,13 +2370,10 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   align-items: center;
   gap: .6em;
   padding: .5rem 0;
-  border: 0;
   background: none;
   color: inherit;
-  font: inherit;
   letter-spacing: inherit;
   text-transform: inherit;
-  cursor: pointer;
   transition: color var(--transicao);
 }
 .nav-group-toggle:hover,
@@ -2817,7 +2435,8 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   letter-spacing: .02em;
   text-transform: none;
 }
-.main-nav .submenu a::after { display: none; }   /* sem o sublinhado do menu principal */
+.main-nav .submenu a::after { display: none; }
+/* sem o sublinhado do menu principal */
 .main-nav .submenu a:hover,
 .main-nav .submenu a:focus-visible {
   background: rgba(211, 167, 69, .12);
@@ -2833,48 +2452,9 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   letter-spacing: 0;
 }
 
-@media (max-width: 53.125em) {
-  /* painel do menu mobile: rola por dentro se não couber na tela */
-  .main-nav {
-    max-height: calc(100dvh - var(--altura-header));
-    overflow-y: auto;
-  }
-
-  .nav-group-toggle {
-    justify-content: space-between;
-    width: 100%;
-    padding: .875rem 0;
-    border-bottom: 1px solid var(--branco-10);
-  }
-
-  /* submenu vira sanfona: aparece embaixo do botão, no fluxo normal */
-  .main-nav .submenu {
-    position: static;
-    display: none;
-    min-width: 0;
-    padding: .25rem 0 .5rem 1rem;
-    border: 0;
-    border-radius: 0;
-    background: none;
-    box-shadow: none;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-  }
-  .main-nav .submenu::before { display: none; }
-  .nav-group.open .submenu { display: grid; transform: none; }
-
-  .main-nav .submenu a {
-    padding: .625rem 0;
-    border-bottom: 0;
-    white-space: normal;
-  }
-  .main-nav .submenu a:hover { background: none; }
-}
-
 
 /* ==========================================================================
-   BOTÃO FLUTUANTE DO WHATSAPP
+   23. BOTÃO FLUTUANTE DO WHATSAPP
    --------------------------------------------------------------------------
    position:fixed deixa o botão sempre no canto da tela. O rótulo
    "Fale no WhatsApp" desliza para fora quando o mouse passa por cima.
@@ -2936,17 +2516,9 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   100% { box-shadow: 0 .75rem 1.75rem rgba(8, 31, 23, .3), 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
-/* o toast sobe para não ficar em cima do botão */
-.toast { bottom: 5.75rem; }
-
-@media (max-width: 35em) {
-  .whatsapp-float { right: 1rem; bottom: 1rem; }
-  .toast { right: 1rem; left: 1rem; bottom: 5.25rem; max-width: none; }
-}
-
 
 /* ==========================================================================
-   FILTROS POR REGIÃO E MENSAGENS DE DADOS
+   24. FILTROS POR REGIÃO E MENSAGENS DE DADOS
    --------------------------------------------------------------------------
    Os botões são criados pelo JavaScript a partir de municipios.json.
    aria-pressed="true" marca o filtro ativo (e serve de gancho para o CSS).
@@ -2972,7 +2544,6 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   font: var(--peso-negrito) .6875rem var(--fonte-texto);
   letter-spacing: .08em;
   text-transform: uppercase;
-  cursor: pointer;
   transition: var(--transicao);
 }
 .region-filter:hover { border-color: var(--verde-floresta); }
@@ -3010,7 +2581,7 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
 
 
 /* ==========================================================================
-   AGENDA CULTURAL
+   25. AGENDA CULTURAL
    --------------------------------------------------------------------------
    Cards gerados a partir de eventos.json. O evento que está acontecendo
    agora ganha a classe .is-now e fica em destaque.
@@ -3148,9 +2719,6 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
 }
 @keyframes agendaLive { 50% { opacity: .25; } }
 
-/* o display:grid do card venceria o hidden do HTML; aqui ele volta a esconder */
-.agenda-card[hidden] { display: none; }
-
 /* botão "Ver agenda completa": a seta gira quando a lista está aberta */
 .agenda-toggle {
   display: flex;
@@ -3165,26 +2733,311 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   font: var(--peso-negrito) .6875rem var(--fonte-texto);
   letter-spacing: var(--espacamento-letra);
   text-transform: uppercase;
-  cursor: pointer;
   transition: var(--transicao);
 }
-.agenda-toggle[hidden] { display: none; }
 .agenda-toggle:hover { background: var(--verde-floresta); color: var(--creme); }
 .agenda-toggle span { transition: transform var(--transicao); }
 .agenda-toggle.is-expanded span { transform: rotate(180deg); }
 
-.agenda-note {
-  margin-top: 2rem;
-  color: var(--texto-tenue);
-  font-size: .75rem;
-  line-height: 1.6;
+
+
+/* ==========================================================================
+   26. RESPONSIVIDADE
+   --------------------------------------------------------------------------
+   Duas etapas: em 53.125em (850px) o site passa a "uma coluna por vez" e o
+   menu vira hambúrguer; em 35em (560px) tudo se ajusta para o celular. As
+   regras dentro do breakpoint têm prioridade porque vêm depois no arquivo.
+
+   Por que em nas media queries? Dentro de @media, em sempre usa a fonte
+   padrão do navegador (16px) e funciona igual em todos eles — inclusive
+   quando a pessoa dá zoom só no texto.
+
+   Obs. para a apresentação: media queries NÃO aceitam var(), então as
+   larguras dos breakpoints são escritas à mão aqui.
+   ========================================================================== */
+
+/* ---------- (max-width: 68em) ---------- */
+@media (max-width: 68em) {
+  .pricing-grid { grid-template-columns: repeat(2, 1fr); row-gap: 2rem; }
 }
 
+/* ---------- Telas médias: tablets e janelas estreitas ---------- */
 @media (max-width: 53.125em) {
+
+  .container {
+    width: min(100% - 2.125rem, 40.625rem);
+  }
+
+  /* o menu sai do fluxo e vira um painel dropdown (classe .open via JS) */
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: var(--altura-header);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: .75rem 1.375rem 1.375rem;
+    background: var(--verde-floresta);
+    border-top: 1px solid var(--branco-10);
+    max-height: calc(100dvh - var(--altura-header));
+    overflow-y: auto;
+  }
+
+  .main-nav.open { display: flex; }
+
+  .main-nav a {
+    padding: .875rem 0;
+    border-bottom: 1px solid var(--branco-10);
+    display: block;
+  }
+
+  .nav-cta {
+    margin-top: .75rem;
+    text-align: center;
+  }
+
+  .menu-toggle { display: block; }
+
+  .hero {
+    min-height: auto;
+    padding-bottom: 5rem;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;   /* o hero vira uma coluna só */
+    gap: 3.4375rem;
+    padding-top: 3.75rem;
+  }
+
+  .hero-copy,
+  .hero-visual {
+    max-width: 37.5rem;
+  }
+
+  .hero-visual { margin: auto; }
+
+  .scroll-cue { display: none; }
+
+  .section { padding: 5.5rem 0; }
+
+  /* o título e o texto de apoio ficam empilhados */
+  .section-heading,
+  .culture-heading,
+  .municipality-heading { display: block; }
+
+  .section-heading > p,
+  .culture-heading > p { margin-top: 1.375rem; }
+
+  /* cards: dois por linha, e o terceiro ocupa a linha inteira */
+  .experience-grid { grid-template-columns: 1fr 1fr; }
+  .experience-card { min-height: 28.125rem; }
+  .experience-card:last-child {
+    grid-column: 1 / -1;
+    min-height: 26.25rem;
+  }
+
+  .territory-grid,
+  .history-grid,
+  .itinerary-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 3.125rem;
+  }
+
+  .territory-photo { max-width: 31.25rem; }
+
+  /* a foto ocupa a linha inteira e os dois cards ficam lado a lado */
+  .culture-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: none;
+  }
+  .culture-photo {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    min-height: 25rem;
+  }
+
+  .municipality-grid { --cards-visiveis: 2; }
+
+  .search {
+    margin-top: 1.5rem;
+    width: 100%;
+  }
+
+  .footer-top {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .footer-links { flex-wrap: wrap; }
+
+  .contact { padding: 5.5rem 0; }
+
+  .main-nav ul {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .hero::before { right: -25rem; }
+  .experience-card:hover, .culture-photo:hover, .culture-box:hover, .municipality-grid article:hover, .itinerary-card:hover, .contact form:hover { transform: none; }
+
+  /* painel do menu mobile: rola por dentro se não couber na tela */
+
+  .nav-group-toggle {
+    justify-content: space-between;
+    width: 100%;
+    padding: .875rem 0;
+    border-bottom: 1px solid var(--branco-10);
+  }
+
+  /* submenu vira sanfona: aparece embaixo do botão, no fluxo normal */
+  .main-nav .submenu {
+    position: static;
+    display: none;
+    min-width: 0;
+    padding: .25rem 0 .5rem 1rem;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  .main-nav .submenu::before { display: none; }
+  .nav-group.open .submenu { display: grid; transform: none; }
+
+  .main-nav .submenu a {
+    padding: .625rem 0;
+    border-bottom: 0;
+    white-space: normal;
+  }
+  .main-nav .submenu a:hover { background: none; }
+
   .agenda-grid { grid-template-columns: 1fr; }
 }
 
+/* ---------- Celulares ---------- */
 @media (max-width: 35em) {
+
+  .container { width: calc(100% - 2.125rem); }
+
+  /* esconde o nome só na tela, mantém o selo "CR"; o leitor de tela
+     continua lendo "CR Conheça Roraima" */
+  .brand > span:last-child {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .hero h1 { font-size: 4.3rem; }
+  .hero-copy > h1 + p { font-size: 1rem; }
+
+  .hero-actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.0625rem;
+  }
+
+  .hero-image { aspect-ratio: .9; }
+
+  /* selo dourado menor no celular */
+  .hero-stamp {
+    right: .625rem;
+    width: 5.625rem;
+    height: 5.625rem;
+    font-size: .625rem;
+  }
+
+  .territory-badge { left: .625rem; }
+
+  /* números em 2 colunas, alternando o alinhamento */
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.375rem 0;
+  }
+  .stats-grid > li:nth-child(3) { border-left: 0; }
+  .stats-grid > li:nth-child(odd) { justify-content: flex-start; }
+  .stats-grid > li:nth-child(even) { justify-content: flex-end; }
+  .stats-grid strong { font-size: 1.5625rem; }
+  .stats-grid span { font-size: .5rem; }
+
+  .section h2,
+  .territory h2,
+  .culture h2,
+  .history h2,
+  .municipalities h2,
+  .contact h2 { font-size: 3.35rem; }
+
+  .experience-grid { grid-template-columns: 1fr; }
+  .experience-card,
+  .experience-card:last-child {
+    grid-column: auto;
+    min-height: 30rem;
+  }
+
+  .culture-grid { grid-template-columns: 1fr; }
+  .culture-box { min-height: 11.875rem; }
+
+  .feature-grid { gap: 1.5rem 1rem; }
+  .history-grid { gap: 2.625rem; }
+
+  /* a linha do tempo encolhe junto com o texto */
+  .timeline { padding-left: 2rem; }
+  .timeline li:before { left: -2.4375rem; }
+
+  .municipality-grid { --cards-visiveis: 1.15; }
+  /* mostra a pontinha do próximo card */
+
+  .route-bar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .itinerary-card { padding: 1.875rem; }
+  .itinerary-card h2 { font-size: 2.4375rem; }
+
+  .form-row { grid-template-columns: 1fr; }
+
+  .form-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  /* celular: interesses em 2 colunas alinhadas */
+  .checkbox-fieldset .checkbox-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .75rem 1rem;
+  }
+
+  .welcome-modal[open] { grid-template-columns: 1fr; }
+  .welcome-image img { height: 11rem; }
+  .welcome-content { padding: 2rem 1.5rem; }
+
+  .municipality-modal-header { padding: 1.75rem 1.5rem 1.5rem; }
+  .municipality-modal-body { padding: 1.5rem; }
+
+  .testimonial-card { width: 17rem; padding: 1.5rem; }
+
+  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-card:hover { transform: none; }
+
+  .whatsapp-float { right: 1rem; bottom: 1rem; }
+  .toast { right: 1rem; left: 1rem; bottom: 5.25rem; max-width: none; }
+
   .agenda-card { grid-template-columns: 1fr; padding: 1.5rem; }
   .agenda-date { width: auto; height: auto; grid-auto-flow: column; gap: .5rem; place-content: start; padding: .6rem .9rem; justify-self: start; }
   .agenda-date strong { font-size: 1.25rem; }
@@ -3192,11 +3045,21 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   .agenda-card:hover { transform: none; }
 }
 
+/* ---------- Acessibilidade: respeita quem prefere menos movimento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
 
-/* crédito de autoria no rodapé */
-.footer-credit a {
-  color: var(--ouro);
-  font-weight: var(--peso-negrito);
-  transition: color var(--transicao);
+  .hero-stamp { animation: none; }
+  .hero-image img, .experience-card img, .territory-photo img { transition: none; }
+
+  /* quem prefere menos movimento: sem giro automático, rolagem manual
+   e sem os cards duplicados */
+  .testimonials-viewport:has(.is-animated) { overflow-x: auto; }
+  .testimonials-track [aria-hidden="true"] { display: none; }
 }
-.footer-credit a:hover { color: var(--ouro-claro); }

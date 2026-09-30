@@ -1,6 +1,5 @@
 [
   {
-    "id": "povos-indigenas",
     "nome": "Dia dos Povos Indígenas",
     "local": "Todo o estado",
     "categoria": "CULTURA",
@@ -9,11 +8,9 @@
     "aproximada": false,
     "descricao": "Feiras de artesanato, rodas de conversa e apresentações celebram os povos originários que fazem de Roraima um território de muitas vozes.",
     "imagem": "assets/img/artesanato-indigena.webp",
-    "imagemAlt": "Artesanato indígena de Roraima",
-    "link": "#cultura"
+    "imagemAlt": "Artesanato indígena de Roraima"
   },
   {
-    "id": "boa-vista-junina",
     "nome": "Boa Vista Junina",
     "local": "Boa Vista",
     "categoria": "FESTA",
@@ -22,11 +19,9 @@
     "aproximada": true,
     "descricao": "O grande arraial da capital reúne quadrilhas, comidas típicas e shows em noites de festa ao longo de junho.",
     "imagem": "assets/img/orla-taumanan-boa-vista.webp",
-    "imagemAlt": "Orla Taumanan em Boa Vista",
-    "link": "#municipios"
+    "imagemAlt": "Orla Taumanan em Boa Vista"
   },
   {
-    "id": "aniversario-boa-vista",
     "nome": "Aniversário de Boa Vista",
     "local": "Boa Vista",
     "categoria": "CELEBRAÇÃO",
@@ -35,11 +30,9 @@
     "aproximada": false,
     "descricao": "A capital comemora sua fundação com programação cultural, feiras e shows abertos ao público.",
     "imagem": "assets/img/orla-taumanan-boa-vista.webp",
-    "imagemAlt": "Orla Taumanan em Boa Vista",
-    "link": "#municipios"
+    "imagemAlt": "Orla Taumanan em Boa Vista"
   },
   {
-    "id": "aniversario-roraima",
     "nome": "Aniversário do Estado de Roraima",
     "local": "Todo o estado",
     "categoria": "CELEBRAÇÃO",
@@ -48,11 +41,9 @@
     "aproximada": false,
     "descricao": "Data em que Roraima se tornou estado, com a Constituição de 1988. Eventos cívicos e culturais tomam as cidades.",
     "imagem": "assets/img/monte-roraima-aereo.webp",
-    "imagemAlt": "Vista aérea do Monte Roraima entre nuvens",
-    "link": "#historia"
+    "imagemAlt": "Vista aérea do Monte Roraima entre nuvens"
   },
   {
-    "id": "temporada-praias",
     "nome": "Temporada de praias de rio",
     "local": "Rio Branco e afluentes",
     "categoria": "NATUREZA",
@@ -61,11 +52,9 @@
     "aproximada": true,
     "descricao": "Na estação seca, o nível dos rios baixa e surgem praias de areia branca, perfeitas para banho, pesca e fim de tarde.",
     "imagem": "assets/img/trilha-monte-roraima.webp",
-    "imagemAlt": "Paisagem natural de Roraima",
-    "link": "#territorio"
+    "imagemAlt": "Paisagem natural de Roraima"
   },
   {
-    "id": "natal-boa-vista",
     "nome": "Natal iluminado",
     "local": "Boa Vista",
     "categoria": "FESTA",
@@ -74,7 +63,6 @@
     "aproximada": true,
     "descricao": "Praças e avenidas da capital ganham luzes e decoração natalina, com programação para toda a família.",
     "imagem": "assets/img/orla-taumanan-boa-vista.webp",
-    "imagemAlt": "Orla Taumanan em Boa Vista",
-    "link": "#municipios"
+    "imagemAlt": "Orla Taumanan em Boa Vista"
   }
 ]

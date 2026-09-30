@@ -7,8 +7,21 @@ Avaliação A1 da disciplina **Fundamentos de Desenvolvimento Web** (turno vespe
 ## Etapas do projeto
 
 - [x] **Etapa 1 — Estrutura HTML semântica**
-- [ ] **Etapa 2 — Estilização (CSS)** — aguardando
-- [ ] **Etapa 3 — Interatividade (JavaScript)** — aguardando
+- [x] **Etapa 2 — Estilização (CSS)**
+- [x] **Etapa 3 — Interatividade (JavaScript)**
 
-Nesta entrega o foco é só o HTML. Por isso a folha de estilo está desativada (comentada) no `<head>` do `index.html`.
+## Como executar
 
+Os municípios, a agenda cultural e os depoimentos são carregados de arquivos JSON (`assets/data/`) com `fetch()`, que só funciona com o site servido por HTTP. Abrir o `index.html` direto (`file://`) não carrega esses dados.
+
+Use a extensão **Live Server** do VS Code ou, na pasta do projeto:
+
+```
+python3 -m http.server 8000
+```
+
+e acesse `http://localhost:8000`.
+
+## Autor
+
+Desenvolvido por **Ivonielson Freitas**.
