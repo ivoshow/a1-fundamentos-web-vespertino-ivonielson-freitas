@@ -97,7 +97,7 @@ form?.addEventListener('submit', (event) => {
   event.preventDefault();
   success.hidden = false;
   form.reset();
-  showToast('Mensagem recebida. Obrigado por escrever para o Conheça Roraima.');
+  showToast('Informação recebida. Obrigado por ajudar a manter o Conheça Roraima atualizado.');
 });
 
 
@@ -802,37 +802,45 @@ lightbox?.addEventListener('pointerup', (event) => {
 
 initGaleria();
 
-// "Pedir orçamento": o link leva até #contato e, antes disso, deixa o
-// formulário pré-preenchido com o roteiro escolhido.
+// "Viu outro valor?": o link leva até #contato e, antes disso, deixa o
+// formulário pré-preenchido com o destino do card.
 const subjectSelect = document.querySelector('#assunto');
-const messageField = document.querySelector('#mensagem');
-let lastBudgetMessage = '';
+const destinationSelect = document.querySelector('#destino');
 
-document.querySelectorAll('[data-roteiro]').forEach((link) => {
+document.querySelectorAll('[data-destino]').forEach((link) => {
   link.addEventListener('click', () => {
-    const roteiro = link.dataset.roteiro;
+    const destino = link.dataset.destino;
 
-    if (subjectSelect) subjectSelect.value = 'roteiro';
+    if (subjectSelect) subjectSelect.value = 'valor';
+    if (destinationSelect) destinationSelect.value = destino;
 
-    // marca os interesses do roteiro (ex.: "natureza cultura")
-    link.dataset.interesses.split(' ').forEach((interesse) => {
-      const checkbox = document.querySelector(`#interesse-${interesse}`);
-      if (checkbox) checkbox.checked = true;
-    });
-
-    // só escreve a mensagem se o campo estiver vazio ou ainda tiver o texto
-    // que nós mesmos colocamos: nunca apaga o que a pessoa digitou
-    if (messageField && (!messageField.value.trim() || messageField.value === lastBudgetMessage)) {
-      lastBudgetMessage = `Olá! Gostaria de um orçamento para o roteiro "${roteiro}". Podem me passar valores e datas disponíveis?`;
-      messageField.value = lastBudgetMessage;
-    }
-
-    showToast(`Roteiro "${roteiro}" selecionado. Complete seus dados para pedir o orçamento.`);
+    showToast(`Destino "${destino}" selecionado. Conte quanto você pagou.`);
 
     // depois que a página rola até #contato, coloca o foco no primeiro campo
     setTimeout(() => document.querySelector('#nome')?.focus({ preventScroll: true }), 600);
   });
 });
+
+// Carro próprio ou alugado: mostra as diárias do aluguel e troca os totais.
+// Os totais com aluguel ficam em data-alugado; o valor original é guardado em data-proprio.
+const carMode = document.querySelector('#car-mode');
+const pricingGrid = document.querySelector('#pricing-grid');
+
+if (carMode && pricingGrid) {
+  const totals = pricingGrid.querySelectorAll('[data-alugado]');
+  totals.forEach((el) => { el.dataset.proprio = el.textContent; });
+
+  carMode.hidden = false;
+  carMode.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-car]');
+    if (!button) return;
+
+    const rented = button.dataset.car === 'alugado';
+    carMode.querySelectorAll('[data-car]').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+    pricingGrid.querySelectorAll('.cost-rental').forEach((el) => { el.hidden = !rented; });
+    totals.forEach((el) => { el.textContent = rented ? el.dataset.alugado : el.dataset.proprio; });
+  });
+}
 
 // WhatsApp: no computador, o link vai direto para o WhatsApp Web;
 // no celular continua no wa.me, que abre o aplicativo instalado.

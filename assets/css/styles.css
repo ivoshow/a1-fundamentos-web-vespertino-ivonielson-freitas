@@ -2344,29 +2344,74 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
 }
 .pricing-card.featured .pricing-includes { color: #f2cb6a; }
 
-.pricing-card ul {
+/* custos médios do roteiro: rótulo à esquerda, valor à direita */
+.cost-list {
   display: grid;
-  gap: .5rem;
-  list-style: none;
+  gap: .45rem;
 }
-.pricing-card li {
-  position: relative;
-  padding-left: 1.25rem;
+.cost-list > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
   font-size: .8125rem;
   line-height: 1.45;
 }
-.pricing-card li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: var(--ouro);
+.cost-list dt { color: var(--texto-suave); }
+.cost-list dd {
   font-weight: var(--peso-negrito);
+  white-space: nowrap;
 }
+.cost-list .cost-total {
+  margin-top: .3rem;
+  padding-top: .6rem;
+  border-top: 1px solid var(--linha);
+}
+.cost-list .cost-total dt { color: inherit; font-weight: var(--peso-negrito); }
+.pricing-card.featured .cost-list dt { color: var(--texto-claro-suave); }
+.pricing-card.featured .cost-list .cost-total { border-color: var(--branco-10); }
+.pricing-card.featured .cost-list .cost-total dt { color: var(--creme-claro); }
 
-/* margin-top:auto alinha os botões na base, mesmo com textos de tamanhos diferentes */
-.pricing-card .button {
-  justify-content: center;
+.cost-per-person {
+  color: var(--texto-suave);
+  font-size: .8125rem;
+}
+.cost-per-person strong {
+  color: var(--verde-floresta);
+  font: 1.6rem/1 var(--fonte-titulo-curta);
+}
+.pricing-card.featured .cost-per-person { color: var(--texto-claro-suave); }
+.pricing-card.featured .cost-per-person strong { color: var(--ouro-brilho); }
+
+.cost-note {
+  color: var(--texto-tenue);
+  font-size: .75rem;
+  line-height: 1.55;
+}
+.pricing-card.featured .cost-note { color: var(--texto-claro-tenue); }
+
+/* linha do aluguel: destacada em ouro para mostrar o que entrou na conta */
+.cost-list .cost-rental dt,
+.cost-list .cost-rental dd { color: var(--ouro-escuro); }
+.pricing-card.featured .cost-list .cost-rental dt,
+.pricing-card.featured .cost-list .cost-rental dd { color: var(--ouro-brilho); }
+.cost-list > div[hidden],
+.cost-note[hidden],
+.car-mode[hidden] { display: none; }
+
+/* margin-top:auto alinha os links na base, mesmo com textos de tamanhos diferentes */
+.pricing-update {
   margin-top: auto;
+  padding-top: .75rem;
+  border-top: 1px solid var(--linha);
+  color: var(--ouro-escuro);
+  font-size: .75rem;
+  font-weight: var(--peso-negrito);
+  text-decoration: none;
+}
+.pricing-update:hover { text-decoration: underline; }
+.pricing-card.featured .pricing-update {
+  border-color: var(--branco-10);
+  color: var(--ouro-brilho);
 }
 
 /* aviso no pé da seção (o da agenda cultural usa o mesmo estilo) */

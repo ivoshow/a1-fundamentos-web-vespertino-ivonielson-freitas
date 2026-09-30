@@ -1,6 +1,6 @@
 # a1-fundamentos-web-vespertino-ivonielson-freitas
 
-**Conheça Roraima** — portal sobre turismo, cultura, história e municípios de Roraima, com um formulário de contato para planejar a viagem.
+**Conheça Roraima** — portal informativo sobre turismo, cultura, história e municípios de Roraima, com estimativas de quanto custa visitar os principais destinos por conta própria (média para 2 pessoas, de carro próprio) e um formulário para os visitantes enviarem valores atualizados.
 
 Avaliação A1 da disciplina **Fundamentos de Desenvolvimento Web** (turno vespertino, turma 2026T1): estrutura semântica e formulário web acessível em HTML5.
 

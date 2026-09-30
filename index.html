@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#173d32">
     <meta name="author" content="Ivonielson Freitas">
     <meta name="google-site-verification" content="-4TH7wlYZ-pU3OrTLeNFt9fAbdqJfKL4M6FalPjMVOk">
-    <meta name="description" content="Conheça Roraima: turismo, cultura, história, municípios e roteiros para descobrir o extremo norte do Brasil.">
+    <meta name="description" content="Conheça Roraima: turismo, cultura, história, municípios e quanto custa conhecer o extremo norte do Brasil por conta própria.">
     <title>Conheça Roraima — O norte que surpreende</title>
     <link rel="canonical" href="https://conheca-roraima.vercel.app/">
     <!-- prévia do link ao compartilhar (WhatsApp, redes sociais) -->
@@ -15,7 +15,7 @@
     <meta property="og:locale" content="pt_BR">
     <meta property="og:site_name" content="Conheça Roraima">
     <meta property="og:title" content="Conheça Roraima — O norte que surpreende">
-    <meta property="og:description" content="Turismo, cultura, história, municípios e roteiros para descobrir o extremo norte do Brasil.">
+    <meta property="og:description" content="Turismo, cultura, história, municípios e quanto custa conhecer o extremo norte do Brasil por conta própria.">
     <meta property="og:url" content="https://conheca-roraima.vercel.app/">
     <meta property="og:image" content="https://conheca-roraima.vercel.app/assets/img/monte-roraima-aereo.webp">
     <meta property="og:image:alt" content="Vista aérea do Monte Roraima entre nuvens">
@@ -28,7 +28,7 @@
       "name": "Conheça Roraima",
       "url": "https://conheca-roraima.vercel.app/",
       "inLanguage": "pt-BR",
-      "description": "Portal sobre turismo, cultura, história e municípios de Roraima.",
+      "description": "Portal informativo sobre turismo, cultura, história, municípios e custos de viagem em Roraima.",
       "author": { "@type": "Person", "name": "Ivonielson Freitas" }
     }
     </script>
@@ -67,12 +67,12 @@
                         <button class="nav-group-toggle" type="button" aria-expanded="false" aria-controls="submenu-planeje">Planeje <span class="nav-caret" aria-hidden="true"></span></button>
                         <ul class="submenu" id="submenu-planeje">
                             <li><a href="#roteiro">Roteiro de 3 dias<small>Uma primeira imersão</small></a></li>
-                            <li><a href="#orcamento">Quanto custa<small>Faixas de investimento</small></a></li>
+                            <li><a href="#orcamento">Quanto custa<small>Gastos indo por conta própria</small></a></li>
                             <li><a href="#depoimentos">Depoimentos<small>Quem já veio conta</small></a></li>
                             <li><a href="#galeria">Galeria<small>Roraima em imagens</small></a></li>
                         </ul>
                     </li>
-                    <li><a class="nav-cta" href="#contato">Fale com a gente <span aria-hidden="true">→</span></a></li>
+                    <li><a class="nav-cta" href="#contato">Atualize um valor <span aria-hidden="true">→</span></a></li>
                 </ul>
             </nav>
         </div>
@@ -290,7 +290,7 @@
                         </tbody>
                     </table>
                 </div>
-                <p class="route-bar">Quer ir além do mapa? Monte um roteiro sob medida.<a href="#contato">Fale com um local　<span aria-hidden="true">→</span></a></p>
+                <p class="route-bar">Quer saber quanto gasta indo por conta própria?<a href="#orcamento">Veja as estimativas　<span aria-hidden="true">→</span></a></p>
             </div>
         </section>
 
@@ -330,27 +330,36 @@
             <div class="container">
                 <header class="section-heading">
                     <hgroup>
-                        <p class="kicker"><span aria-hidden="true">◇</span> Planeje seu orçamento</p>
+                        <p class="kicker"><span aria-hidden="true">◇</span> Por conta própria</p>
                         <h2 id="pricing-title">Quanto custa<br><em>conhecer Roraima?</em></h2></hgroup>
-                    <p>Compare os roteiros pela faixa de investimento e peça um orçamento sob medida. Nós conectamos você a guias e operadores locais.</p>
+                    <p>Estimativas médias para <strong>duas pessoas saindo de Boa Vista</strong>, de carro próprio ou alugado: combustível, aluguel, hospedagem, guias, taxas e alimentação. Use como base para montar o seu orçamento.</p>
                 </header>
-                <ul class="pricing-grid">
+                <div class="filter-bar car-mode" id="car-mode" role="group" aria-label="Como vocês vão se deslocar" hidden>
+                    <button class="filter-chip" type="button" data-car="proprio" aria-pressed="true">Carro próprio</button>
+                    <button class="filter-chip" type="button" data-car="alugado" aria-pressed="false">Carro alugado</button>
+                </div>
+                <ul class="pricing-grid" id="pricing-grid">
                     <li>
                         <article class="pricing-card">
-                            <h3>Boa Vista e arredores</h3>
-                            <p class="price-level"><span aria-hidden="true">$<span class="off">$$</span></span> Ótimo custo-benefício</p>
+                            <h3>Boa Vista e Serra Grande</h3>
+                            <p class="price-level"><span aria-hidden="true">$<span class="off">$$</span></span> O mais econômico</p>
                             <dl class="pricing-meta">
                                 <div><dt>Duração</dt><dd>3 dias</dd></div>
                                 <div><dt>Dificuldade</dt><dd>Leve</dd></div>
                             </dl>
-                            <p>Capital, Orla Taumanan, centro histórico e uma escapada até a Serra Grande, no Cantá.</p>
-                            <p class="pricing-includes">Costuma incluir</p>
-                            <ul>
-                                <li>Hospedagem na capital</li>
-                                <li>Passeios urbanos com guia</li>
-                                <li>Degustação da culinária regional</li>
-                            </ul>
-                            <a class="button button-dark" href="#contato" data-roteiro="Boa Vista e arredores" data-interesses="gastronomia historia">Pedir orçamento<span class="sr-only"> de Boa Vista e arredores</span> <span aria-hidden="true">→</span></a>
+                            <p>Orla Taumanan, centro histórico, Parque do Rio Branco e um dia de trilha na Serra Grande, no Cantá.</p>
+                            <p class="pricing-includes">Média para 2 pessoas</p>
+                            <dl class="cost-list">
+                                <div><dt>Combustível</dt><dd>R$ 185</dd></div>
+                                <div class="cost-rental" hidden><dt>Aluguel (3 diárias)</dt><dd>R$ 450</dd></div>
+                                <div><dt>Hospedagem (2 noites)</dt><dd>R$ 400</dd></div>
+                                <div><dt>Entrada e guia</dt><dd>R$ 115</dd></div>
+                                <div><dt>Alimentação</dt><dd>R$ 375</dd></div>
+                                <div class="cost-total"><dt>Total do casal</dt><dd data-alugado="R$ 1.525">R$ 1.075</dd></div>
+                            </dl>
+                            <p class="cost-per-person"><strong data-alugado="R$ 765">R$ 540</strong> por pessoa</p>
+                            <p class="cost-note">Na Serra Grande, a entrada custa cerca de R$ 15 por pessoa e o guia da trilha da Excalibur, cerca de R$ 80.</p>
+                            <a class="pricing-update" href="#contato" data-destino="Boa Vista e Serra Grande">Viu outro valor? Avise o portal<span class="sr-only"> sobre Boa Vista e Serra Grande</span> <span aria-hidden="true">→</span></a>
                         </article>
                     </li>
                     <li>
@@ -361,14 +370,19 @@
                                 <div><dt>Duração</dt><dd>2 a 3 dias</dd></div>
                                 <div><dt>Dificuldade</dt><dd>Moderada</dd></div>
                             </dl>
-                            <p>Cachoeiras, mirantes e o clima fresco da serra no Amajari, a cerca de 200 km da capital.</p>
-                            <p class="pricing-includes">Costuma incluir</p>
-                            <ul>
-                                <li>Transporte até a serra</li>
-                                <li>Pousada na vila do Tepequém</li>
-                                <li>Guia local nas trilhas</li>
-                            </ul>
-                            <a class="button button-dark" href="#contato" data-roteiro="Serra do Tepequém" data-interesses="natureza">Pedir orçamento<span class="sr-only"> de Serra do Tepequém</span> <span aria-hidden="true">→</span></a>
+                            <p>Cachoeiras, mirantes e o clima fresco da serra no Amajari, a cerca de 210 km da capital.</p>
+                            <p class="pricing-includes">Média para 2 pessoas</p>
+                            <dl class="cost-list">
+                                <div><dt>Combustível (≈ 440 km)</dt><dd>R$ 340</dd></div>
+                                <div class="cost-rental" hidden><dt>Aluguel (3 diárias)</dt><dd>R$ 450</dd></div>
+                                <div><dt>Pousada (2 noites)</dt><dd>R$ 600</dd></div>
+                                <div><dt>Guia nas trilhas</dt><dd>R$ 175</dd></div>
+                                <div><dt>Alimentação</dt><dd>R$ 350</dd></div>
+                                <div class="cost-total"><dt>Total do casal</dt><dd data-alugado="R$ 1.915">R$ 1.465</dd></div>
+                            </dl>
+                            <p class="cost-per-person"><strong data-alugado="R$ 960">R$ 735</strong> por pessoa</p>
+                            <p class="cost-note">Passeios de um dia saindo da capital custam em média R$ 369 por pessoa. De carro próprio, com pernoite, sai mais em conta.</p>
+                            <a class="pricing-update" href="#contato" data-destino="Serra do Tepequém">Viu outro valor? Avise o portal<span class="sr-only"> sobre Serra do Tepequém</span> <span aria-hidden="true">→</span></a>
                         </article>
                     </li>
                     <li>
@@ -379,37 +393,47 @@
                                 <div><dt>Duração</dt><dd>3 a 4 dias</dd></div>
                                 <div><dt>Dificuldade</dt><dd>Leve</dd></div>
                             </dl>
-                            <p>Lago Caracaranã, céu aberto do lavrado e o encontro com comunidades indígenas de Normandia.</p>
-                            <p class="pricing-includes">Costuma incluir</p>
-                            <ul>
-                                <li>Transporte e hospedagem</li>
-                                <li>Visita a comunidades, com autorização</li>
-                                <li>Guia com conhecimento local</li>
-                            </ul>
-                            <a class="button button-dark" href="#contato" data-roteiro="Lavrado e Caracaranã" data-interesses="natureza cultura">Pedir orçamento<span class="sr-only"> de Lavrado e Caracaranã</span> <span aria-hidden="true">→</span></a>
+                            <p>Lago Caracaranã, em Normandia, a cerca de 180 km da capital, e o céu aberto do lavrado.</p>
+                            <p class="pricing-includes">Média para 2 pessoas</p>
+                            <dl class="cost-list">
+                                <div><dt>Combustível</dt><dd>R$ 350</dd></div>
+                                <div class="cost-rental" hidden><dt>Aluguel (3 a 4 diárias)</dt><dd>R$ 525</dd></div>
+                                <div><dt>Hospedagem</dt><dd>R$ 375</dd></div>
+                                <div><dt>Taxas e guia</dt><dd>R$ 150</dd></div>
+                                <div><dt>Alimentação</dt><dd>R$ 375</dd></div>
+                                <div class="cost-total"><dt>Total do casal</dt><dd data-alugado="R$ 1.775">R$ 1.250</dd></div>
+                            </dl>
+                            <p class="cost-per-person"><strong data-alugado="R$ 890">R$ 625</strong> por pessoa</p>
+                            <p class="cost-note">Visitas a comunidades indígenas precisam de autorização prévia: não é só chegar e entrar.</p>
+                            <a class="pricing-update" href="#contato" data-destino="Lavrado e Caracaranã">Viu outro valor? Avise o portal<span class="sr-only"> sobre Lavrado e Caracaranã</span> <span aria-hidden="true">→</span></a>
                         </article>
                     </li>
                     <li>
                         <article class="pricing-card featured">
-                            <p class="pricing-badge">Mais procurado</p>
+                            <p class="pricing-badge">Exige operadora</p>
                             <h3>Expedição Monte Roraima</h3>
                             <p class="price-level"><span aria-hidden="true">$$$</span> A viagem de uma vida</p>
                             <dl class="pricing-meta">
                                 <div><dt>Duração</dt><dd>7 a 9 dias</dd></div>
                                 <div><dt>Dificuldade</dt><dd>Difícil</dd></div>
                             </dl>
-                            <p>A travessia até o topo do tepui, com acampamento acima das nuvens. Para quem tem preparo físico.</p>
-                            <p class="pricing-includes">Costuma incluir</p>
-                            <ul>
-                                <li>Guia credenciado e carregadores</li>
-                                <li>Equipamento de acampamento</li>
-                                <li>Alimentação durante a trilha</li>
-                            </ul>
-                            <a class="button button-gold" href="#contato" data-roteiro="Expedição Monte Roraima" data-interesses="natureza">Pedir orçamento<span class="sr-only"> de Expedição Monte Roraima</span> <span aria-hidden="true">→</span></a>
+                            <p>O trekking acontece na Venezuela e exige guias, carregadores, permissões e acampamento. Não dá para fazer sozinho.</p>
+                            <p class="pricing-includes">Média para 2 pessoas</p>
+                            <dl class="cost-list">
+                                <div><dt>Transporte desde Boa Vista</dt><dd>no pacote</dd></div>
+                                <div><dt>Expedição (2 × R$ 6.350)</dt><dd>R$ 12.700</dd></div>
+                                <div><dt>Seguro aventura (2 × R$ 185)</dt><dd>R$ 370</dd></div>
+                                <div class="cost-total"><dt>Total do casal</dt><dd>R$ 13.070</dd></div>
+                            </dl>
+                            <p class="cost-per-person"><strong>R$ 6.535</strong> por pessoa</p>
+                            <p class="cost-note">Pacotes de R$ 4.200 a R$ 8.500 por pessoa. O econômico já sai de Boa Vista com guias pemón, alimentação e pernoite em Santa Elena de Uairén; o completo soma traslados 4x4 e hospedagem extra. Circuitos de 10 a 12 dias partem de R$ 7.850.</p>
+                            <p class="cost-note">À parte: carregador pessoal (≈ R$ 1.050 no trekking todo) e equipamentos, se não tiver (R$ 500 a R$ 1.500).</p>
+                            <p class="cost-note cost-rental" hidden>Não precisa alugar carro: o transporte até a trilha já vem no pacote.</p>
+                            <a class="pricing-update" href="#contato" data-destino="Expedição Monte Roraima">Viu outro valor? Avise o portal<span class="sr-only"> sobre Expedição Monte Roraima</span> <span aria-hidden="true">→</span></a>
                         </article>
                     </li>
                 </ul>
-                <p class="pricing-note"><span aria-hidden="true">ⓘ</span> Tem roteiro para todo bolso: os símbolos ($ a $$$) só comparam os roteiros entre si. Conte pra gente quando e com quem você vem, e montamos um orçamento sob medida, sem compromisso.</p>
+                <p class="pricing-note"><span aria-hidden="true">ⓘ</span> Valores médios de referência (setembro de 2026), sempre para 2 pessoas no mesmo carro. Combustível calculado com gasolina a R$ 7,56/L e consumo de 10 km/L, ida e volta. Aluguel: carro econômico retirado em Boa Vista, a cerca de R$ 150 por diária (média das locadoras do aeroporto). Com mais gente no carro, o custo por pessoa cai. Os valores mudam: confirme antes de viajar e, se encontrar um preço diferente, <a href="#contato">avise o portal</a>.</p>
             </div>
         </section>
 
@@ -453,14 +477,14 @@
         <section class="contact" id="contato">
             <div class="container contact-grid">
                 <header>
-                    <p class="kicker kicker-dark"><span aria-hidden="true">✉</span> Fale com a gente</p>
-                    <h2>A próxima<br><em>história pode<br>ser a sua.</em></h2>
-                    <p>Tem uma dúvida, sugestão ou quer contar uma história de Roraima? Escreva para o portal.</p>
+                    <p class="kicker kicker-dark"><span aria-hidden="true">✉</span> Colabore com o portal</p>
+                    <h2>Viu um preço<br><em>diferente<br>por aí?</em></h2>
+                    <p>Entradas, guias, pousadas e combustível mudam de preço. Se você esteve em algum ponto turístico de Roraima, conte quanto pagou. Conferimos cada informação antes de atualizar as estimativas.</p>
                     <address class="contact-details"><span aria-hidden="true">✉</span>　oi@conhecaroraima.com.br
                         <br><span aria-hidden="true">☎</span>　(95) 9999-88888
                         <br><span aria-hidden="true">◎</span>　@conhecaroraima</address>
                 </header>
-                <form id="contact-form" action="#" method="POST" aria-label="Formulário de contato">
+                <form id="contact-form" action="#" method="POST" aria-label="Formulário para enviar informações ao portal">
                     <fieldset>
                         <legend>Seus dados</legend>
                         <div class="form-row">
@@ -473,60 +497,64 @@
                                 <input id="email" name="email" type="email" required maxlength="120" autocomplete="email" placeholder="voce@email.com">
                             </div>
                         </div>
-                        <div class="form-field">
-                            <label for="telefone">Telefone / WhatsApp (opcional)</label>
-                            <input id="telefone" name="telefone" type="tel" pattern="\(?\d{2}\)? ?\d{4,5}-?\d{4}" title="Informe DDD e número, por exemplo: 95 99999-9999 ou (95) 99999-9999." minlength="10" maxlength="15" autocomplete="tel" placeholder="95 99999-9999">
-                        </div>
                     </fieldset>
 
                     <fieldset>
-                        <legend>Sua viagem</legend>
-                        <div class="form-field">
-                            <label for="assunto">Assunto *</label>
-                            <select id="assunto" name="assunto" required>
-                                <option value="">Selecione uma opção</option>
-                                <option value="duvida">Tenho uma dúvida</option>
-                                <option value="roteiro">Quero montar um roteiro</option>
-                                <option value="historia">Quero compartilhar uma história</option>
-                                <option value="parceria">Quero falar sobre parceria</option>
-                            </select>
+                        <legend>Sua informação</legend>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="assunto">Tipo de informação *</label>
+                                <select id="assunto" name="assunto" required>
+                                    <option value="">Selecione uma opção</option>
+                                    <option value="valor">Atualizar um valor</option>
+                                    <option value="correcao">Corrigir uma informação</option>
+                                    <option value="sugestao">Sugerir um ponto turístico</option>
+                                    <option value="duvida">Tenho uma dúvida</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="destino">Destino</label>
+                                <select id="destino" name="destino">
+                                    <option value="">Selecione um destino</option>
+                                    <option>Boa Vista e Serra Grande</option>
+                                    <option>Serra do Tepequém</option>
+                                    <option>Lavrado e Caracaranã</option>
+                                    <option>Expedição Monte Roraima</option>
+                                    <option value="outro">Outro lugar de Roraima</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-row">
                             <div class="form-field">
-                                <label for="data-viagem">Data prevista da viagem</label>
-                                <input id="data-viagem" name="data_viagem" type="date" min="2026-01-01" max="2028-12-31">
+                                <label for="item">O que foi pago</label>
+                                <input id="item" name="item" type="text" maxlength="80" placeholder="Ex.: entrada, guia, diária da pousada">
                             </div>
                             <div class="form-field">
-                                <label for="pessoas">Número de pessoas</label>
-                                <input id="pessoas" name="pessoas" type="number" min="1" max="20" step="1" value="1">
+                                <label for="valor">Valor pago (R$)</label>
+                                <input id="valor" name="valor" type="number" min="0" max="100000" step="0.01" inputmode="decimal" placeholder="0,00">
                             </div>
                         </div>
-                        <fieldset class="checkbox-fieldset">
-                            <legend class="checkbox-title">Interesses</legend>
-                            <div class="checkbox-group">
-                                <label for="interesse-natureza"><input id="interesse-natureza" name="interesses" type="checkbox" value="natureza"> Natureza e trilhas</label>
-                                <label for="interesse-cultura"><input id="interesse-cultura" name="interesses" type="checkbox" value="cultura"> Cultura indígena</label>
-                                <label for="interesse-gastronomia"><input id="interesse-gastronomia" name="interesses" type="checkbox" value="gastronomia"> Gastronomia</label>
-                                <label for="interesse-historia"><input id="interesse-historia" name="interesses" type="checkbox" value="historia"> História</label>
-                            </div>
-                        </fieldset>
+                        <div class="form-field">
+                            <label for="data-valor">Quando você pagou esse valor</label>
+                            <input id="data-valor" name="data_valor" type="date" min="2025-01-01" max="2028-12-31">
+                        </div>
                     </fieldset>
 
                     <fieldset>
-                        <legend>Sua mensagem</legend>
+                        <legend>Detalhes</legend>
                         <div class="form-field">
                             <label for="mensagem">Mensagem *</label>
-                            <textarea id="mensagem" name="mensagem" required minlength="10" maxlength="1000" rows="5" placeholder="Conte um pouco mais..."></textarea>
+                            <textarea id="mensagem" name="mensagem" required minlength="10" maxlength="1000" rows="5" placeholder="O valor é por pessoa ou por grupo? Por diária? Onde você viu (placa, site, recibo)?"></textarea>
                         </div>
                         <div class="checkbox-group">
-                            <label for="aceite"><input id="aceite" name="aceite" type="checkbox" required> <span>Li e concordo com a <a href="privacidade.html" target="_blank" rel="noopener">Política de Privacidade<span class="sr-only"> (abre em nova aba)</span></a> e autorizo o uso dos meus dados para responder à minha mensagem *</span></label>
+                            <label for="aceite"><input id="aceite" name="aceite" type="checkbox" required> <span>Li e concordo com a <a href="privacidade.html" target="_blank" rel="noopener">Política de Privacidade<span class="sr-only"> (abre em nova aba)</span></a> e autorizo o uso dos meus dados para conferir a informação enviada *</span></label>
                         </div>
                     </fieldset>
 
                     <div class="form-bottom"><small>Campos marcados com * são obrigatórios.</small>
-                        <button class="button button-dark" type="submit">Enviar mensagem　<span aria-hidden="true">→</span></button>
+                        <button class="button button-dark" type="submit">Enviar informação　<span aria-hidden="true">→</span></button>
                     </div>
-                    <p class="form-success" id="form-success" hidden><span aria-hidden="true">✓</span> Mensagem recebida. Em breve entraremos em contato.</p>
+                    <p class="form-success" id="form-success" hidden><span aria-hidden="true">✓</span> Informação recebida. Obrigado por ajudar outros viajantes!</p>
                 </form>
             </div>
         </section>
@@ -578,14 +606,14 @@
             <p id="municipality-modal-description"></p>
             <h3>O que fazer</h3>
             <ul id="municipality-modal-activities"></ul>
-            <a class="button button-dark" href="#contato" data-close-modal>Planejar minha visita <span aria-hidden="true">→</span></a>
+            <a class="button button-dark" href="#orcamento" data-close-modal>Ver quanto custa <span aria-hidden="true">→</span></a>
         </div>
         <button class="modal-close" type="button" aria-label="Fechar detalhes do município" data-close-modal>×</button>
     </dialog>
 
     <!-- Botão flutuante do WhatsApp. O número vai no formato internacional,
          só dígitos: 55 (Brasil) + DDD + número. Ícone: Font Awesome Free (CC BY 4.0). -->
-    <a class="whatsapp-float" id="whatsapp-float" href="https://wa.me/5595999988888?text=Ol%C3%A1!%20Vim%20pelo%20portal%20Conhe%C3%A7a%20Roraima%20e%20quero%20ajuda%20para%20planejar%20minha%20viagem." data-phone="5595999988888" target="_blank" rel="noopener" aria-label="Fale com a gente pelo WhatsApp (abre em nova aba)">
+    <a class="whatsapp-float" id="whatsapp-float" href="https://wa.me/5595999988888?text=Ol%C3%A1!%20Vim%20pelo%20portal%20Conhe%C3%A7a%20Roraima%20e%20tenho%20uma%20informa%C3%A7%C3%A3o%20sobre%20valores." data-phone="5595999988888" target="_blank" rel="noopener" aria-label="Fale com o portal pelo WhatsApp (abre em nova aba)">
         <svg aria-hidden="true" focusable="false" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
         <span class="whatsapp-label" aria-hidden="true">Fale no WhatsApp</span>
     </a>
