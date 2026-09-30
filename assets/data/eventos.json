@@ -19,7 +19,7 @@
     "aproximada": true,
     "descricao": "O grande arraial da capital reúne quadrilhas, comidas típicas e shows em noites de festa ao longo de junho.",
     "imagem": "assets/img/orla-taumanan-boa-vista.webp",
-    "imagemAlt": "Orla Taumanan em Boa Vista"
+    "imagemAlt": "Orla Taumanan, às margens do Rio Branco, em Boa Vista"
   },
   {
     "nome": "Aniversário de Boa Vista",
@@ -30,7 +30,7 @@
     "aproximada": false,
     "descricao": "A capital comemora sua fundação com programação cultural, feiras e shows abertos ao público.",
     "imagem": "assets/img/orla-taumanan-boa-vista.webp",
-    "imagemAlt": "Orla Taumanan em Boa Vista"
+    "imagemAlt": "Orla Taumanan, às margens do Rio Branco, em Boa Vista"
   },
   {
     "nome": "Aniversário do Estado de Roraima",
@@ -63,6 +63,6 @@
     "aproximada": true,
     "descricao": "Praças e avenidas da capital ganham luzes e decoração natalina, com programação para toda a família.",
     "imagem": "assets/img/orla-taumanan-boa-vista.webp",
-    "imagemAlt": "Orla Taumanan em Boa Vista"
+    "imagemAlt": "Orla Taumanan, às margens do Rio Branco, em Boa Vista"
   }
 ]

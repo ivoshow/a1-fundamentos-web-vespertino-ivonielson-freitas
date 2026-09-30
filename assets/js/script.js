@@ -399,12 +399,12 @@ function renderRegionFilters() {
     const total = region === 'Todas'
       ? municipios.length
       : municipios.filter((municipio) => municipio.regiao === region).length;
-    const button = createElement('button', 'region-filter', region);
+    const button = createElement('button', 'filter-chip', region);
     button.type = 'button';
     button.dataset.region = region;
     // aria-pressed diz ao leitor de tela qual filtro está ativo
     button.setAttribute('aria-pressed', String(region === activeRegion));
-    const count = createElement('span', 'region-count', String(total));
+    const count = createElement('span', 'filter-count', String(total));
     count.setAttribute('aria-label', `${total} municípios`);
     button.append(count);
     return button;
@@ -608,6 +608,173 @@ async function loadTestimonialAvatars(total) {
     // sem internet ou API fora do ar: os avatares ficam com as iniciais
   }
 }
+
+// ==========================================================================
+// GALERIA (assets/data/galeria.json)
+// Mosaico de miniaturas com filtro por tema. Ao clicar, a foto grande abre
+// no visualizador (<dialog>), que navega pelas setas, pelo teclado (← →) e
+// pelo arrasto do dedo no celular.
+// ==========================================================================
+const galleryGrid = document.querySelector('#gallery-grid');
+const galleryFilters = document.querySelector('#gallery-filters');
+const lightbox = document.querySelector('#lightbox');
+const lightboxImage = document.querySelector('#lightbox-image');
+
+let galeria = [];
+let galleryView = [];          // fotos visíveis com o filtro atual
+let galleryCategory = 'Todas';
+let galleryIndex = 0;
+
+function renderGalleryFilters() {
+  const countOf = (category) => galeria.filter((foto) => foto.categoria === category).length;
+  // temas do que tem mais fotos para o que tem menos
+  const themes = [...new Set(galeria.map((foto) => foto.categoria))].sort((a, b) => countOf(b) - countOf(a));
+  const categories = ['Todas', ...themes];
+  galleryFilters.replaceChildren(...categories.map((category) => {
+    const total = category === 'Todas' ? galeria.length : countOf(category);
+    const button = createElement('button', 'filter-chip', category);
+    button.type = 'button';
+    button.dataset.category = category;
+    button.setAttribute('aria-pressed', String(category === galleryCategory));
+    const count = createElement('span', 'filter-count', String(total));
+    count.setAttribute('aria-label', `${total} fotos`);
+    button.append(count);
+    return button;
+  }));
+}
+
+function renderGallery() {
+  galleryView = galleryCategory === 'Todas'
+    ? galeria
+    : galeria.filter((foto) => foto.categoria === galleryCategory);
+
+  // recriar a lista faz a animação de entrada tocar de novo a cada filtro
+  galleryGrid.replaceChildren(...galleryView.map((foto, index) => {
+    const item = createElement('li', { largo: 'is-wide', alto: 'is-tall' }[foto.formato] ?? '');
+    item.style.setProperty('--i', index);
+
+    const button = createElement('button', 'gallery-item');
+    button.type = 'button';
+    button.dataset.index = index;
+
+    const img = createElement('img');
+    img.src = foto.miniatura;
+    img.alt = foto.alt;
+    img.loading = 'lazy';
+    img.decoding = 'async';
+
+    const caption = createElement('span', 'gallery-caption');
+    caption.append(createElement('strong', '', foto.titulo), createElement('small', '', foto.local));
+
+    const zoom = createElement('span', 'gallery-zoom', '⤢');
+    zoom.setAttribute('aria-hidden', 'true');
+
+    button.append(img, caption, zoom);
+    item.append(button);
+    return item;
+  }));
+}
+
+// crédito: "Foto: autor · licença · ver original" (as licenças CC pedem autor e link)
+function renderCredit(credito) {
+  const credit = document.querySelector('#lightbox-credit');
+  if (!credito) {
+    credit.replaceChildren();
+    return;
+  }
+  const parts = [document.createTextNode(`Foto: ${credito.autor}`)];
+  const link = (text, href) => {
+    const a = createElement('a', '', text);
+    a.href = href;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    return a;
+  };
+  if (credito.licenca) {
+    parts.push(' · ', credito.licencaUrl ? link(credito.licenca, credito.licencaUrl) : credito.licenca);
+  }
+  if (credito.fonte) parts.push(' · ', link('ver original', credito.fonte));
+  credit.replaceChildren(...parts);
+}
+
+function showPhoto(index) {
+  // o índice "dá a volta": depois da última vem a primeira
+  galleryIndex = (index + galleryView.length) % galleryView.length;
+  const foto = galleryView[galleryIndex];
+
+  // esmaece durante a troca; se a foto já estiver carregada (mesmo arquivo
+  // ou em cache), o evento load não dispara, então a classe sai na hora
+  if (lightboxImage.getAttribute('src') !== foto.imagem) {
+    lightboxImage.classList.add('is-loading');
+    lightboxImage.onload = () => lightboxImage.classList.remove('is-loading');
+    lightboxImage.src = foto.imagem;
+  }
+  if (lightboxImage.complete) lightboxImage.classList.remove('is-loading');
+  lightboxImage.alt = foto.alt;
+
+  document.querySelector('#lightbox-category').textContent = foto.categoria;
+  document.querySelector('#lightbox-local').textContent = foto.local;
+  document.querySelector('#lightbox-title').textContent = foto.titulo;
+  document.querySelector('#lightbox-description').textContent = foto.descricao;
+  document.querySelector('#lightbox-counter').textContent = `${galleryIndex + 1} / ${galleryView.length}`;
+  renderCredit(foto.credito);
+
+  // pré-carrega as vizinhas: a troca de foto fica instantânea
+  [galleryIndex - 1, galleryIndex + 1].forEach((i) => {
+    new Image().src = galleryView[(i + galleryView.length) % galleryView.length].imagem;
+  });
+}
+
+async function initGaleria() {
+  if (!galleryGrid) return;
+  try {
+    galeria = await loadJSON('assets/data/galeria.json');
+  } catch (error) {
+    console.error(error);
+    document.querySelector('#gallery-error').hidden = false;
+    return;
+  }
+  renderGalleryFilters();
+  renderGallery();
+}
+
+galleryFilters?.addEventListener('click', (event) => {
+  const button = event.target.closest('[data-category]');
+  if (!button) return;
+  galleryCategory = button.dataset.category;
+  galleryFilters.querySelectorAll('[data-category]').forEach((filter) => {
+    filter.setAttribute('aria-pressed', String(filter === button));
+  });
+  renderGallery();
+});
+
+galleryGrid?.addEventListener('click', (event) => {
+  const button = event.target.closest('[data-index]');
+  if (!button || !lightbox?.showModal) return;
+  showPhoto(Number(button.dataset.index));
+  lightbox.showModal();
+});
+
+lightbox?.querySelectorAll('[data-step]').forEach((button) => {
+  button.addEventListener('click', () => showPhoto(galleryIndex + Number(button.dataset.step)));
+});
+
+lightbox?.addEventListener('keydown', (event) => {
+  if (event.key === 'ArrowLeft') showPhoto(galleryIndex - 1);
+  if (event.key === 'ArrowRight') showPhoto(galleryIndex + 1);
+});
+
+// arrastar o dedo para o lado troca de foto (mais de 50px conta como gesto)
+let swipeStartX = null;
+lightbox?.addEventListener('pointerdown', (event) => { swipeStartX = event.clientX; });
+lightbox?.addEventListener('pointerup', (event) => {
+  if (swipeStartX === null) return;
+  const distance = event.clientX - swipeStartX;
+  swipeStartX = null;
+  if (Math.abs(distance) > 50 && event.pointerType !== 'mouse') showPhoto(galleryIndex + (distance < 0 ? 1 : -1));
+});
+
+initGaleria();
 
 // "Pedir orçamento": o link leva até #contato e, antes disso, deixa o
 // formulário pré-preenchido com o roteiro escolhido.

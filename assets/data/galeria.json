@@ -1,0 +1,227 @@
+[
+  {
+    "titulo": "Tepuis Kukenán e Roraima",
+    "local": "Monte Roraima",
+    "categoria": "Natureza",
+    "formato": "largo",
+    "descricao": "O amanhecer revela os dois tepuis lado a lado, na trilha que leva ao topo do Monte Roraima.",
+    "alt": "Os tepuis Kukenán e Roraima ao amanhecer, com a savana em primeiro plano",
+    "imagem": "assets/img/galeria/tepuis-kukenan-roraima.webp",
+    "miniatura": "assets/img/galeria/tepuis-kukenan-roraima-mini.webp",
+    "credito": {
+      "autor": "Paolo Costa Baldi",
+      "licenca": "CC BY-SA 3.0",
+      "licencaUrl": "https://creativecommons.org/licenses/by-sa/3.0/deed.pt-br",
+      "fonte": "https://commons.wikimedia.org/wiki/File:Kukenan_Roraima_GS.jpg"
+    }
+  },
+  {
+    "titulo": "Pé na estrada",
+    "local": "Roraima",
+    "categoria": "Viajantes",
+    "formato": "alto",
+    "descricao": "Aventura de moto por estrada de terra, entre o capim alto e o céu nublado.",
+    "alt": "Casal posa ao lado de uma moto em estrada de terra cercada de vegetação",
+    "imagem": "assets/img/viagem-de-moto.webp",
+    "miniatura": "assets/img/viagem-de-moto.webp",
+    "credito": null
+  },
+  {
+    "titulo": "Cachoeira do Paiva",
+    "local": "Amajari",
+    "categoria": "Natureza",
+    "formato": "normal",
+    "descricao": "Entre pedras e mata fechada, uma das quedas d’água mais visitadas da Serra do Tepequém.",
+    "alt": "Cachoeira do Paiva descendo entre pedras e mata densa",
+    "imagem": "assets/img/galeria/cachoeira-do-paiva.webp",
+    "miniatura": "assets/img/galeria/cachoeira-do-paiva-mini.webp",
+    "credito": {
+      "autor": "Bruno.karklis",
+      "licenca": "CC BY-SA 4.0",
+      "licencaUrl": "https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br",
+      "fonte": "https://commons.wikimedia.org/wiki/File:Cachoeira_do_Paiva_-_Tepequ%C3%A9m_(cropped).jpg"
+    }
+  },
+  {
+    "titulo": "Ponte dos Macuxi",
+    "local": "Boa Vista",
+    "categoria": "Boa Vista",
+    "formato": "largo",
+    "descricao": "O pôr do sol dourado sobre o Rio Branco, sob a ponte que liga a capital ao Cantá.",
+    "alt": "Ponte dos Macuxi sobre o Rio Branco ao pôr do sol, refletida na água",
+    "imagem": "assets/img/galeria/ponte-dos-macuxi.webp",
+    "miniatura": "assets/img/galeria/ponte-dos-macuxi-mini.webp",
+    "credito": {
+      "autor": "George Amaro",
+      "licenca": "CC BY 2.0",
+      "licencaUrl": "https://creativecommons.org/licenses/by/2.0/deed.pt-br",
+      "fonte": "https://commons.wikimedia.org/wiki/File:Ponte_dos_Macuxis,_Boa_Vista.jpg"
+    }
+  },
+  {
+    "titulo": "Entardecer no Lago Caracaranã",
+    "local": "Normandia",
+    "categoria": "Natureza",
+    "formato": "largo",
+    "descricao": "Fim de tarde no lago da Terra Indígena Raposa Serra do Sol, com o céu refletido na água.",
+    "alt": "Silhueta de árvore à beira do Lago Caracaranã sob céu dramático ao entardecer",
+    "imagem": "assets/img/galeria/lago-caracarana-entardecer.webp",
+    "miniatura": "assets/img/galeria/lago-caracarana-entardecer-mini.webp",
+    "credito": {
+      "autor": "Guignipper",
+      "licenca": "CC BY-SA 3.0",
+      "licencaUrl": "https://creativecommons.org/licenses/by-sa/3.0/deed.pt-br",
+      "fonte": "https://commons.wikimedia.org/wiki/File:Crespusculo.jpg"
+    }
+  },
+  {
+    "titulo": "Orla Taumanan vista do alto",
+    "local": "Boa Vista",
+    "categoria": "Boa Vista",
+    "formato": "normal",
+    "descricao": "O calçadão às margens do Rio Branco, ponto de encontro da capital no fim do dia.",
+    "alt": "Vista aérea da Orla Taumanan e do Rio Branco em Boa Vista",
+    "imagem": "assets/img/galeria/orla-taumanan-aerea.webp",
+    "miniatura": "assets/img/galeria/orla-taumanan-aerea-mini.webp",
+    "credito": {
+      "autor": "Ederson Brito/MTur",
+      "licenca": "Domínio público",
+      "licencaUrl": null,
+      "fonte": "https://commons.wikimedia.org/wiki/File:EDERSON_BRITO_ORLA_TAUMANAN_BOA_VISTA_RR_(27203212678).jpg"
+    }
+  },
+  {
+    "titulo": "No topo do Monte Roraima",
+    "local": "Monte Roraima",
+    "categoria": "Natureza",
+    "formato": "normal",
+    "descricao": "Paredões de arenito e o vale lá embaixo, perto do ponto mais alto do tepui.",
+    "alt": "Paredões de rocha no topo do Monte Roraima com vale e nuvens ao fundo",
+    "imagem": "assets/img/galeria/monte-roraima-topo.webp",
+    "miniatura": "assets/img/galeria/monte-roraima-topo-mini.webp",
+    "credito": {
+      "autor": "Tinhojv",
+      "licenca": "CC BY-SA 4.0",
+      "licencaUrl": "https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br",
+      "fonte": "https://commons.wikimedia.org/wiki/File:Monte_Roraima,_ponto_mais_alto.jpg"
+    }
+  },
+  {
+    "titulo": "Areia branca no lavrado",
+    "local": "Raposa Serra do Sol",
+    "categoria": "Natureza",
+    "formato": "normal",
+    "descricao": "Praia de água doce na Terra Indígena Raposa Serra do Sol, com as serras no horizonte.",
+    "alt": "Praia de areia branca à beira de um lago, com serras ao fundo",
+    "imagem": "assets/img/galeria/praia-raposa-serra-do-sol.webp",
+    "miniatura": "assets/img/galeria/praia-raposa-serra-do-sol-mini.webp",
+    "credito": {
+      "autor": "Roosevelt Pinheiro",
+      "licenca": "CC BY 3.0 br",
+      "licencaUrl": "https://creativecommons.org/licenses/by/3.0/br/",
+      "fonte": "https://commons.wikimedia.org/wiki/File:Raposa_sol.JPG"
+    }
+  },
+  {
+    "titulo": "Catedral Cristo Redentor",
+    "local": "Boa Vista",
+    "categoria": "Boa Vista",
+    "formato": "normal",
+    "descricao": "A arquitetura moderna da catedral da capital ganha outro brilho iluminada à noite.",
+    "alt": "Fachada curva da Catedral Cristo Redentor iluminada à noite",
+    "imagem": "assets/img/galeria/catedral-cristo-redentor.webp",
+    "miniatura": "assets/img/galeria/catedral-cristo-redentor-mini.webp",
+    "credito": {
+      "autor": "Jason R Nascimento",
+      "licenca": "CC BY-SA 3.0",
+      "licencaUrl": "https://creativecommons.org/licenses/by-sa/3.0/deed.pt-br",
+      "fonte": "https://commons.wikimedia.org/wiki/File:Catedral_Cristo_Redentor_004_-_panoramio.jpg"
+    }
+  },
+  {
+    "titulo": "À beira do rio",
+    "local": "Roraima",
+    "categoria": "Viajantes",
+    "formato": "alto",
+    "descricao": "Pedras, areia e mata: na seca, as margens dos rios viram mirantes naturais.",
+    "alt": "Casal sorri sobre pedras à beira de um rio, com mata e céu azul ao fundo",
+    "imagem": "assets/img/beira-do-rio.webp",
+    "miniatura": "assets/img/beira-do-rio.webp",
+    "credito": null
+  },
+  {
+    "titulo": "Monumento aos Pioneiros",
+    "local": "Boa Vista",
+    "categoria": "Cultura",
+    "formato": "normal",
+    "descricao": "Painel esculpido no Centro Cívico que homenageia quem ajudou a construir Roraima.",
+    "alt": "Painel em relevo do Monumento aos Pioneiros com figuras esculpidas",
+    "imagem": "assets/img/galeria/monumento-aos-pioneiros.webp",
+    "miniatura": "assets/img/galeria/monumento-aos-pioneiros-mini.webp",
+    "credito": {
+      "autor": "Rogério Regis",
+      "licenca": "CC BY-SA 3.0",
+      "licencaUrl": "https://creativecommons.org/licenses/by-sa/3.0/deed.pt-br",
+      "fonte": "https://commons.wikimedia.org/wiki/File:Monumento_aos_Pioneiros_-_panoramio.jpg"
+    }
+  },
+  {
+    "titulo": "Serra do Tepequém",
+    "local": "Amajari",
+    "categoria": "Natureza",
+    "formato": "normal",
+    "descricao": "Campos abertos, céu imenso e riachos de pedras avermelhadas no alto da serra.",
+    "alt": "Riacho entre pedras avermelhadas no alto da Serra do Tepequém, sob céu com nuvens",
+    "imagem": "assets/img/galeria/serra-do-tepequem.webp",
+    "miniatura": "assets/img/galeria/serra-do-tepequem-mini.webp",
+    "credito": {
+      "autor": "Carlos Marques",
+      "licenca": "CC BY-SA 2.0",
+      "licencaUrl": "https://creativecommons.org/licenses/by-sa/2.0/deed.pt-br",
+      "fonte": "https://commons.wikimedia.org/wiki/File:Paisagem_da_Serra_do_Tepequ%C3%A9m.jpg"
+    }
+  },
+  {
+    "titulo": "Praça das Águas",
+    "local": "Boa Vista",
+    "categoria": "Boa Vista",
+    "formato": "normal",
+    "descricao": "Espaço de lazer da capital, com fontes, quiosques e painéis de energia solar.",
+    "alt": "Praça das Águas em Boa Vista, com pórtico e quiosque de vidro",
+    "imagem": "assets/img/galeria/praca-das-aguas.webp",
+    "miniatura": "assets/img/galeria/praca-das-aguas-mini.webp",
+    "credito": {
+      "autor": "Prefeitura de Boa Vista/Divulgação",
+      "licenca": "CC BY-SA 4.0",
+      "licencaUrl": "https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br",
+      "fonte": "https://commons.wikimedia.org/wiki/File:Pra%C3%A7a_das_%C3%81guas_em_Boa_Vista.jpg"
+    }
+  },
+  {
+    "titulo": "Arte que conta histórias",
+    "local": "Roraima",
+    "categoria": "Cultura",
+    "formato": "normal",
+    "descricao": "Cestaria e artesanato indígena reunidos em feira, saberes passados entre gerações.",
+    "alt": "Artesanato indígena de Roraima exposto em feira",
+    "imagem": "assets/img/artesanato-indigena.webp",
+    "miniatura": "assets/img/artesanato-indigena.webp",
+    "credito": null
+  },
+  {
+    "titulo": "Boa Vista vista do alto",
+    "local": "Boa Vista",
+    "categoria": "Boa Vista",
+    "formato": "normal",
+    "descricao": "A capital planejada em formato de leque, com a Praça do Centro Cívico ao centro.",
+    "alt": "Vista aérea do centro de Boa Vista, com a Praça do Centro Cívico e o Rio Branco ao fundo",
+    "imagem": "assets/img/boa-vista-centro-civico.webp",
+    "miniatura": "assets/img/boa-vista-centro-civico.webp",
+    "credito": {
+      "autor": "Jorge Macedo/Divulgação",
+      "licenca": null,
+      "licencaUrl": null,
+      "fonte": null
+    }
+  }
+]

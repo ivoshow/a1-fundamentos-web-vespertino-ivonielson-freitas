@@ -69,6 +69,7 @@
                             <li><a href="#roteiro">Roteiro de 3 dias<small>Uma primeira imersão</small></a></li>
                             <li><a href="#orcamento">Quanto custa<small>Faixas de investimento</small></a></li>
                             <li><a href="#depoimentos">Depoimentos<small>Quem já veio conta</small></a></li>
+                            <li><a href="#galeria">Galeria<small>Roraima em imagens</small></a></li>
                         </ul>
                     </li>
                     <li><a class="nav-cta" href="#contato">Fale com a gente <span aria-hidden="true">→</span></a></li>
@@ -125,7 +126,7 @@
                             <p class="card-meta">7 a 9 dias · trekking</p>
                         </div>
                     </article>
-                    <article class="experience-card"><img src="assets/img/orla-taumanan-boa-vista.webp" alt="Orla Taumanan em Boa Vista" width="960" height="960" loading="lazy" decoding="async">
+                    <article class="experience-card"><img src="assets/img/orla-taumanan-boa-vista.webp" alt="Orla Taumanan, às margens do Rio Branco, em Boa Vista" width="1000" height="1000" loading="lazy" decoding="async">
                         <span class="card-number">02</span>
                         <div class="card-content"><span class="eyebrow green">CIDADE E RIO</span>
                             <h3>Boa Vista</h3>
@@ -147,7 +148,7 @@
 
         <section class="section territory" id="territorio">
             <div class="container territory-grid">
-                <figure class="territory-photo"><img src="assets/img/orla-taumanan-boa-vista.webp" alt="Orla Taumanan em Boa Vista" width="960" height="960" loading="lazy" decoding="async">
+                <figure class="territory-photo"><img src="assets/img/boa-vista-centro-civico.webp" alt="Vista aérea do centro de Boa Vista, com a Praça do Centro Cívico e o Rio Branco ao fundo" width="612" height="612" loading="lazy" decoding="async">
                     <span class="round-note" aria-hidden="true">céu<br>aberto<br>todo dia</span><figcaption class="photo-label"><span aria-hidden="true">⌖</span> BOA VISTA<strong>Cidade-jardim do norte</strong></figcaption></figure>
                 <div class="territory-content">
                     <p class="kicker"><span aria-hidden="true">≈</span> Um território raro</p>
@@ -260,7 +261,7 @@
                         <input id="municipality-search" type="search" placeholder="Busque um município" maxlength="40">
                     </search>
                 </header>
-                <div class="region-filters" id="region-filters" role="group" aria-label="Filtrar municípios por região"></div>
+                <div class="filter-bar" id="region-filters" role="group" aria-label="Filtrar municípios por região"></div>
                 <noscript><p class="data-message">Ative o JavaScript para ver os 15 municípios de Roraima.</p></noscript>
                 <p class="data-message" id="municipality-error" hidden>Não foi possível carregar os municípios agora. Tente recarregar a página.</p>
                 <div class="municipality-slider">
@@ -432,6 +433,23 @@
             </div>
         </section>
 
+        <section class="section gallery" id="galeria" aria-labelledby="gallery-title">
+            <div class="container">
+                <header class="section-heading">
+                    <hgroup>
+                        <p class="kicker"><span aria-hidden="true">▦</span> Roraima em imagens</p>
+                        <h2 id="gallery-title">Para ver<br><em>antes de vir.</em></h2></hgroup>
+                    <p>Serras, rios, cidades e encontros. Toque em uma foto para ampliar e navegar pela galeria.</p>
+                </header>
+                <div class="filter-bar" id="gallery-filters" role="group" aria-label="Filtrar fotos por tema"></div>
+                <ul class="gallery-grid" id="gallery-grid">
+                    <!-- preenchido pelo JavaScript a partir de assets/data/galeria.json -->
+                </ul>
+                <noscript><p class="data-message">Ative o JavaScript para ver a galeria de fotos.</p></noscript>
+                <p class="data-message" id="gallery-error" hidden>Não foi possível carregar a galeria agora. Tente recarregar a página.</p>
+            </div>
+        </section>
+
         <section class="contact" id="contato">
             <div class="container contact-grid">
                 <header>
@@ -456,8 +474,8 @@
                             </div>
                         </div>
                         <div class="form-field">
-                            <label for="telefone">Telefone / WhatsApp *</label>
-                            <input id="telefone" name="telefone" type="tel" required pattern="\(?\d{2}\)? ?\d{4,5}-?\d{4}" title="Informe DDD e número, por exemplo: 95 99999-9999 ou (95) 99999-9999." minlength="10" maxlength="15" autocomplete="tel" placeholder="95 99999-9999">
+                            <label for="telefone">Telefone / WhatsApp (opcional)</label>
+                            <input id="telefone" name="telefone" type="tel" pattern="\(?\d{2}\)? ?\d{4,5}-?\d{4}" title="Informe DDD e número, por exemplo: 95 99999-9999 ou (95) 99999-9999." minlength="10" maxlength="15" autocomplete="tel" placeholder="95 99999-9999">
                         </div>
                     </fieldset>
 
@@ -501,7 +519,7 @@
                             <textarea id="mensagem" name="mensagem" required minlength="10" maxlength="1000" rows="5" placeholder="Conte um pouco mais..."></textarea>
                         </div>
                         <div class="checkbox-group">
-                            <label for="aceite"><input id="aceite" name="aceite" type="checkbox" required> Concordo em receber uma resposta da equipe do portal *</label>
+                            <label for="aceite"><input id="aceite" name="aceite" type="checkbox" required> <span>Li e concordo com a <a href="privacidade.html" target="_blank" rel="noopener">Política de Privacidade<span class="sr-only"> (abre em nova aba)</span></a> e autorizo o uso dos meus dados para responder à minha mensagem *</span></label>
                         </div>
                     </fieldset>
 
@@ -524,11 +542,13 @@
                     <li><a href="#inicio">Início</a></li>
                     <li><a href="#historia">História</a></li>
                     <li><a href="#contato">Contato</a></li>
+                    <li><a href="privacidade.html">Privacidade</a></li>
                     <li><a href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram <span aria-hidden="true">↗</span><span class="sr-only"> (abre em nova aba)</span></a></li>
                 </ul>
             </nav>
         </div>
         <p class="container footer-bottom"><span>© 2026 Conheça Roraima</span><span>Feito com respeito ao território e às pessoas</span><span class="footer-credit">Desenvolvido por <a href="https://github.com/ivoshow" target="_blank" rel="noopener author">Ivonielson Freitas<span class="sr-only"> (abre em nova aba)</span></a></span></p>
+        <p class="container footer-photo-credits">Fotos: Orla Taumanan — Evelyn Araripe/Minube · Vista aérea de Boa Vista — Jorge Macedo/Divulgação</p>
     </footer>
     <!-- aqui começam os modais -->
     <dialog class="welcome-modal" id="welcome-modal" aria-labelledby="welcome-title" aria-describedby="welcome-text">
@@ -569,6 +589,25 @@
         <svg aria-hidden="true" focusable="false" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
         <span class="whatsapp-label" aria-hidden="true">Fale no WhatsApp</span>
     </a>
+
+    <!-- visualizador da galeria: a foto ampliada, com legenda, crédito e navegação -->
+    <dialog class="lightbox" id="lightbox" aria-labelledby="lightbox-title">
+        <figure class="lightbox-figure">
+            <div class="lightbox-stage" tabindex="-1" autofocus>
+                <img id="lightbox-image" src="assets/img/galeria/tepuis-kukenan-roraima.webp" alt="" loading="lazy">
+                <button class="lightbox-nav" type="button" data-step="-1" aria-label="Foto anterior">←</button>
+                <button class="lightbox-nav" type="button" data-step="1" aria-label="Próxima foto">→</button>
+            </div>
+            <figcaption class="lightbox-caption">
+                <p class="lightbox-meta"><span class="lightbox-tag" id="lightbox-category"></span><span id="lightbox-local"></span></p>
+                <h2 id="lightbox-title"></h2>
+                <p id="lightbox-description"></p>
+                <p class="lightbox-credit" id="lightbox-credit"></p>
+                <p class="lightbox-counter" id="lightbox-counter" aria-live="polite"></p>
+            </figcaption>
+        </figure>
+        <button class="modal-close" type="button" aria-label="Fechar galeria" data-close-modal>×</button>
+    </dialog>
 
     <div class="toast" id="toast" role="status"></div>
     <script src="assets/js/script.js"></script>

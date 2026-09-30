@@ -8,7 +8,8 @@
    10. Cultura · 11. História · 12. Municípios · 13. Roteiro · 14. Contato
    15. Rodapé · 16. Animações · 17. Camada visual · 18. Modal de boas-vindas
    19. Modal do município · 20. Depoimentos · 21. Orçamento · 22. Submenus
-   23. WhatsApp · 24. Filtros e dados · 25. Agenda · 26. Responsividade
+   23. WhatsApp · 24. Filtros e dados · 25. Agenda · 26. Galeria
+   27. Página de privacidade · 28. Responsividade
    ========================================================================== */
 
 /* ==========================================================================
@@ -1690,6 +1691,14 @@ em {
   letter-spacing: 0;
 }
 
+/* link para a Política de Privacidade no texto do consentimento */
+.contact .checkbox-group label a {
+  color: var(--verde-floresta);
+  font-weight: var(--peso-negrito);
+  text-decoration: underline;
+  text-underline-offset: .15em;
+}
+
 /* campo inválido depois que a pessoa já interagiu */
 .contact input:user-invalid,
 .contact select:user-invalid,
@@ -1758,6 +1767,14 @@ footer {
   transition: color var(--transicao);
 }
 .footer-credit a:hover { color: var(--ouro-claro); }
+
+/* créditos das fotos de terceiros usadas no site */
+.footer-photo-credits {
+  margin-top: .75rem;
+  color: #7d9684;
+  font-size: .625rem;
+  letter-spacing: .04em;
+}
 
 
 /* ==========================================================================
@@ -1857,7 +1874,8 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
 
 /* base comum aos dois modais (boas-vindas e detalhes do município) */
 .welcome-modal,
-.municipality-modal {
+.municipality-modal,
+.lightbox {
   max-height: calc(100dvh - 2rem);
   margin: auto;
   overflow: auto;
@@ -1865,7 +1883,8 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
 }
 
 .welcome-modal::backdrop,
-.municipality-modal::backdrop {
+.municipality-modal::backdrop,
+.lightbox::backdrop {
   background: rgba(8, 24, 19, .72);
   backdrop-filter: blur(4px);
 }
@@ -1969,7 +1988,8 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
 .modal-close:hover { background: var(--ouro); color: var(--verde-floresta); }
 
 .welcome-modal :focus-visible,
-.municipality-modal :focus-visible {
+.municipality-modal :focus-visible,
+.lightbox :focus-visible {
   outline: 2px solid var(--ouro-brilho);
   outline-offset: 3px;
 }
@@ -2518,21 +2538,22 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
 
 
 /* ==========================================================================
-   24. FILTROS POR REGIÃO E MENSAGENS DE DADOS
+   24. FILTROS E MENSAGENS DE DADOS
    --------------------------------------------------------------------------
-   Os botões são criados pelo JavaScript a partir de municipios.json.
-   aria-pressed="true" marca o filtro ativo (e serve de gancho para o CSS).
+   Botões de filtro criados pelo JavaScript (regiões dos municípios e temas
+   da galeria). aria-pressed="true" marca o filtro ativo e serve de gancho
+   para o CSS.
    ========================================================================== */
 
-.region-filters {
+.filter-bar {
   display: flex;
   flex-wrap: wrap;
   gap: .5rem;
   margin-bottom: 1.75rem;
 }
-.region-filters:empty { display: none; }
+.filter-bar:empty { display: none; }
 
-.region-filter {
+.filter-chip {
   display: inline-flex;
   align-items: center;
   gap: .5rem;
@@ -2546,15 +2567,15 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   text-transform: uppercase;
   transition: var(--transicao);
 }
-.region-filter:hover { border-color: var(--verde-floresta); }
+.filter-chip:hover { border-color: var(--verde-floresta); }
 
-.region-filter[aria-pressed="true"] {
+.filter-chip[aria-pressed="true"] {
   border-color: var(--verde-floresta);
   background: var(--verde-floresta);
   color: var(--creme);
 }
 
-.region-count {
+.filter-count {
   display: grid;
   place-items: center;
   min-width: 1.4rem;
@@ -2565,7 +2586,7 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   font-size: .625rem;
   letter-spacing: 0;
 }
-.region-filter[aria-pressed="true"] .region-count {
+.filter-chip[aria-pressed="true"] .filter-count {
   background: var(--ouro);
   color: var(--verde-floresta);
 }
@@ -2742,7 +2763,366 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
 
 
 /* ==========================================================================
-   26. RESPONSIVIDADE
+   26. GALERIA
+   --------------------------------------------------------------------------
+   Mosaico em grid: grid-auto-flow: dense preenche os buracos deixados pelas
+   fotos largas (.is-wide, 2 colunas) e altas (.is-tall, 2 linhas). Ao clicar,
+   a foto abre no visualizador (<dialog class="lightbox">).
+   ========================================================================== */
+
+.gallery {
+  background: var(--seda);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 13rem;
+  grid-auto-flow: dense;
+  gap: .75rem;
+  list-style: none;
+}
+
+.gallery-grid li {
+  /* entrada escalonada: cada foto espera um pouco mais que a anterior */
+  animation: galleryIn .5s cubic-bezier(.2, .7, .2, 1) both;
+  animation-delay: calc(var(--i, 0) * 40ms);
+}
+.gallery-grid .is-wide { grid-column: span 2; }
+.gallery-grid .is-tall { grid-row: span 2; }
+
+@keyframes galleryIn {
+  from { opacity: 0; transform: translateY(1rem) scale(.98); }
+}
+
+.gallery-item {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 1.1rem;
+  background: var(--verde-floresta);
+  color: var(--creme-claro);
+  text-align: left;
+  box-shadow: 0 .5rem 1rem rgba(16, 45, 37, .08);
+  transition: box-shadow .35s ease, transform .35s ease;
+}
+
+.gallery-item img {
+  height: 100%;
+  object-fit: cover;
+  transition: transform .7s cubic-bezier(.2, .7, .2, 1), filter .7s ease;
+}
+
+/* degradê embaixo: garante leitura da legenda sobre qualquer foto */
+.gallery-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8, 24, 19, .82), rgba(8, 24, 19, .15) 45%, transparent 70%);
+  opacity: .85;
+  transition: opacity .35s ease;
+}
+
+.gallery-caption {
+  position: absolute;
+  z-index: 1;
+  left: 1rem;
+  right: 1rem;
+  bottom: .9rem;
+  transition: transform .35s ease;
+}
+.gallery-caption strong {
+  display: block;
+  font: 1.05rem/1.25 var(--fonte-titulo-curta);
+}
+.gallery-caption small {
+  display: block;
+  margin-top: .3rem;
+  color: #f2cb6a;
+  font-size: .5625rem;
+  font-weight: var(--peso-negrito);
+  letter-spacing: var(--espacamento-letra);
+  text-transform: uppercase;
+}
+
+/* ícone de ampliar, que aparece no hover/foco */
+.gallery-zoom {
+  position: absolute;
+  z-index: 1;
+  top: .75rem;
+  right: .75rem;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--raio-circulo);
+  background: rgba(249, 246, 237, .92);
+  color: var(--verde-floresta);
+  font-size: 1rem;
+  opacity: 0;
+  transform: scale(.8);
+  transition: opacity .3s ease, transform .3s ease;
+}
+
+.gallery-item:hover,
+.gallery-item:focus-visible {
+  box-shadow: var(--sombra-flutuante);
+  transform: translateY(-.25rem);
+}
+.gallery-item:hover img,
+.gallery-item:focus-visible img { transform: scale(1.06); filter: saturate(1.1); }
+.gallery-item:hover::after,
+.gallery-item:focus-visible::after { opacity: 1; }
+.gallery-item:hover .gallery-caption,
+.gallery-item:focus-visible .gallery-caption { transform: translateY(-.2rem); }
+.gallery-item:hover .gallery-zoom,
+.gallery-item:focus-visible .gallery-zoom { opacity: 1; transform: none; }
+.gallery-item:focus-visible {
+  outline: .1875rem solid var(--ouro-escuro);
+  outline-offset: .1875rem;
+}
+
+/* ---------- visualizador (lightbox) ---------- */
+.lightbox {
+  width: min(72rem, calc(100% - 2rem));
+  border: 1px solid rgba(248, 232, 189, .14);
+  background: #0c211b;
+  color: var(--creme-claro);
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, .5);
+}
+.lightbox::backdrop { background: rgba(5, 15, 12, .88); }
+.lightbox[open] { animation: modalIn .35s cubic-bezier(.2, .7, .2, 1); }
+
+.lightbox-figure {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 19rem;
+  min-height: min(38rem, calc(100dvh - 2rem));
+}
+
+.lightbox-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: #06140f;
+  touch-action: pan-y;   /* deixa o JS tratar o arrasto na horizontal */
+}
+
+.lightbox-stage img {
+  width: 100%;
+  height: 100%;
+  max-height: calc(100dvh - 2rem);
+  object-fit: contain;
+  transition: opacity .25s ease;
+}
+.lightbox-stage img.is-loading { opacity: 0; }
+/* a área da foto recebe o foco ao abrir (para as teclas ← →), mas não é um
+   controle: sem contorno nela; setas e fechar mantêm o anel de foco */
+.lightbox-stage:focus-visible { outline: none; }
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid rgba(248, 232, 189, .3);
+  border-radius: var(--raio-circulo);
+  background: rgba(12, 33, 27, .7);
+  color: var(--creme-claro);
+  font-size: 1.1rem;
+  transform: translateY(-50%);
+  backdrop-filter: blur(4px);
+  transition: var(--transicao);
+}
+.lightbox-nav[data-step="-1"] { left: 1rem; }
+.lightbox-nav[data-step="1"] { right: 1rem; }
+.lightbox-nav:hover { background: var(--ouro); color: var(--verde-floresta); }
+
+.lightbox-caption {
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  padding: 3.5rem 1.75rem 1.75rem;
+}
+
+.lightbox-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem .75rem;
+  color: var(--texto-claro-tenue);
+  font-size: .625rem;
+  font-weight: var(--peso-negrito);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.lightbox-tag {
+  border-radius: var(--raio-pilula);
+  background: var(--ouro);
+  padding: .3rem .6rem;
+  color: var(--verde-floresta);
+  font-size: .5625rem;
+  font-weight: var(--peso-forte);
+  letter-spacing: .15em;
+}
+
+.lightbox-caption h2 {
+  font: 1.6rem/1.2 var(--fonte-titulo-curta);
+}
+
+.lightbox-caption > p:not([class]) {
+  color: var(--texto-claro-suave);
+  font-size: .875rem;
+  line-height: 1.65;
+}
+
+.lightbox-credit {
+  color: var(--texto-claro-tenue);
+  font-size: .6875rem;
+  line-height: 1.6;
+}
+.lightbox-credit a {
+  color: #f2cb6a;
+  text-decoration: underline;
+  text-underline-offset: .15em;
+}
+
+/* contador "3 / 15" sempre no pé do painel */
+.lightbox-counter {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--branco-10);
+  color: var(--texto-claro-tenue);
+  font-size: .75rem;
+  font-weight: var(--peso-negrito);
+  letter-spacing: .1em;
+}
+
+
+/* ==========================================================================
+   27. PÁGINA DE PRIVACIDADE (privacidade.html)
+   --------------------------------------------------------------------------
+   Página de texto longo: largura de leitura confortável (~45rem), títulos
+   com a serifada do site e um índice que leva direto a cada seção.
+   ========================================================================== */
+
+.privacy-back {
+  color: var(--ouro-claro);
+  font-size: .6875rem;
+  font-weight: var(--peso-negrito);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  transition: color var(--transicao);
+}
+.privacy-back:hover { color: var(--ouro); }
+
+.privacy {
+  padding: calc(var(--altura-header) + 4rem) 0 5rem;
+}
+
+.privacy-content {
+  max-width: 45rem;
+}
+
+.privacy-heading h1 {
+  margin-top: 1rem;
+  color: var(--verde-floresta);
+  font: var(--peso-regular) clamp(2.6rem, 6vw, 4rem)/1 var(--fonte-titulo-curta);
+  letter-spacing: -.04em;
+}
+.privacy-heading h1 em { color: var(--ouro-escuro); }
+
+.privacy-heading .lead {
+  margin-top: 1.25rem;
+  color: var(--texto-suave);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+.privacy-updated {
+  margin-top: .75rem;
+  color: var(--texto-tenue);
+  font-size: .75rem;
+  font-weight: var(--peso-negrito);
+  letter-spacing: .06em;
+}
+
+.privacy-index {
+  margin: 2.5rem 0;
+  padding: 1.5rem 1.75rem;
+  border: 1px solid var(--linha);
+  border-radius: 1.25rem;
+  background: #fbf8f1;
+}
+.privacy-index ol {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .5rem 1.5rem;
+  padding-left: 1.1rem;
+  font-size: .875rem;
+}
+.privacy-index a { color: var(--verde-floresta); }
+.privacy-index a:hover { color: var(--ouro-escuro); text-decoration: underline; }
+
+.privacy-content section {
+  padding-top: 2rem;
+  scroll-margin-top: calc(var(--altura-header) + 1rem);
+}
+
+.privacy-content h2 {
+  margin-bottom: .9rem;
+  color: var(--verde-floresta);
+  font: 1.5rem/1.25 var(--fonte-titulo-curta);
+}
+
+.privacy-content section p,
+.privacy-content section li {
+  color: var(--texto);
+  font-size: .9375rem;
+  line-height: 1.7;
+}
+.privacy-content section p + p,
+.privacy-content section ul + p { margin-top: .8rem; }
+.privacy-content section ul {
+  display: grid;
+  gap: .4rem;
+  margin: .6rem 0 0 1.25rem;
+}
+
+.privacy-content section a {
+  color: var(--ouro-escuro);
+  font-weight: var(--peso-negrito);
+  text-decoration: underline;
+  text-underline-offset: .15em;
+}
+
+.privacy-content code {
+  padding: .1rem .35rem;
+  border-radius: .35rem;
+  background: var(--seda);
+  font-size: .85em;
+}
+
+/* destaque para a informação mais importante: o formulário não envia dados */
+.privacy-note {
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  border-left: .25rem solid var(--ouro);
+  border-radius: 0 .75rem .75rem 0;
+  background: rgba(211, 167, 69, .12);
+}
+
+.privacy-back-bottom {
+  margin-top: 3rem;
+}
+
+
+/* ==========================================================================
+   28. RESPONSIVIDADE
    --------------------------------------------------------------------------
    Duas etapas: em 53.125em (850px) o site passa a "uma coluna por vez" e o
    menu vira hambúrguer; em 35em (560px) tudo se ajusta para o celular. As
@@ -2918,6 +3298,12 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   .main-nav .submenu a:hover { background: none; }
 
   .agenda-grid { grid-template-columns: 1fr; }
+
+  /* galeria em 3 colunas; o visualizador põe a legenda embaixo da foto */
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+  .lightbox-figure { grid-template-columns: 1fr; }
+  .lightbox-stage img { max-height: 60dvh; }
+  .lightbox-caption { padding: 1.5rem; }
 }
 
 /* ---------- Celulares ---------- */
@@ -3043,6 +3429,18 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   .agenda-date strong { font-size: 1.25rem; }
   .agenda-date span { margin-top: 0; align-self: center; }
   .agenda-card:hover { transform: none; }
+
+  /* filtros numa faixa só, com rolagem lateral, em vez de quebrar em várias linhas */
+  .filter-bar { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: .25rem; }
+  .filter-chip { flex: none; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 9.5rem; gap: .5rem; }
+  .gallery-caption strong { font-size: .875rem; }
+  .gallery-item:hover { transform: none; }
+  .lightbox-nav { width: 2.25rem; height: 2.25rem; }
+  .lightbox-nav[data-step="-1"] { left: .5rem; }
+  .lightbox-nav[data-step="1"] { right: .5rem; }
+
+  .privacy-index ol { grid-template-columns: 1fr; }
 }
 
 /* ---------- Acessibilidade: respeita quem prefere menos movimento ---------- */
