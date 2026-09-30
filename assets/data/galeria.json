@@ -202,11 +202,16 @@
     "local": "Roraima",
     "categoria": "Cultura",
     "formato": "normal",
-    "descricao": "Cestaria e artesanato indígena reunidos em feira, saberes passados entre gerações.",
-    "alt": "Artesanato indígena de Roraima exposto em feira",
-    "imagem": "assets/img/artesanato-indigena.webp",
-    "miniatura": "assets/img/artesanato-indigena.webp",
-    "credito": null
+    "descricao": "Colares de sementes e contas feitos à mão: a natureza da região transformada em arte.",
+    "alt": "Colares de sementes e contas do artesanato regional de Roraima",
+    "imagem": "assets/img/artesanato-roraima.webp",
+    "miniatura": "assets/img/artesanato-roraima.webp",
+    "credito": {
+      "autor": "Ederson Brito/MTur",
+      "licenca": "Domínio público",
+      "licencaUrl": null,
+      "fonte": "https://commons.wikimedia.org/wiki/File:EDERSON_BRITO_ARTESANATO_BOA_VISTA_RR_(39266621760).jpg"
+    }
   },
   {
     "titulo": "Boa Vista vista do alto",
