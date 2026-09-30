@@ -557,27 +557,49 @@ async function initTestimonials() {
     return;
   }
 
-  const originals = depoimentos.map(renderTestimonial);
-  testimonialsTrack.replaceChildren(...originals);
+  testimonialOriginals = depoimentos.map(renderTestimonial);
+  layoutTestimonials();
+  loadTestimonialAvatars(testimonialOriginals.length);
+
+  // ao redimensionar, refaz a escolha entre parado e girando
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(layoutTestimonials, 200);
+  });
+}
+
+let testimonialOriginals = [];
+
+// O giro contínuo precisa de uma cópia dos cards para o laço não ter "pulo".
+// Só que, se os cards não enchem a largura da tela, a cópia aparece ao lado
+// do original e o mesmo depoimento é visto duas vezes. Nesse caso os cards
+// ficam parados e centralizados; quando passam da largura, eles giram.
+function layoutTestimonials() {
+  testimonialsTrack.replaceChildren(...testimonialOriginals);
+  testimonialsTrack.classList.remove('is-animated', 'is-static');
+
+  const viewport = testimonialsTrack.parentElement;
+  if (testimonialsTrack.offsetWidth <= viewport.clientWidth) {
+    testimonialsTrack.classList.add('is-static');
+    return;
+  }
 
   // a cópia é só visual: aria-hidden esconde do leitor de tela e inert
   // tira do Tab, para ninguém ler ou navegar pelos depoimentos duas vezes
-  originals.forEach((item) => {
+  testimonialOriginals.forEach((item) => {
     const clone = item.cloneNode(true);
     clone.setAttribute('aria-hidden', 'true');
     clone.inert = true;
     testimonialsTrack.append(clone);
   });
   testimonialsTrack.classList.add('is-animated');
-
-  loadTestimonialAvatars(originals.length);
 }
 
 initTestimonials();
 
 async function loadTestimonialAvatars(total) {
-  const avatars = [...testimonialsTrack.querySelectorAll('.testimonial-avatar')];
-  const genders = avatars.slice(0, total).map((avatar) => avatar.dataset.gender);
+  const genders = testimonialOriginals.map((item) => item.querySelector('.testimonial-avatar').dataset.gender);
   const count = (gender) => genders.filter((g) => g === gender).length;
 
   try {
@@ -593,16 +615,20 @@ async function loadTestimonialAvatars(total) {
     const used = { female: 0, male: 0 };
     const photoByCard = genders.map((gender) => photos[gender][used[gender]++]);
 
-    // originais e cópias usam a mesma foto (card i e card i + total)
-    avatars.forEach((avatar, index) => {
-      const src = photoByCard[index % total];
+    photoByCard.forEach((src, index) => {
       if (!src) return;
       const img = document.createElement('img');
       img.src = src;
       img.alt = '';           // decorativa: o nome já está escrito ao lado
       img.width = 48;
       img.height = 48;
-      img.addEventListener('load', () => avatar.replaceChildren(img));
+      // aplica no card original e na cópia (card i e card i + total) que
+      // estiverem na faixa quando a foto terminar de carregar
+      img.addEventListener('load', () => {
+        testimonialsTrack.querySelectorAll('.testimonial-avatar').forEach((avatar, position) => {
+          if (position % total === index) avatar.replaceChildren(position === index ? img : img.cloneNode());
+        });
+      });
     });
   } catch {
     // sem internet ou API fora do ar: os avatares ficam com as iniciais

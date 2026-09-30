@@ -2123,6 +2123,11 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   animation: testimonialsScroll 60s linear infinite;
 }
 
+/* poucos depoimentos (cabem na tela): cards parados e centralizados, sem o
+   degradê nas bordas, que só faz sentido quando a faixa está em movimento */
+.testimonials-track.is-static { margin-inline: auto; }
+.testimonials-viewport:has(.is-static) { mask-image: none; }
+
 /* com a animação ligada, a rolagem manual sai de cena */
 .testimonials-viewport:has(.is-animated) { overflow: hidden; }
 
