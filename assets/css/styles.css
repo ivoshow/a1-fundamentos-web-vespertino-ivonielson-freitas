@@ -2943,3 +2943,260 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   .whatsapp-float { right: 1rem; bottom: 1rem; }
   .toast { right: 1rem; left: 1rem; bottom: 5.25rem; max-width: none; }
 }
+
+
+/* ==========================================================================
+   FILTROS POR REGIÃO E MENSAGENS DE DADOS
+   --------------------------------------------------------------------------
+   Os botões são criados pelo JavaScript a partir de municipios.json.
+   aria-pressed="true" marca o filtro ativo (e serve de gancho para o CSS).
+   ========================================================================== */
+
+.region-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-bottom: 1.75rem;
+}
+.region-filters:empty { display: none; }
+
+.region-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .55rem .9rem;
+  border: 1px solid var(--areia);
+  border-radius: var(--raio-pilula);
+  background: transparent;
+  color: var(--verde-floresta);
+  font: var(--peso-negrito) .6875rem var(--fonte-texto);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transicao);
+}
+.region-filter:hover { border-color: var(--verde-floresta); }
+
+.region-filter[aria-pressed="true"] {
+  border-color: var(--verde-floresta);
+  background: var(--verde-floresta);
+  color: var(--creme);
+}
+
+.region-count {
+  display: grid;
+  place-items: center;
+  min-width: 1.4rem;
+  height: 1.4rem;
+  padding: 0 .3rem;
+  border-radius: var(--raio-pilula);
+  background: rgba(23, 61, 50, .08);
+  font-size: .625rem;
+  letter-spacing: 0;
+}
+.region-filter[aria-pressed="true"] .region-count {
+  background: var(--ouro);
+  color: var(--verde-floresta);
+}
+
+/* aviso quando o JSON não carrega (ou o JavaScript está desligado) */
+.data-message {
+  padding: 1rem 1.25rem;
+  border: 1px dashed var(--areia);
+  border-radius: var(--raio-pequeno);
+  color: var(--texto-suave);
+  font-size: .875rem;
+}
+
+
+/* ==========================================================================
+   AGENDA CULTURAL
+   --------------------------------------------------------------------------
+   Cards gerados a partir de eventos.json. O evento que está acontecendo
+   agora ganha a classe .is-now e fica em destaque.
+   ========================================================================== */
+
+.agenda {
+  background: var(--seda);
+}
+
+.agenda-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  list-style: none;
+}
+
+.agenda-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.25rem 1.5rem;
+  padding: 1.75rem;
+  border: 1px solid rgba(200, 189, 173, .72);
+  border-radius: 1.4375rem;
+  background: #fbf8f1;
+  box-shadow: 0 .5rem 1rem rgba(16, 45, 37, .07);
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+.agenda-card:hover {
+  transform: translateY(-.3rem);
+  border-color: rgba(211, 167, 69, .72);
+  box-shadow: var(--sombra-flutuante);
+}
+
+/* "folhinha" de calendário com dia e mês */
+.agenda-date {
+  display: grid;
+  place-content: center;
+  width: 4.5rem;
+  height: 4.75rem;
+  border-radius: 1rem;
+  background: var(--verde-floresta);
+  color: var(--creme-claro);
+  text-align: center;
+}
+.agenda-date strong {
+  font: 1.9rem/1 var(--fonte-titulo-curta);
+}
+.agenda-date span {
+  margin-top: .3rem;
+  color: #f2cb6a;
+  font-size: .625rem;
+  font-weight: var(--peso-negrito);
+  letter-spacing: var(--espacamento-letra);
+  text-transform: uppercase;
+}
+
+.agenda-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem .75rem;
+  color: #705f4b;
+  font-size: .625rem;
+  font-weight: var(--peso-negrito);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.agenda-tag {
+  border-radius: var(--raio-pilula);
+  background: #dfe6d9;
+  padding: .3rem .55rem;
+  color: #3b6651;
+  font-size: .5625rem;
+  font-weight: var(--peso-forte);
+  letter-spacing: .15em;
+}
+
+.agenda-body h3 {
+  margin-top: .6rem;
+  color: var(--verde-floresta);
+  font: 1.35rem/1.25 var(--fonte-titulo-curta);
+}
+
+.agenda-description {
+  margin-top: .5rem;
+  color: var(--texto-suave);
+  font-size: .8125rem;
+  line-height: 1.6;
+}
+
+.agenda-period {
+  margin-top: .6rem;
+  color: var(--texto-tenue);
+  font-size: .75rem;
+  font-weight: var(--peso-negrito);
+}
+
+/* contagem regressiva ocupa a largura toda, no rodapé do card */
+.agenda-countdown {
+  grid-column: 1 / -1;
+  justify-self: start;
+  align-self: end;   /* sem isso a pílula estica quando o card é mais alto */
+  border-radius: var(--raio-pilula);
+  background: rgba(211, 167, 69, .16);
+  padding: .5rem .9rem;
+  color: var(--ouro-escuro);
+  font-size: .6875rem;
+  font-weight: var(--peso-negrito);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+/* evento acontecendo agora: card verde e contagem com ponto pulsante */
+.agenda-card.is-now {
+  border-color: var(--verde-floresta);
+  background: var(--verde-floresta);
+}
+.agenda-card.is-now .agenda-date { background: var(--ouro); color: var(--verde-floresta); }
+.agenda-card.is-now .agenda-date span { color: var(--verde-floresta); }
+.agenda-card.is-now h3 { color: var(--creme-claro); }
+.agenda-card.is-now .agenda-meta { color: var(--texto-claro-tenue); }
+.agenda-card.is-now .agenda-description,
+.agenda-card.is-now .agenda-period { color: var(--texto-claro-suave); }
+.agenda-card.is-now .agenda-countdown { background: var(--ouro); color: var(--verde-floresta); }
+.agenda-card.is-now .agenda-countdown::before {
+  content: '';
+  display: inline-block;
+  width: .5rem;
+  height: .5rem;
+  margin-right: .5rem;
+  border-radius: var(--raio-circulo);
+  background: var(--verde-floresta);
+  animation: agendaLive 1.4s ease-in-out infinite;
+}
+@keyframes agendaLive { 50% { opacity: .25; } }
+
+/* o display:grid do card venceria o hidden do HTML; aqui ele volta a esconder */
+.agenda-card[hidden] { display: none; }
+
+/* botão "Ver agenda completa": a seta gira quando a lista está aberta */
+.agenda-toggle {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin: 1.75rem auto 0;
+  padding: .9rem 1.5rem;
+  border: 1px solid var(--verde-floresta);
+  border-radius: var(--raio-pilula);
+  background: transparent;
+  color: var(--verde-floresta);
+  font: var(--peso-negrito) .6875rem var(--fonte-texto);
+  letter-spacing: var(--espacamento-letra);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transicao);
+}
+.agenda-toggle[hidden] { display: none; }
+.agenda-toggle:hover { background: var(--verde-floresta); color: var(--creme); }
+.agenda-toggle span { transition: transform var(--transicao); }
+.agenda-toggle.is-expanded span { transform: rotate(180deg); }
+
+.agenda-note {
+  margin-top: 2rem;
+  color: var(--texto-tenue);
+  font-size: .75rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 53.125em) {
+  .agenda-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 35em) {
+  .agenda-card { grid-template-columns: 1fr; padding: 1.5rem; }
+  .agenda-date { width: auto; height: auto; grid-auto-flow: column; gap: .5rem; place-content: start; padding: .6rem .9rem; justify-self: start; }
+  .agenda-date strong { font-size: 1.25rem; }
+  .agenda-date span { margin-top: 0; align-self: center; }
+  .agenda-card:hover { transform: none; }
+}
+
+
+/* crédito de autoria no rodapé */
+.footer-credit a {
+  color: var(--ouro);
+  font-weight: var(--peso-negrito);
+  transition: color var(--transicao);
+}
+.footer-credit a:hover { color: var(--ouro-claro); }

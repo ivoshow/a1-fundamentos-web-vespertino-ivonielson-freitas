@@ -1,0 +1,38 @@
+[
+  {
+    "nome": "Mariana Albuquerque",
+    "origem": "Recife, PE",
+    "genero": "female",
+    "texto": "Subir o Monte Roraima foi a viagem da minha vida. Acordar acima das nuvens, no topo de um tepui, é algo que não sai da memória."
+  },
+  {
+    "nome": "Rafael Monteiro",
+    "origem": "Curitiba, PR",
+    "genero": "male",
+    "texto": "Boa Vista me surpreendeu: cidade tranquila, pôr do sol lindo na Orla Taumanan e uma culinária que eu não conhecia."
+  },
+  {
+    "nome": "Luana Costa",
+    "origem": "Manaus, AM",
+    "genero": "female",
+    "texto": "O Lago Caracaranã parece cenário de filme. Água clara, areia branca e aquele céu enorme do lavrado."
+  },
+  {
+    "nome": "Thiago Nascimento",
+    "origem": "São Paulo, SP",
+    "genero": "male",
+    "texto": "Aprendi muito com as comunidades indígenas. Conhecer Roraima é, antes de tudo, aprender a escutar."
+  },
+  {
+    "nome": "Camila Ferreira",
+    "origem": "Belo Horizonte, MG",
+    "genero": "female",
+    "texto": "A Serra do Tepequém tem cachoeiras incríveis e um friozinho gostoso à noite. Já quero voltar com a família."
+  },
+  {
+    "nome": "Diego Ribeiro",
+    "origem": "Porto Alegre, RS",
+    "genero": "male",
+    "texto": "Atravessar para Lethem pela ponte de Bonfim foi uma experiência única: três culturas em um só dia."
+  }
+]

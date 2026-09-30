@@ -91,26 +91,6 @@ function showToast(message) {
   toastTimer = setTimeout(() => toast.classList.remove('show'), 3600);
 }
 
-const search = document.querySelector('#municipality-search');
-const searchStatus = document.querySelector('#municipality-status');
-const cards = [...document.querySelectorAll('#municipality-grid article')];
-search?.addEventListener('input', (event) => {
-  const term = event.target.value.trim().toLocaleLowerCase('pt-BR');
-  let found = 0;
-  cards.forEach((card) => {
-    // busca em todo o texto do card: nome, região, categoria e destaques
-    const content = card.textContent.toLocaleLowerCase('pt-BR');
-    const match = !term || content.includes(term);
-    // esconde o <li> inteiro para não deixar um espaço vazio na grade
-    card.parentElement.hidden = !match;
-    if (match) found += 1;
-  });
-  // anuncia o resultado para quem usa leitor de tela
-  searchStatus.textContent = found === 0
-    ? 'Nenhum município encontrado.'
-    : `${found} ${found === 1 ? 'município encontrado' : 'municípios encontrados'}.`;
-});
-
 const form = document.querySelector('#contact-form');
 const success = document.querySelector('#form-success');
 form?.addEventListener('submit', (event) => {
@@ -156,6 +136,148 @@ document.querySelectorAll('dialog').forEach((dialog) => {
   });
 });
 
+// ==========================================================================
+// DADOS EM JSON
+// fetch() só funciona com o site servido por HTTP (Vercel, Live Server...);
+// abrindo o arquivo direto (file://) o navegador bloqueia a leitura.
+// ==========================================================================
+async function loadJSON(path) {
+  const response = await fetch(path);
+  if (!response.ok) throw new Error(`Erro ${response.status} ao carregar ${path}`);
+  return response.json();
+}
+
+// cria um elemento já com classe e texto; textContent nunca interpreta HTML
+function createElement(tag, className, text) {
+  const element = document.createElement(tag);
+  if (className) element.className = className;
+  if (text !== undefined) element.textContent = text;
+  return element;
+}
+
+// ==========================================================================
+// AGENDA CULTURAL (assets/data/eventos.json)
+// As datas do JSON são "mês-dia" e se repetem todo ano. O JS descobre a
+// próxima ocorrência de cada evento a partir de hoje e ordena a lista.
+// ==========================================================================
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+function dateFromMonthDay(monthDay, year) {
+  const [month, day] = monthDay.split('-').map(Number);
+  return new Date(year, month - 1, day);   // mês no JS começa em 0
+}
+
+// testa o ano passado, o atual e o próximo: a primeira ocorrência que ainda
+// não terminou é a que vale (o ano passado cobre eventos que atravessam a
+// virada do ano, como dezembro a março)
+function nextOccurrence(evento, today) {
+  const year = today.getFullYear();
+  for (const y of [year - 1, year, year + 1]) {
+    const start = dateFromMonthDay(evento.inicio, y);
+    let end = dateFromMonthDay(evento.fim, y);
+    if (end < start) end = dateFromMonthDay(evento.fim, y + 1);
+    if (end >= today) {
+      const daysUntil = Math.round((start - today) / DAY_MS);
+      return { ...evento, start, end, daysUntil, status: daysUntil <= 0 ? 'now' : 'soon' };
+    }
+  }
+  return null;
+}
+
+function countdownText(evento) {
+  if (evento.status === 'now') return 'Acontecendo agora';
+  if (evento.daysUntil === 1) return 'É amanhã';
+  return `Faltam ${evento.daysUntil} dias`;
+}
+
+const longDate = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long' });
+
+function periodText(evento) {
+  const period = evento.start.getTime() === evento.end.getTime()
+    ? longDate.format(evento.start)
+    : `De ${longDate.format(evento.start)} a ${longDate.format(evento.end)}`;
+  return evento.aproximada ? `${period} (data aproximada)` : period;
+}
+
+// uma única leitura do JSON, compartilhada pela agenda e pelo modal
+const upcomingEvents = loadJSON('assets/data/eventos.json')
+  .then((eventos) => {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());   // meia-noite de hoje
+    return eventos
+      .map((evento) => nextOccurrence(evento, today))
+      .filter(Boolean)
+      .sort((a, b) => a.start - b.start);
+  })
+  .catch((error) => {
+    console.error(error);
+    return null;
+  });
+
+const shortDay = new Intl.DateTimeFormat('pt-BR', { day: '2-digit' });
+const shortMonth = new Intl.DateTimeFormat('pt-BR', { month: 'short' });
+
+function renderEventCard(evento) {
+  const item = createElement('li', `agenda-card${evento.status === 'now' ? ' is-now' : ''}`);
+
+  // <time datetime> deixa a data legível também para máquinas (buscadores, leitores)
+  const date = createElement('time', 'agenda-date');
+  const { start } = evento;
+  // montado à mão: toISOString() converte para UTC e poderia "voltar" um dia
+  date.dateTime = `${start.getFullYear()}-${String(start.getMonth() + 1).padStart(2, '0')}-${String(start.getDate()).padStart(2, '0')}`;
+  date.append(
+    createElement('strong', '', shortDay.format(evento.start)),
+    createElement('span', '', shortMonth.format(evento.start).replace('.', '')),
+  );
+
+  const body = createElement('div', 'agenda-body');
+  const meta = createElement('p', 'agenda-meta');
+  meta.append(createElement('span', 'agenda-tag', evento.categoria), createElement('span', '', evento.local));
+  body.append(
+    meta,
+    createElement('h3', '', evento.nome),
+    createElement('p', 'agenda-description', evento.descricao),
+    createElement('p', 'agenda-period', periodText(evento)),
+  );
+
+  item.append(date, body, createElement('p', 'agenda-countdown', countdownText(evento)));
+  return item;
+}
+
+const agendaList = document.querySelector('#agenda-list');
+
+const agendaToggle = document.querySelector('#agenda-toggle');
+const AGENDA_VISIBLE = 4;   // quantos eventos aparecem antes de "Ver agenda completa"
+
+function setAgendaExpanded(expanded) {
+  // do 5º evento em diante, o card só aparece com a agenda expandida
+  [...agendaList.children].forEach((card, index) => {
+    card.hidden = !expanded && index >= AGENDA_VISIBLE;
+  });
+  agendaToggle.setAttribute('aria-expanded', String(expanded));
+  agendaToggle.firstChild.textContent = expanded ? 'Mostrar menos ' : 'Ver agenda completa ';
+  agendaToggle.classList.toggle('is-expanded', expanded);
+}
+
+upcomingEvents.then((eventos) => {
+  if (!agendaList) return;
+  if (!eventos) {
+    document.querySelector('#agenda-error').hidden = false;
+    return;
+  }
+  agendaList.replaceChildren(...eventos.map(renderEventCard));
+
+  // o botão só aparece se houver mais eventos do que os visíveis
+  if (eventos.length > AGENDA_VISIBLE) {
+    agendaToggle.hidden = false;
+    setAgendaExpanded(false);
+  }
+});
+
+agendaToggle?.addEventListener('click', () => {
+  setAgendaExpanded(agendaToggle.getAttribute('aria-expanded') !== 'true');
+});
+
 // Modal de boas-vindas: aparece só na primeira visita (o navegador lembra via localStorage).
 const welcomeModal = document.querySelector('#welcome-modal');
 const WELCOME_KEY = 'conheca-roraima:welcome-visto';
@@ -176,80 +298,267 @@ function markWelcomeSeen() {
   }
 }
 
+// troca o destaque fixo do HTML pelo próximo evento da agenda
+function fillWelcomeWithEvent(evento) {
+  const image = welcomeModal.querySelector('#welcome-image');
+  image.src = evento.imagem;
+  image.alt = evento.imagemAlt;
+  welcomeModal.querySelector('#welcome-place').textContent = `${evento.local} · Roraima`;
+  welcomeModal.querySelector('#welcome-kicker').textContent = evento.status === 'now'
+    ? 'Acontecendo agora'
+    : `Próximo evento · ${countdownText(evento).toLowerCase()}`;
+
+  const em = document.createElement('em');
+  em.textContent = `${evento.nome}.`;
+  welcomeModal.querySelector('#welcome-title').replaceChildren('Não perca:', document.createElement('br'), em);
+  welcomeModal.querySelector('#welcome-text').textContent = `${evento.descricao} ${periodText(evento)}.`;
+
+  welcomeModal.querySelector('#welcome-cta').href = '#agenda';
+  welcomeModal.querySelector('#welcome-cta-text').textContent = 'Ver a agenda';
+}
+
 if (welcomeModal?.showModal && !welcomeAlreadySeen()) {
-  // pequeno atraso para a página "assentar" antes do modal surgir
-  setTimeout(() => welcomeModal.showModal(), 600);
+  // espera no mínimo 600ms (a página "assenta") e no máximo 2s pela agenda;
+  // se o JSON demorar ou falhar, o modal abre com o destaque fixo do HTML
+  const minimumDelay = new Promise((resolve) => setTimeout(resolve, 600));
+  const timeout = new Promise((resolve) => setTimeout(() => resolve(null), 2000));
+
+  Promise.all([minimumDelay, Promise.race([upcomingEvents, timeout])]).then(([, eventos]) => {
+    if (eventos?.length) fillWelcomeWithEvent(eventos[0]);
+    welcomeModal.showModal();
+  });
 
   // o evento close dispara em qualquer forma de fechar: botões, Esc ou clique fora
   welcomeModal.addEventListener('close', markWelcomeSeen);
 }
 
-// Slider dos municípios: a lista rola na horizontal (scroll-snap no CSS)
-// e as setas avançam ou voltam uma "página" de cards por vez.
-const slider = document.querySelector('#municipality-grid');
+// ==========================================================================
+// MUNICÍPIOS (assets/data/municipios.json)
+// Um único arquivo de dados gera os cards do slider, a tabela de distâncias
+// e o conteúdo do modal "Saiba mais". Mudou um dado? Muda nos três lugares.
+// ==========================================================================
+const municipalityGrid = document.querySelector('#municipality-grid');
+const municipalityTableBody = document.querySelector('.municipality-table tbody');
+const regionFilters = document.querySelector('#region-filters');
+const search = document.querySelector('#municipality-search');
+const searchStatus = document.querySelector('#municipality-status');
+const municipalityModal = document.querySelector('#municipality-modal');
 const slideButtons = document.querySelectorAll('[data-slide]');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+let municipios = [];
+let activeRegion = 'Todas';
+
+// tira acentos e maiúsculas: "uiramuta" encontra "Uiramutã"
+const normalize = (text) => text.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLocaleLowerCase('pt-BR');
+
+function distanceText(municipio, style) {
+  if (municipio.distanciaKm === null) return style === 'short' ? '—' : 'Capital do estado';
+  return style === 'short' ? `≈ ${municipio.distanciaKm} km` : `≈ ${municipio.distanciaKm} km de Boa Vista`;
+}
+
+function renderMunicipalityCard(municipio) {
+  const item = createElement('li');
+  item.dataset.id = municipio.id;
+
+  const tags = createElement('div', 'municipality-tags');
+  tags.append(createElement('span', '', municipio.categoria), createElement('small', '', municipio.regiao));
+
+  const button = createElement('button', 'municipality-more', 'Saiba mais');
+  button.type = 'button';
+  button.dataset.municipio = municipio.id;
+  button.setAttribute('aria-haspopup', 'dialog');
+  const arrow = createElement('span', '', '→');
+  arrow.setAttribute('aria-hidden', 'true');
+  // o espaço vai como texto solto: dentro do span inline-block ele seria ignorado
+  button.append(createElement('span', 'sr-only', ` sobre ${municipio.nome}`), ' ', arrow);
+
+  const article = createElement('article');
+  article.append(tags, createElement('h3', '', municipio.nome), createElement('p', '', municipio.resumo), button);
+  item.append(article);
+  return item;
+}
+
+function renderMunicipalityRow(municipio) {
+  const row = createElement('tr');
+  const name = createElement('th', '', municipio.nome);
+  name.scope = 'row';
+  row.append(
+    name,
+    createElement('td', '', municipio.regiao),
+    createElement('td', '', distanceText(municipio, 'short')),
+    createElement('td', '', municipio.destaque),
+  );
+  return row;
+}
+
+function renderRegionFilters() {
+  // new Set remove repetições: sobra uma entrada por região, na ordem do JSON
+  const regions = ['Todas', ...new Set(municipios.map((municipio) => municipio.regiao))];
+  regionFilters.replaceChildren(...regions.map((region) => {
+    const total = region === 'Todas'
+      ? municipios.length
+      : municipios.filter((municipio) => municipio.regiao === region).length;
+    const button = createElement('button', 'region-filter', region);
+    button.type = 'button';
+    button.dataset.region = region;
+    // aria-pressed diz ao leitor de tela qual filtro está ativo
+    button.setAttribute('aria-pressed', String(region === activeRegion));
+    const count = createElement('span', 'region-count', String(total));
+    count.setAttribute('aria-label', `${total} municípios`);
+    button.append(count);
+    return button;
+  }));
+}
+
+// busca + filtro de região trabalham juntos: o card aparece se passar nos dois
+function applyMunicipalityFilters() {
+  const term = normalize(search?.value.trim() ?? '');
+  let found = 0;
+
+  municipios.forEach((municipio) => {
+    const content = normalize(`${municipio.nome} ${municipio.regiao} ${municipio.categoria} ${municipio.resumo}`);
+    const match = (activeRegion === 'Todas' || municipio.regiao === activeRegion) && (!term || content.includes(term));
+    municipalityGrid.querySelector(`[data-id="${municipio.id}"]`).hidden = !match;
+    if (match) found += 1;
+  });
+
+  // anuncia o resultado para quem usa leitor de tela
+  searchStatus.textContent = found === 0
+    ? 'Nenhum município encontrado.'
+    : `${found} ${found === 1 ? 'município encontrado' : 'municípios encontrados'}.`;
+
+  municipalityGrid.scrollLeft = 0;
+  updateSlideButtons();
+}
+
+// Slider: a lista rola na horizontal (scroll-snap no CSS) e as setas
+// avançam ou voltam uma "página" de cards por vez
 function updateSlideButtons() {
-  const atStart = slider.scrollLeft <= 1;
-  const atEnd = slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 1;
+  const atStart = municipalityGrid.scrollLeft <= 1;
+  const atEnd = municipalityGrid.scrollLeft + municipalityGrid.clientWidth >= municipalityGrid.scrollWidth - 1;
   slideButtons.forEach((button) => {
     button.disabled = button.dataset.slide === '-1' ? atStart : atEnd;
   });
 }
 
-if (slider) {
-  slideButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      slider.scrollBy({
-        left: Number(button.dataset.slide) * slider.clientWidth,
-        behavior: prefersReducedMotion.matches ? 'auto' : 'smooth',
-      });
-    });
-  });
-  slider.addEventListener('scroll', updateSlideButtons, { passive: true });
-  window.addEventListener('resize', updateSlideButtons);
-  // depois de filtrar pela busca, volta ao início e recalcula as setas
-  search?.addEventListener('input', () => {
-    slider.scrollLeft = 0;
-    updateSlideButtons();
-  });
+// preenche o <dialog> "Saiba mais" com os dados do município clicado
+function fillMunicipalityModal(municipio) {
+  const field = (name) => municipalityModal.querySelector(`#municipality-modal-${name}`);
+  field('tag').textContent = municipio.categoria;
+  field('region').textContent = municipio.regiao;
+  field('title').textContent = municipio.nome;
+  field('distance').textContent = distanceText(municipio, 'long');
+  field('description').textContent = municipio.descricao;
+  field('activities').replaceChildren(...municipio.atividades.map((atividade) => createElement('li', '', atividade)));
+}
+
+async function initMunicipios() {
+  if (!municipalityGrid) return;
+
+  try {
+    municipios = await loadJSON('assets/data/municipios.json');
+  } catch (error) {
+    console.error(error);
+    document.querySelector('#municipality-error').hidden = false;
+    document.querySelector('.slider-controls').hidden = true;
+    return;
+  }
+
+  municipalityGrid.replaceChildren(...municipios.map(renderMunicipalityCard));
+
+  // a tabela usa uma cópia ordenada; localeCompare respeita acentos do português
+  const alphabetical = [...municipios].sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
+  municipalityTableBody?.replaceChildren(...alphabetical.map(renderMunicipalityRow));
+
+  renderRegionFilters();
   updateSlideButtons();
 }
 
-// Modal "Saiba mais": preenche um único <dialog> com os dados do município
-// clicado (vindos de municipios.js). textContent evita injetar HTML.
-const municipalityModal = document.querySelector('#municipality-modal');
-
-function fillMunicipalityModal(info) {
-  const field = (name) => municipalityModal.querySelector(`#municipality-modal-${name}`);
-  field('tag').textContent = info.categoria;
-  field('region').textContent = info.regiao;
-  field('title').textContent = info.nome;
-  field('distance').textContent = info.distancia;
-  field('description').textContent = info.descricao;
-  field('activities').replaceChildren(...info.atividades.map((atividade) => {
-    const item = document.createElement('li');
-    item.textContent = atividade;
-    return item;
-  }));
-}
-
-document.querySelectorAll('[data-municipio]').forEach((button) => {
+slideButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    const info = typeof MUNICIPIOS !== 'undefined' && MUNICIPIOS[button.dataset.municipio];
-    if (!info || !municipalityModal?.showModal) return;
-    fillMunicipalityModal(info);
-    municipalityModal.showModal();
+    municipalityGrid.scrollBy({
+      left: Number(button.dataset.slide) * municipalityGrid.clientWidth,
+      behavior: prefersReducedMotion.matches ? 'auto' : 'smooth',
+    });
   });
 });
+municipalityGrid?.addEventListener('scroll', updateSlideButtons, { passive: true });
+window.addEventListener('resize', () => municipalityGrid && updateSlideButtons());
 
-// Depoimentos: duplica os cards para o giro contínuo e busca fotos
-// aleatórias na API pública randomuser.me para os avatares.
+search?.addEventListener('input', applyMunicipalityFilters);
+
+regionFilters?.addEventListener('click', (event) => {
+  const button = event.target.closest('[data-region]');
+  if (!button) return;
+  activeRegion = button.dataset.region;
+  regionFilters.querySelectorAll('[data-region]').forEach((filter) => {
+    filter.setAttribute('aria-pressed', String(filter === button));
+  });
+  applyMunicipalityFilters();
+});
+
+// delegação de evento: um único ouvinte na lista atende todos os botões
+// "Saiba mais", inclusive os que foram criados depois pelo JavaScript
+municipalityGrid?.addEventListener('click', (event) => {
+  const button = event.target.closest('[data-municipio]');
+  const municipio = button && municipios.find((item) => item.id === button.dataset.municipio);
+  if (!municipio || !municipalityModal?.showModal) return;
+  fillMunicipalityModal(municipio);
+  municipalityModal.showModal();
+});
+
+initMunicipios();
+
+// ==========================================================================
+// DEPOIMENTOS (assets/data/depoimentos.json)
+// Os cards são criados a partir do JSON, depois duplicados para o giro
+// contínuo; as fotos dos avatares vêm da API pública randomuser.me.
+// ==========================================================================
 const testimonialsTrack = document.querySelector('#testimonials-track');
 
-if (testimonialsTrack) {
-  const originals = [...testimonialsTrack.children];
+// "Mariana Albuquerque" → "MA": primeira letra do primeiro e do último nome
+function initials(name) {
+  const parts = name.trim().split(/\s+/);
+  return (parts[0][0] + (parts.length > 1 ? parts.at(-1)[0] : '')).toUpperCase();
+}
+
+function renderTestimonial(depoimento) {
+  const quote = createElement('blockquote');
+  quote.append(createElement('p', '', depoimento.texto));
+
+  const avatar = createElement('span', 'testimonial-avatar', initials(depoimento.nome));
+  avatar.dataset.gender = depoimento.genero;
+  avatar.setAttribute('aria-hidden', 'true');
+
+  const who = createElement('span');
+  who.append(createElement('strong', '', depoimento.nome), createElement('small', '', depoimento.origem));
+
+  const caption = createElement('figcaption');
+  caption.append(avatar, who);
+
+  const figure = createElement('figure', 'testimonial-card');
+  figure.append(quote, caption);
+
+  const item = createElement('li');
+  item.append(figure);
+  return item;
+}
+
+async function initTestimonials() {
+  if (!testimonialsTrack) return;
+
+  let depoimentos;
+  try {
+    depoimentos = await loadJSON('assets/data/depoimentos.json');
+  } catch (error) {
+    console.error(error);
+    document.querySelector('#testimonials-error').hidden = false;
+    return;
+  }
+
+  const originals = depoimentos.map(renderTestimonial);
+  testimonialsTrack.replaceChildren(...originals);
 
   // a cópia é só visual: aria-hidden esconde do leitor de tela e inert
   // tira do Tab, para ninguém ler ou navegar pelos depoimentos duas vezes
@@ -263,6 +572,8 @@ if (testimonialsTrack) {
 
   loadTestimonialAvatars(originals.length);
 }
+
+initTestimonials();
 
 async function loadTestimonialAvatars(total) {
   const avatars = [...testimonialsTrack.querySelectorAll('.testimonial-avatar')];

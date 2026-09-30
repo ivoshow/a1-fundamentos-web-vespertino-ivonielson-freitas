@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#173d32">
+    <meta name="author" content="Ivonielson Freitas">
     <meta name="description" content="Conheça Roraima: turismo, cultura, história, municípios e roteiros para descobrir o extremo norte do Brasil.">
     <title>Conheça Roraima — O norte que surpreende</title>
     <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
@@ -34,6 +35,7 @@
                         <button class="nav-group-toggle" type="button" aria-expanded="false" aria-controls="submenu-cultura">Cultura <span class="nav-caret" aria-hidden="true"></span></button>
                         <ul class="submenu" id="submenu-cultura">
                             <li><a href="#cultura">Cultura viva<small>Povos, arte e saberes</small></a></li>
+                            <li><a href="#agenda">Agenda cultural<small>Próximos eventos e festas</small></a></li>
                             <li><a href="#historia">História<small>Como Roraima se formou</small></a></li>
                         </ul>
                     </li>
@@ -176,6 +178,24 @@
             </div>
         </section>
 
+        <section class="section agenda" id="agenda" aria-labelledby="agenda-title">
+            <div class="container">
+                <header class="section-heading">
+                    <hgroup>
+                        <p class="kicker"><span aria-hidden="true">◷</span> Agenda cultural</p>
+                        <h2 id="agenda-title">O que vem<br><em>por aí.</em></h2></hgroup>
+                    <p>Festas, celebrações e temporadas que movimentam Roraima. A lista se atualiza sozinha conforme a data de hoje.</p>
+                </header>
+                <ol class="agenda-grid" id="agenda-list">
+                    <!-- preenchido pelo JavaScript a partir de assets/data/eventos.json -->
+                </ol>
+                <button class="agenda-toggle" id="agenda-toggle" type="button" aria-expanded="false" aria-controls="agenda-list" hidden>Ver agenda completa <span aria-hidden="true">↓</span></button>
+                <noscript><p class="data-message">Ative o JavaScript para ver os próximos eventos.</p></noscript>
+                <p class="data-message" id="agenda-error" hidden>Não foi possível carregar a agenda agora. Tente recarregar a página.</p>
+                <p class="agenda-note"><span aria-hidden="true">ⓘ</span> Eventos marcados como “data aproximada” mudam de ano para ano. Confirme a programação oficial antes de viajar.</p>
+            </div>
+        </section>
+
         <section class="section history" id="historia">
             <div class="container history-grid">
                 <header>
@@ -216,128 +236,12 @@
                         <input id="municipality-search" type="search" placeholder="Busque um município" maxlength="40">
                     </search>
                 </header>
+                <div class="region-filters" id="region-filters" role="group" aria-label="Filtrar municípios por região"></div>
+                <noscript><p class="data-message">Ative o JavaScript para ver os 15 municípios de Roraima.</p></noscript>
+                <p class="data-message" id="municipality-error" hidden>Não foi possível carregar os municípios agora. Tente recarregar a página.</p>
                 <div class="municipality-slider">
                 <ul class="municipality-grid" id="municipality-grid" aria-label="Municípios de Roraima">
-                    <li>
-                        <article>
-                            <div class="municipality-tags"><span>URBANO</span><small>Capital</small></div>
-                            <h3>Boa Vista</h3>
-                            <p>Orla Taumanan · centro histórico</p>
-                            <button class="municipality-more" type="button" data-municipio="boa-vista" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Boa Vista</span> <span aria-hidden="true">→</span></button>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <div class="municipality-tags"><span>AVENTURA</span><small>Norte</small></div>
-                            <h3>Pacaraima</h3>
-                            <p>Monte Roraima · fronteira</p>
-                            <button class="municipality-more" type="button" data-municipio="pacaraima" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Pacaraima</span> <span aria-hidden="true">→</span></button>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <div class="municipality-tags"><span>NATUREZA</span><small>Norte</small></div>
-                            <h3>Uiramutã</h3>
-                            <p>Cachoeiras · serras · Makunaima</p>
-                            <button class="municipality-more" type="button" data-municipio="uiramuta" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Uiramutã</span> <span aria-hidden="true">→</span></button>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <div class="municipality-tags"><span>NATUREZA</span><small>Norte</small></div>
-                            <h3>Amajari</h3>
-                            <p>Serra do Tepequém · Maracá</p>
-                            <button class="municipality-more" type="button" data-municipio="amajari" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Amajari</span> <span aria-hidden="true">→</span></button>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <div class="municipality-tags"><span>LAGOS</span><small>Norte</small></div>
-                            <h3>Normandia</h3>
-                            <p>Lago Caracaranã · fronteira</p>
-                            <button class="municipality-more" type="button" data-municipio="normandia" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Normandia</span> <span aria-hidden="true">→</span></button>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <div class="municipality-tags"><span>FRONTEIRA</span><small>Leste</small></div>
-                            <h3>Bonfim</h3>
-                            <p>Rio Tacutu · Guiana</p>
-                            <button class="municipality-more" type="button" data-municipio="bonfim" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Bonfim</span> <span aria-hidden="true">→</span></button>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <div class="municipality-tags"><span>TRILHAS</span><small>Centro</small></div>
-                            <h3>Cantá</h3>
-                            <p>Serra Grande · balneários</p>
-                            <button class="municipality-more" type="button" data-municipio="canta" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Cantá</span> <span aria-hidden="true">→</span></button>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <div class="municipality-tags"><span>CULTURA</span><small>Oeste</small></div>
-                            <h3>Alto Alegre</h3>
-                            <p>Taiano · igarapés</p>
-                            <button class="municipality-more" type="button" data-municipio="alto-alegre" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Alto Alegre</span> <span aria-hidden="true">→</span></button>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <div class="municipality-tags"><span>RIOS</span><small>Centro</small></div>
-                            <h3>Mucajaí</h3>
-                            <p>Rio Mucajaí · praias de rio</p>
-                            <button class="municipality-more" type="button" data-municipio="mucajai" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Mucajaí</span> <span aria-hidden="true">→</span></button>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <div class="municipality-tags"><span>RIOS</span><small>Centro-Sul</small></div>
-                            <h3>Iracema</h3>
-                            <p>Igarapés · BR-174</p>
-                            <button class="municipality-more" type="button" data-municipio="iracema" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Iracema</span> <span aria-hidden="true">→</span></button>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <div class="municipality-tags"><span>RIOS</span><small>Centro-Sul</small></div>
-                            <h3>Caracaraí</h3>
-                            <p>Rio Branco · pesca · floresta</p>
-                            <button class="municipality-more" type="button" data-municipio="caracarai" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Caracaraí</span> <span aria-hidden="true">→</span></button>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <div class="municipality-tags"><span>FLORESTA</span><small>Sul</small></div>
-                            <h3>Rorainópolis</h3>
-                            <p>Portal da Amazônia · BR-174</p>
-                            <button class="municipality-more" type="button" data-municipio="rorainopolis" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Rorainópolis</span> <span aria-hidden="true">→</span></button>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <div class="municipality-tags"><span>FLORESTA</span><small>Sul</small></div>
-                            <h3>São Luiz</h3>
-                            <p>Rio Anauá · Perimetral Norte</p>
-                            <button class="municipality-more" type="button" data-municipio="sao-luiz" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre São Luiz</span> <span aria-hidden="true">→</span></button>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <div class="municipality-tags"><span>FLORESTA</span><small>Sul</small></div>
-                            <h3>São João da Baliza</h3>
-                            <p>Cachoeiras · agricultura</p>
-                            <button class="municipality-more" type="button" data-municipio="sao-joao-da-baliza" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre São João da Baliza</span> <span aria-hidden="true">→</span></button>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <div class="municipality-tags"><span>FESTAS</span><small>Sul</small></div>
-                            <h3>Caroebe</h3>
-                            <p>Festa da Banana · cachoeiras</p>
-                            <button class="municipality-more" type="button" data-municipio="caroebe" aria-haspopup="dialog">Saiba mais<span class="sr-only"> sobre Caroebe</span> <span aria-hidden="true">→</span></button>
-                        </article>
-                    </li>
+                    <!-- preenchido pelo JavaScript a partir de assets/data/municipios.json -->
                 </ul>
                 <div class="slider-controls">
                     <button class="slider-button" type="button" data-slide="-1" aria-controls="municipality-grid" aria-label="Municípios anteriores">←</button>
@@ -357,96 +261,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">Alto Alegre</th>
-                                <td>Oeste</td>
-                                <td>≈ 90 km</td>
-                                <td>Vila do Taiano e igarapés</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Amajari</th>
-                                <td>Norte</td>
-                                <td>≈ 160 km</td>
-                                <td>Serra do Tepequém e Maracá</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Boa Vista</th>
-                                <td>Capital</td>
-                                <td>—</td>
-                                <td>Orla Taumanan</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Bonfim</th>
-                                <td>Leste</td>
-                                <td>≈ 125 km</td>
-                                <td>Fronteira com a Guiana</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Cantá</th>
-                                <td>Centro</td>
-                                <td>≈ 35 km</td>
-                                <td>Trilhas da Serra Grande</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Caracaraí</th>
-                                <td>Centro-Sul</td>
-                                <td>≈ 140 km</td>
-                                <td>Rio Branco e pesca esportiva</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Caroebe</th>
-                                <td>Sul</td>
-                                <td>≈ 360 km</td>
-                                <td>Festa da Banana</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Iracema</th>
-                                <td>Centro-Sul</td>
-                                <td>≈ 100 km</td>
-                                <td>Igarapés e pesca</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Mucajaí</th>
-                                <td>Centro</td>
-                                <td>≈ 55 km</td>
-                                <td>Praias do Rio Mucajaí</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Normandia</th>
-                                <td>Norte</td>
-                                <td>≈ 185 km</td>
-                                <td>Lago Caracaranã</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Pacaraima</th>
-                                <td>Norte</td>
-                                <td>≈ 215 km</td>
-                                <td>Acesso ao Monte Roraima</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Rorainópolis</th>
-                                <td>Sul</td>
-                                <td>≈ 290 km</td>
-                                <td>Portal da Amazônia</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">São João da Baliza</th>
-                                <td>Sul</td>
-                                <td>≈ 330 km</td>
-                                <td>Cachoeiras e agricultura familiar</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">São Luiz</th>
-                                <td>Sul</td>
-                                <td>≈ 305 km</td>
-                                <td>Rio Anauá</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Uiramutã</th>
-                                <td>Norte</td>
-                                <td>≈ 300 km</td>
-                                <td>Cachoeiras e serras</td>
-                            </tr>
+                            <!-- preenchido pelo JavaScript (ordem alfabética) -->
                         </tbody>
                     </table>
                 </div>
@@ -582,74 +397,13 @@
                     <p>Viajantes de todo o Brasil contam o que encontraram por aqui. Passe o mouse sobre um depoimento para pausar e ler com calma.</p>
                 </header>
             </div>
+            <div class="container">
+                <noscript><p class="data-message">Ative o JavaScript para ler os depoimentos.</p></noscript>
+                <p class="data-message" id="testimonials-error" hidden>Não foi possível carregar os depoimentos agora. Tente recarregar a página.</p>
+            </div>
             <div class="testimonials-viewport">
                 <ul class="testimonials-track" id="testimonials-track">
-                    <li>
-                        <figure class="testimonial-card">
-                            <blockquote>
-                                <p>Subir o Monte Roraima foi a viagem da minha vida. Acordar acima das nuvens, no topo de um tepui, é algo que não sai da memória.</p>
-                            </blockquote>
-                            <figcaption>
-                                <span class="testimonial-avatar" data-gender="female" aria-hidden="true">MA</span>
-                                <span><strong>Mariana Albuquerque</strong><small>Recife, PE</small></span>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li>
-                        <figure class="testimonial-card">
-                            <blockquote>
-                                <p>Boa Vista me surpreendeu: cidade tranquila, pôr do sol lindo na Orla Taumanan e uma culinária que eu não conhecia.</p>
-                            </blockquote>
-                            <figcaption>
-                                <span class="testimonial-avatar" data-gender="male" aria-hidden="true">RM</span>
-                                <span><strong>Rafael Monteiro</strong><small>Curitiba, PR</small></span>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li>
-                        <figure class="testimonial-card">
-                            <blockquote>
-                                <p>O Lago Caracaranã parece cenário de filme. Água clara, areia branca e aquele céu enorme do lavrado.</p>
-                            </blockquote>
-                            <figcaption>
-                                <span class="testimonial-avatar" data-gender="female" aria-hidden="true">LC</span>
-                                <span><strong>Luana Costa</strong><small>Manaus, AM</small></span>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li>
-                        <figure class="testimonial-card">
-                            <blockquote>
-                                <p>Aprendi muito com as comunidades indígenas. Conhecer Roraima é, antes de tudo, aprender a escutar.</p>
-                            </blockquote>
-                            <figcaption>
-                                <span class="testimonial-avatar" data-gender="male" aria-hidden="true">TN</span>
-                                <span><strong>Thiago Nascimento</strong><small>São Paulo, SP</small></span>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li>
-                        <figure class="testimonial-card">
-                            <blockquote>
-                                <p>A Serra do Tepequém tem cachoeiras incríveis e um friozinho gostoso à noite. Já quero voltar com a família.</p>
-                            </blockquote>
-                            <figcaption>
-                                <span class="testimonial-avatar" data-gender="female" aria-hidden="true">CF</span>
-                                <span><strong>Camila Ferreira</strong><small>Belo Horizonte, MG</small></span>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li>
-                        <figure class="testimonial-card">
-                            <blockquote>
-                                <p>Atravessar para Lethem pela ponte de Bonfim foi uma experiência única: três culturas em um só dia.</p>
-                            </blockquote>
-                            <figcaption>
-                                <span class="testimonial-avatar" data-gender="male" aria-hidden="true">DR</span>
-                                <span><strong>Diego Ribeiro</strong><small>Porto Alegre, RS</small></span>
-                            </figcaption>
-                        </figure>
-                    </li>
+                    <!-- preenchido pelo JavaScript a partir de assets/data/depoimentos.json -->
                 </ul>
             </div>
         </section>
@@ -750,20 +504,20 @@
                 </ul>
             </nav>
         </div>
-        <p class="container footer-bottom"><span>© 2026 Conheça Roraima</span><span>Feito com respeito ao território e às pessoas</span></p>
+        <p class="container footer-bottom"><span>© 2026 Conheça Roraima</span><span>Feito com respeito ao território e às pessoas</span><span class="footer-credit">Desenvolvido por <a href="https://github.com/ivoshow" target="_blank" rel="noopener author">Ivonielson Freitas<span class="sr-only"> (abre em nova aba)</span></a></span></p>
     </footer>
     <!-- aqui começam os modais -->
     <dialog class="welcome-modal" id="welcome-modal" aria-labelledby="welcome-title" aria-describedby="welcome-text">
         <figure class="welcome-image">
-            <img src="assets/img/trilha-monte-roraima.webp" alt="Trilha em direção ao Monte Roraima" width="669" height="446" decoding="async">
-            <figcaption><span aria-hidden="true">⌖</span> Pacaraima · Roraima</figcaption>
+            <img id="welcome-image" src="assets/img/trilha-monte-roraima.webp" alt="Trilha em direção ao Monte Roraima" width="669" height="446" decoding="async">
+            <figcaption><span aria-hidden="true">⌖</span> <span id="welcome-place">Pacaraima · Roraima</span></figcaption>
         </figure>
         <div class="welcome-content">
-            <p class="kicker kicker-gold"><span></span> Destaque da temporada</p>
+            <p class="kicker kicker-gold"><span></span> <span id="welcome-kicker">Destaque da temporada</span></p>
             <h2 id="welcome-title">Suba ao topo do<br><em>Monte Roraima.</em></h2>
             <p id="welcome-text">Um dos tepuis mais antigos do planeta, com cerca de 2.800 metros de altitude, vales de cristais e cachoeiras que caem direto das nuvens. Uma travessia de 7 a 9 dias que marca para sempre.</p>
             <div class="welcome-actions">
-                <a class="button button-gold" href="#experiencias" data-close-modal>Quero conhecer <span aria-hidden="true">→</span></a>
+                <a class="button button-gold" id="welcome-cta" href="#experiencias" data-close-modal><span id="welcome-cta-text">Quero conhecer</span> <span aria-hidden="true">→</span></a>
                 <button class="welcome-dismiss" type="button" data-close-modal>Agora não</button>
             </div>
         </div>
@@ -793,7 +547,6 @@
     </a>
 
     <div class="toast" id="toast" role="status"></div>
-    <script src="assets/js/municipios.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
 
