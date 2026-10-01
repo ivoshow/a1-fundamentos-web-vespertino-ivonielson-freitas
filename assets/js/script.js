@@ -6,10 +6,16 @@ const toast = document.querySelector('#toast');
 function setMenu(open) {
   mainNav.classList.toggle('open', open);
   menuToggle.setAttribute('aria-expanded', String(open));
-  menuToggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
 }
 
 menuToggle?.addEventListener('click', () => setMenu(!mainNav.classList.contains('open')));
+
+// no celular o menu é um painel por cima da página: quando o Tab sai dele,
+// ele fecha para não cobrir o elemento que recebeu o foco (WCAG 2.4.11)
+mainNav?.addEventListener('focusout', (event) => {
+  const next = event.relatedTarget;
+  if (next && next !== menuToggle && !mainNav.contains(next)) setMenu(false);
+});
 
 // Submenus (Descubra, Cultura, Planeje): só um fica aberto por vez
 const navGroups = [...document.querySelectorAll('.nav-group')];
@@ -278,9 +284,18 @@ function fillWelcomeWithEvent(evento) {
   welcomeCard.querySelector('#welcome-cta-text').textContent = 'Ver a agenda';
 }
 
-function closeWelcome() {
+// o card fica no fim do HTML: ao fechá-lo pelo teclado, o foco volta para
+// onde a pessoa estava antes de entrar nele, em vez de cair no <body>
+let focusBeforeWelcome = null;
+document.addEventListener('focusin', (event) => {
+  if (!welcomeCard?.contains(event.target)) focusBeforeWelcome = event.target;
+});
+
+function closeWelcome({ restoreFocus = true } = {}) {
+  const hadFocus = welcomeCard.contains(document.activeElement);
   welcomeCard.hidden = true;
   markWelcomeSeen();
+  if (hadFocus && restoreFocus) (focusBeforeWelcome ?? document.querySelector('main')).focus();
 }
 
 const hero = document.querySelector('.hero');
@@ -297,8 +312,9 @@ if (welcomeCard && hero && 'IntersectionObserver' in window && !welcomeAlreadySe
   });
   heroObserver.observe(hero);
 
-  welcomeCard.querySelector('#welcome-close').addEventListener('click', closeWelcome);
-  welcomeCard.querySelector('#welcome-cta').addEventListener('click', closeWelcome);
+  welcomeCard.querySelector('#welcome-close').addEventListener('click', () => closeWelcome());
+  // no "Ver a agenda" quem decide o destino é o próprio link (#agenda)
+  welcomeCard.querySelector('#welcome-cta').addEventListener('click', () => closeWelcome({ restoreFocus: false }));
   // Esc fecha o card se o foco estiver nele
   welcomeCard.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeWelcome();
@@ -413,6 +429,19 @@ municipalityGrid?.addEventListener('click', (event) => {
 // ==========================================================================
 const testimonialsTrack = document.querySelector('#testimonials-track');
 const testimonialOriginals = [...(testimonialsTrack?.children ?? [])];
+const testimonialsPause = document.querySelector('#testimonials-pause');
+
+// botão de pausa (WCAG 2.2.2): todo movimento automático precisa poder ser
+// parado, inclusive por quem usa só o teclado
+function setTestimonialsPaused(paused) {
+  testimonialsTrack.classList.toggle('is-paused', paused);
+  testimonialsPause.querySelector('.testimonials-pause-text').textContent = paused ? 'Retomar depoimentos' : 'Pausar depoimentos';
+  testimonialsPause.querySelector('.testimonials-pause-icon').textContent = paused ? '▶' : '❚❚';
+}
+
+testimonialsPause?.addEventListener('click', () => {
+  setTestimonialsPaused(!testimonialsTrack.classList.contains('is-paused'));
+});
 
 // O giro contínuo precisa de uma cópia dos cards para o laço não ter "pulo".
 // Só que, se os cards não enchem a largura da tela, a cópia aparece ao lado
@@ -421,6 +450,7 @@ const testimonialOriginals = [...(testimonialsTrack?.children ?? [])];
 function layoutTestimonials() {
   testimonialsTrack.replaceChildren(...testimonialOriginals);
   testimonialsTrack.classList.remove('is-animated', 'is-static');
+  if (testimonialsPause) testimonialsPause.hidden = true;
 
   const viewport = testimonialsTrack.parentElement;
   if (testimonialsTrack.offsetWidth <= viewport.clientWidth) {
@@ -437,6 +467,7 @@ function layoutTestimonials() {
     testimonialsTrack.append(clone);
   });
   testimonialsTrack.classList.add('is-animated');
+  if (testimonialsPause) testimonialsPause.hidden = false;
 }
 
 async function loadTestimonialAvatars(total) {

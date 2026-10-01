@@ -10,41 +10,61 @@
     <meta name="description" content="Conheça Roraima: turismo, cultura, história, municípios e quanto custa conhecer o extremo norte do Brasil por conta própria.">
     <title>Conheça Roraima — O norte que surpreende</title>
     <link rel="canonical" href="https://conheca-roraima.vercel.app/">
-    <!-- prévia do link ao compartilhar (WhatsApp, redes sociais) -->
+    
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:site_name" content="Conheça Roraima">
     <meta property="og:title" content="Conheça Roraima — O norte que surpreende">
     <meta property="og:description" content="Turismo, cultura, história, municípios e quanto custa conhecer o extremo norte do Brasil por conta própria.">
     <meta property="og:url" content="https://conheca-roraima.vercel.app/">
-    <meta property="og:image" content="https://conheca-roraima.vercel.app/assets/img/monte-roraima-aereo.webp">
+    <meta property="og:image" content="https://conheca-roraima.vercel.app/assets/img/og-conheca-roraima.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Vista aérea do Monte Roraima entre nuvens">
     <meta name="twitter:card" content="summary_large_image">
     <!-- dados estruturados: descrevem o site para os buscadores -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Conheça Roraima",
-      "url": "https://conheca-roraima.vercel.app/",
-      "inLanguage": "pt-BR",
-      "description": "Portal informativo sobre turismo, cultura, história, municípios e custos de viagem em Roraima.",
-      "author": { "@type": "Person", "name": "Ivonielson Freitas" }
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://conheca-roraima.vercel.app/#website",
+          "name": "Conheça Roraima",
+          "url": "https://conheca-roraima.vercel.app/",
+          "inLanguage": "pt-BR",
+          "description": "Portal informativo sobre turismo, cultura, história, municípios e custos de viagem em Roraima.",
+          "author": { "@type": "Person", "name": "Ivonielson Freitas", "url": "https://github.com/ivoshow" }
+        },
+        {
+          "@type": "TouristDestination",
+          "name": "Roraima",
+          "description": "Estado do extremo norte do Brasil, com o Monte Roraima, a Serra do Tepequém, o Lago Caracaranã e a cultura dos povos indígenas.",
+          "url": "https://conheca-roraima.vercel.app/",
+          "image": "https://conheca-roraima.vercel.app/assets/img/og-conheca-roraima.jpg",
+          "touristType": ["Ecoturismo", "Turismo de aventura", "Turismo cultural"],
+          "containedInPlace": { "@type": "Country", "name": "Brasil" }
+        }
+      ]
     }
     </script>
+
     <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-    <link rel="preload" href="assets/fonts/libre-baskerville-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts/libre-baskerville-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+    <!-- fontes do Google Fonts: DM Sans (textos) e Libre Baskerville (títulos) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400..900&amp;family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;display=swap">
     <link rel="stylesheet" href="assets/css/styles.css">
-    
 </head>
 
 <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <header class="site-header">
         <div class="container header-inner">
             <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">CR</span> <span>CONHEÇA<br>RORAIMA</span></a>
-            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Menu"><span></span><span></span><span></span></button>
             <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
                 <ul>
                     <li class="nav-group">
@@ -78,12 +98,12 @@
         </div>
     </header>
 
-    <main>
-        <section class="hero hero-noise">
+    <main id="conteudo" tabindex="-1">
+        <section class="hero hero-noise" aria-labelledby="hero-title">
             <div class="container hero-grid">
                 <header class="hero-copy reveal">
-                    <p class="kicker kicker-gold"><span></span> Portal de Roraima</p>
-                    <h1>Onde o<br><em>Brasil</em><br>começa.</h1>
+                    <p class="kicker kicker-gold"><span aria-hidden="true"></span> Portal de Roraima</p>
+                    <h1 id="hero-title"><span class="sr-only">Roraima: </span>Onde o<br><em>Brasil</em><br>começa.</h1>
                     <p>Um convite para descobrir paisagens ancestrais, histórias que atravessam fronteiras e a cultura viva do extremo norte.</p>
                     <div class="hero-actions"><a class="button button-gold" href="#experiencias">Comece a explorar <span aria-hidden="true">→</span></a><a class="text-link" href="#historia"><span aria-hidden="true">▣</span> &nbsp; Ler a história</a></div>
                 </header>
@@ -100,21 +120,22 @@
             <a class="scroll-cue" href="#experiencias">ROLE PARA DESCOBRIR<br><span aria-hidden="true">↓</span></a>
         </section>
 
-        <aside class="stats" aria-label="Roraima em números">
+        <section class="stats" aria-labelledby="stats-title">
+            <h2 class="sr-only" id="stats-title">Roraima em números</h2>
             <ul class="container stats-grid">
                 <li><strong>15</strong><span>municípios</span></li>
                 <li><strong>3</strong><span>paisagens<br>marcantes</span></li>
                 <li><strong>10+</strong><span>povos<br>indígenas</span></li>
                 <li><strong>1</strong><span>fronteira<br>única</span></li>
             </ul>
-        </aside>
+        </section>
 
-        <section class="section" id="experiencias">
+        <section class="section" id="experiencias" aria-labelledby="experiencias-title">
             <div class="container">
                 <header class="section-heading">
                     <hgroup>
                         <p class="kicker"><span aria-hidden="true">✦</span> Escolha seu caminho</p>
-                        <h2>Há mais de um jeito<br><em>de chegar.</em></h2></hgroup>
+                        <h2 id="experiencias-title">Há mais de um jeito<br><em>de chegar.</em></h2></hgroup>
                     <p>Roraima se revela em camadas. Comece pela paisagem que mais combina com a sua curiosidade.</p>
                 </header>
                 <div class="experience-grid">
@@ -146,13 +167,13 @@
             </div>
         </section>
 
-        <section class="section territory" id="territorio">
+        <section class="section territory" id="territorio" aria-labelledby="territorio-title">
             <div class="container territory-grid">
                 <figure class="territory-photo"><img src="assets/img/boa-vista-centro-civico.webp" alt="Vista aérea do centro de Boa Vista, com a Praça do Centro Cívico e o Rio Branco ao fundo" width="612" height="612" loading="lazy" decoding="async">
                     <span class="round-note" aria-hidden="true">céu<br>aberto<br>todo dia</span><figcaption class="photo-label"><span aria-hidden="true">⌖</span> BOA VISTA<strong>Cidade-jardim do norte</strong></figcaption></figure>
                 <div class="territory-content">
                     <p class="kicker"><span aria-hidden="true">≈</span> Um território raro</p>
-                    <h2>O norte que<br><em>surpreende.</em></h2>
+                    <h2 id="territorio-title">O norte que<br><em>surpreende.</em></h2>
                     <p class="lead">Aqui, a Amazônia encontra o lavrado, a serra encontra o céu e três fronteiras se encontram no mesmo horizonte. Roraima é pequeno no mapa, mas gigante nas possibilidades.</p>
                     <ul class="feature-grid">
                         <li><b aria-hidden="true">⌃</b><strong>Serras e tepuis</strong>
@@ -172,12 +193,12 @@
             </div>
         </section>
 
-        <section class="section culture" id="cultura">
+        <section class="section culture" id="cultura" aria-labelledby="cultura-title">
             <div class="container">
                 <header class="culture-heading">
                     <hgroup>
                         <p class="kicker kicker-gold"><span aria-hidden="true">◌</span> Cultura que permanece</p>
-                        <h2>A identidade<br>é feita de <em>muitas vozes.</em></h2></hgroup>
+                        <h2 id="cultura-title">A identidade<br>é feita de <em>muitas vozes.</em></h2></hgroup>
                     <p>Macuxi, Wapichana, Taurepang, Yanomami e tantos outros povos guardam conhecimentos que atravessam gerações. Conhecer Roraima também é aprender a escutar.</p>
                 </header>
                 <div class="culture-grid">
@@ -278,11 +299,11 @@
             </div>
         </section>
 
-        <section class="section history" id="historia">
+        <section class="section history" id="historia" aria-labelledby="historia-title">
             <div class="container history-grid">
                 <header>
                     <p class="kicker"><span aria-hidden="true">▣</span> Linha do tempo</p>
-                    <h2>Antes de ser<br><em>fronteira,</em><br>já era casa.</h2>
+                    <h2 id="historia-title">Antes de ser<br><em>fronteira,</em><br>já era casa.</h2>
                     <p class="lead">A história de Roraima é feita de ocupações, deslocamentos e resistências. Uma narrativa que continua sendo escrita.</p>
                 </header>
                 <ol class="timeline">
@@ -306,12 +327,12 @@
             </div>
         </section>
 
-        <section class="section municipalities" id="municipios">
+        <section class="section municipalities" id="municipios" aria-labelledby="municipios-title">
             <div class="container">
                 <header class="municipality-heading">
                     <hgroup>
                         <p class="kicker"><span aria-hidden="true">⌖</span> Mapa de possibilidades</p>
-                        <h2>15 municípios,<br><em>infinitas histórias.</em></h2></hgroup>
+                        <h2 id="municipios-title">15 municípios,<br><em>infinitas histórias.</em></h2></hgroup>
                     <search class="search" aria-label="Buscar municípios">
                         <span aria-hidden="true">⌕</span>
                         <label class="sr-only" for="municipality-search">Buscar município</label>
@@ -716,10 +737,10 @@
             </div>
         </section>
 
-        <section class="section itinerary" id="roteiro">
+        <section class="section itinerary" id="roteiro" aria-labelledby="roteiro-title">
             <div class="container itinerary-grid">
                 <header class="itinerary-card"><span class="route-icon" aria-hidden="true">⌁</span><small>ROTEIRO DE ESTREIA</small>
-                    <h2>Três dias para<br><em>sentir Roraima.</em></h2>
+                    <h2 id="roteiro-title">Três dias para<br><em>sentir Roraima.</em></h2>
                     <p>Uma primeira imersão que mistura cidade, lavrado e serra sem pressa — do jeito que o norte pede.</p>
                 </header>
                 <div class="itinerary-list">
@@ -867,6 +888,7 @@
                         <h2 id="testimonials-title">Histórias de<br><em>quem viveu.</em></h2></hgroup>
                     <p>Viajantes de todo o Brasil contam o que encontraram por aqui.</p>
                 </header>
+                <button class="testimonials-pause" id="testimonials-pause" type="button" aria-controls="testimonials-track" hidden><span class="testimonials-pause-icon" aria-hidden="true">❚❚</span> <span class="testimonials-pause-text">Pausar depoimentos</span></button>
             </div>
             <div class="testimonials-viewport">
                 <ul class="testimonials-track" id="testimonials-track">
@@ -990,14 +1012,14 @@
             </div>
         </section>
 
-        <section class="contact" id="contato">
+        <section class="contact" id="contato" aria-labelledby="contato-title">
             <div class="container contact-grid">
                 <header>
                     <p class="kicker kicker-dark"><span aria-hidden="true">✉</span> Colabore com o portal</p>
-                    <h2>Viu um preço<br><em>diferente<br>por aí?</em></h2>
+                    <h2 id="contato-title">Viu um preço<br><em>diferente<br>por aí?</em></h2>
                     <p>Entradas, guias, pousadas e combustível mudam de preço. Se você esteve em algum ponto turístico de Roraima, conte quanto pagou. Conferimos cada informação antes de atualizar as estimativas.</p>
-                    <address class="contact-details"><span aria-hidden="true">✉</span> oi@conhecaroraima.com.br
-                        <br><span aria-hidden="true">☎</span> (95) 9999-88888
+                    <address class="contact-details"><span aria-hidden="true">✉</span> <a href="mailto:oi@conhecaroraima.com.br">oi@conhecaroraima.com.br</a>
+                        <br><span aria-hidden="true">☎</span> <a href="tel:+5595999988888">(95) 99998-8888</a>
                         <br><span aria-hidden="true">◎</span> @conhecaroraima</address>
                 </header>
                 <form id="contact-form" action="#" method="POST" aria-label="Formulário para enviar informações ao portal">
@@ -1006,7 +1028,7 @@
                         <div class="form-row">
                             <div class="form-field">
                                 <label for="nome">Seu nome *</label>
-                                <input id="nome" name="nome" type="text" required minlength="3" maxlength="80" pattern="[A-Za-zÀ-ÿ ]+" title="Use apenas letras e espaços (mínimo de 3 caracteres)." autocomplete="name" placeholder="Como podemos te chamar?">
+                                <input id="nome" name="nome" type="text" required minlength="3" maxlength="80" pattern="[A-Za-zÀ-ÖØ-öø-ÿ' \-]+" title="Use letras, espaços, apóstrofo ou hífen (mínimo de 3 caracteres)." autocomplete="name" placeholder="Como podemos te chamar?">
                             </div>
                             <div class="form-field">
                                 <label for="email">Seu e-mail *</label>
@@ -1128,7 +1150,7 @@
 
     <!-- Botão flutuante do WhatsApp. O número vai no formato internacional,
          só dígitos: 55 (Brasil) + DDD + número. Ícone: Font Awesome Free (CC BY 4.0). -->
-    <a class="whatsapp-float" id="whatsapp-float" href="https://wa.me/5595999988888?text=Ol%C3%A1!%20Vim%20pelo%20portal%20Conhe%C3%A7a%20Roraima%20e%20tenho%20uma%20informa%C3%A7%C3%A3o%20sobre%20valores." data-phone="5595999988888" target="_blank" rel="noopener" aria-label="Fale com o portal pelo WhatsApp (abre em nova aba)">
+    <a class="whatsapp-float" id="whatsapp-float" href="https://wa.me/5595999988888?text=Ol%C3%A1!%20Vim%20pelo%20portal%20Conhe%C3%A7a%20Roraima%20e%20tenho%20uma%20informa%C3%A7%C3%A3o%20sobre%20valores." data-phone="5595999988888" target="_blank" rel="noopener" aria-label="Fale no WhatsApp (abre em nova aba)">
         <svg aria-hidden="true" focusable="false" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
         <span class="whatsapp-label" aria-hidden="true">Fale no WhatsApp</span>
     </a>
