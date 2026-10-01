@@ -43,7 +43,7 @@
 <body>
     <header class="site-header">
         <div class="container header-inner">
-            <a class="brand" href="#top"><span class="brand-mark">CR</span> <span>CONHEÇA<br>RORAIMA</span></a>
+            <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">CR</span> <span>CONHEÇA<br>RORAIMA</span></a>
             <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu"><span></span><span></span><span></span></button>
             <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
                 <ul>
@@ -312,21 +312,21 @@
                     <hgroup>
                         <p class="kicker"><span aria-hidden="true">⌖</span> Mapa de possibilidades</p>
                         <h2>15 municípios,<br><em>infinitas histórias.</em></h2></hgroup>
-                    <search class="search" aria-label="Municípios">
+                    <search class="search" aria-label="Buscar municípios">
                         <span aria-hidden="true">⌕</span>
                         <label class="sr-only" for="municipality-search">Buscar município</label>
                         <input id="municipality-search" type="search" placeholder="Busque um município" maxlength="40">
                     </search>
                 </header>
                 <div class="filter-bar" id="region-filters" role="group" aria-label="Filtrar municípios por região">
-                    <button class="filter-chip" type="button" data-region="Todas" aria-pressed="true">Todas<span class="filter-count" aria-label="15 municípios">15</span></button>
-                    <button class="filter-chip" type="button" data-region="Capital" aria-pressed="false">Capital<span class="filter-count" aria-label="1 municípios">1</span></button>
-                    <button class="filter-chip" type="button" data-region="Norte" aria-pressed="false">Norte<span class="filter-count" aria-label="4 municípios">4</span></button>
-                    <button class="filter-chip" type="button" data-region="Leste" aria-pressed="false">Leste<span class="filter-count" aria-label="1 municípios">1</span></button>
-                    <button class="filter-chip" type="button" data-region="Centro" aria-pressed="false">Centro<span class="filter-count" aria-label="2 municípios">2</span></button>
-                    <button class="filter-chip" type="button" data-region="Oeste" aria-pressed="false">Oeste<span class="filter-count" aria-label="1 municípios">1</span></button>
-                    <button class="filter-chip" type="button" data-region="Centro-Sul" aria-pressed="false">Centro-Sul<span class="filter-count" aria-label="2 municípios">2</span></button>
-                    <button class="filter-chip" type="button" data-region="Sul" aria-pressed="false">Sul<span class="filter-count" aria-label="4 municípios">4</span></button>
+                    <button class="filter-chip" type="button" data-region="Todas" aria-pressed="true">Todas <span class="filter-count">15<span class="sr-only"> municípios</span></span></button>
+                    <button class="filter-chip" type="button" data-region="Capital" aria-pressed="false">Capital <span class="filter-count">1<span class="sr-only"> município</span></span></button>
+                    <button class="filter-chip" type="button" data-region="Norte" aria-pressed="false">Norte <span class="filter-count">4<span class="sr-only"> municípios</span></span></button>
+                    <button class="filter-chip" type="button" data-region="Leste" aria-pressed="false">Leste <span class="filter-count">1<span class="sr-only"> município</span></span></button>
+                    <button class="filter-chip" type="button" data-region="Centro" aria-pressed="false">Centro <span class="filter-count">2<span class="sr-only"> municípios</span></span></button>
+                    <button class="filter-chip" type="button" data-region="Oeste" aria-pressed="false">Oeste <span class="filter-count">1<span class="sr-only"> município</span></span></button>
+                    <button class="filter-chip" type="button" data-region="Centro-Sul" aria-pressed="false">Centro-Sul <span class="filter-count">2<span class="sr-only"> municípios</span></span></button>
+                    <button class="filter-chip" type="button" data-region="Sul" aria-pressed="false">Sul <span class="filter-count">4<span class="sr-only"> municípios</span></span></button>
                 </div>
                 <div class="municipality-slider">
                 <ul class="municipality-grid" id="municipality-grid" aria-label="Municípios de Roraima">
@@ -335,7 +335,7 @@
                             <div class="municipality-tags"><span>URBANO</span><small>Capital</small></div>
                             <h3>Boa Vista</h3>
                             <p>Orla Taumanan · centro histórico</p>
-                            <div class="municipality-details" hidden>
+                            <div class="municipality-details" hidden="until-found">
                                 <p class="municipality-distance">Capital do estado</p>
                                 <p class="municipality-description">Única capital brasileira totalmente ao norte da Linha do Equador, Boa Vista foi planejada em formato de leque às margens do Rio Branco. Tem ruas largas, praças arborizadas e um pôr do sol famoso na orla.</p>
                                 <ul class="municipality-activities">
@@ -353,7 +353,7 @@
                             <div class="municipality-tags"><span>AVENTURA</span><small>Norte</small></div>
                             <h3>Pacaraima</h3>
                             <p>Monte Roraima · fronteira</p>
-                            <div class="municipality-details" hidden>
+                            <div class="municipality-details" hidden="until-found">
                                 <p class="municipality-distance">≈ 215 km de Boa Vista</p>
                                 <p class="municipality-description">Na fronteira com a Venezuela, Pacaraima fica no alto da serra e tem clima mais ameno que o resto do estado. É o ponto de partida brasileiro para quem sonha com o Monte Roraima.</p>
                                 <ul class="municipality-activities">
@@ -371,7 +371,7 @@
                             <div class="municipality-tags"><span>NATUREZA</span><small>Norte</small></div>
                             <h3>Uiramutã</h3>
                             <p>Cachoeiras · serras · Makunaima</p>
-                            <div class="municipality-details" hidden>
+                            <div class="municipality-details" hidden="until-found">
                                 <p class="municipality-distance">≈ 300 km de Boa Vista</p>
                                 <p class="municipality-description">No coração da Terra Indígena Raposa Serra do Sol, Uiramutã é terra de serras, cachoeiras e da tradição de Makunaima. Lá está o Monte Caburaí, ponto mais ao norte do Brasil.</p>
                                 <ul class="municipality-activities">
@@ -389,7 +389,7 @@
                             <div class="municipality-tags"><span>NATUREZA</span><small>Norte</small></div>
                             <h3>Amajari</h3>
                             <p>Serra do Tepequém · Maracá</p>
-                            <div class="municipality-details" hidden>
+                            <div class="municipality-details" hidden="until-found">
                                 <p class="municipality-distance">≈ 160 km de Boa Vista</p>
                                 <p class="municipality-description">Amajari abriga a Serra do Tepequém, antiga área de garimpo que virou refúgio de trilhas e cachoeiras, e a Estação Ecológica de Maracá, uma das áreas protegidas mais importantes do estado.</p>
                                 <ul class="municipality-activities">
@@ -407,7 +407,7 @@
                             <div class="municipality-tags"><span>LAGOS</span><small>Norte</small></div>
                             <h3>Normandia</h3>
                             <p>Lago Caracaranã · fronteira</p>
-                            <div class="municipality-details" hidden>
+                            <div class="municipality-details" hidden="until-found">
                                 <p class="municipality-distance">≈ 185 km de Boa Vista</p>
                                 <p class="municipality-description">Na fronteira com a Guiana, Normandia é famosa pelo Lago Caracaranã, de águas claras e areia branca cercado pelo lavrado. Um dos cartões-postais do norte de Roraima.</p>
                                 <ul class="municipality-activities">
@@ -425,7 +425,7 @@
                             <div class="municipality-tags"><span>FRONTEIRA</span><small>Leste</small></div>
                             <h3>Bonfim</h3>
                             <p>Rio Tacutu · Guiana</p>
-                            <div class="municipality-details" hidden>
+                            <div class="municipality-details" hidden="until-found">
                                 <p class="municipality-distance">≈ 125 km de Boa Vista</p>
                                 <p class="municipality-description">Bonfim fica às margens do Rio Tacutu, ligado por ponte à cidade de Lethem, na Guiana. É um lugar de encontro entre o português, o inglês e as línguas indígenas.</p>
                                 <ul class="municipality-activities">
@@ -443,7 +443,7 @@
                             <div class="municipality-tags"><span>TRILHAS</span><small>Centro</small></div>
                             <h3>Cantá</h3>
                             <p>Serra Grande · balneários</p>
-                            <div class="municipality-details" hidden>
+                            <div class="municipality-details" hidden="until-found">
                                 <p class="municipality-distance">≈ 35 km de Boa Vista</p>
                                 <p class="municipality-description">Vizinho da capital, do outro lado do Rio Branco, Cantá é a escapada perfeita de fim de semana, com a Serra Grande, balneários e sítios de agricultura familiar.</p>
                                 <ul class="municipality-activities">
@@ -461,7 +461,7 @@
                             <div class="municipality-tags"><span>CULTURA</span><small>Oeste</small></div>
                             <h3>Alto Alegre</h3>
                             <p>Taiano · igarapés</p>
-                            <div class="municipality-details" hidden>
+                            <div class="municipality-details" hidden="until-found">
                                 <p class="municipality-distance">≈ 90 km de Boa Vista</p>
                                 <p class="municipality-description">Alto Alegre reúne vilas do interior, como o Taiano, igarapés de água fria e parte da Terra Indígena Yanomami. Um município de ritmo tranquilo e forte vida comunitária.</p>
                                 <ul class="municipality-activities">
@@ -479,7 +479,7 @@
                             <div class="municipality-tags"><span>RIOS</span><small>Centro</small></div>
                             <h3>Mucajaí</h3>
                             <p>Rio Mucajaí · praias de rio</p>
-                            <div class="municipality-details" hidden>
+                            <div class="municipality-details" hidden="until-found">
                                 <p class="municipality-distance">≈ 55 km de Boa Vista</p>
                                 <p class="municipality-description">Cortado pelo rio que lhe dá nome, Mucajaí fica na BR-174 e é conhecido pelas praias de rio que surgem no verão, atraindo famílias de todo o estado.</p>
                                 <ul class="municipality-activities">
@@ -497,7 +497,7 @@
                             <div class="municipality-tags"><span>RIOS</span><small>Centro-Sul</small></div>
                             <h3>Iracema</h3>
                             <p>Igarapés · BR-174</p>
-                            <div class="municipality-details" hidden>
+                            <div class="municipality-details" hidden="until-found">
                                 <p class="municipality-distance">≈ 100 km de Boa Vista</p>
                                 <p class="municipality-description">Pequena e acolhedora, Iracema é parada tradicional para quem percorre a BR-174. Tem igarapés, áreas de pesca e o jeito calmo das cidades do interior.</p>
                                 <ul class="municipality-activities">
@@ -515,7 +515,7 @@
                             <div class="municipality-tags"><span>RIOS</span><small>Centro-Sul</small></div>
                             <h3>Caracaraí</h3>
                             <p>Rio Branco · pesca · floresta</p>
-                            <div class="municipality-details" hidden>
+                            <div class="municipality-details" hidden="until-found">
                                 <p class="municipality-distance">≈ 140 km de Boa Vista</p>
                                 <p class="municipality-description">Cidade-porto do Rio Branco, Caracaraí é a porta para a floresta amazônica em Roraima. Abriga o Parque Nacional do Viruá e as corredeiras do Bem-Querer.</p>
                                 <ul class="municipality-activities">
@@ -533,7 +533,7 @@
                             <div class="municipality-tags"><span>FLORESTA</span><small>Sul</small></div>
                             <h3>Rorainópolis</h3>
                             <p>Portal da Amazônia · BR-174</p>
-                            <div class="municipality-details" hidden>
+                            <div class="municipality-details" hidden="until-found">
                                 <p class="municipality-distance">≈ 290 km de Boa Vista</p>
                                 <p class="municipality-description">Primeira grande cidade para quem chega de Manaus pela BR-174, Rorainópolis é o portal da Amazônia em Roraima, cercada de floresta e comunidades ribeirinhas.</p>
                                 <ul class="municipality-activities">
@@ -551,7 +551,7 @@
                             <div class="municipality-tags"><span>FLORESTA</span><small>Sul</small></div>
                             <h3>São Luiz</h3>
                             <p>Rio Anauá · Perimetral Norte</p>
-                            <div class="municipality-details" hidden>
+                            <div class="municipality-details" hidden="until-found">
                                 <p class="municipality-distance">≈ 305 km de Boa Vista</p>
                                 <p class="municipality-description">Também chamado de São Luiz do Anauá, o município fica às margens do Rio Anauá, na região da Perimetral Norte, com paisagens de floresta e produção agrícola.</p>
                                 <ul class="municipality-activities">
@@ -569,7 +569,7 @@
                             <div class="municipality-tags"><span>FLORESTA</span><small>Sul</small></div>
                             <h3>São João da Baliza</h3>
                             <p>Cachoeiras · agricultura</p>
-                            <div class="municipality-details" hidden>
+                            <div class="municipality-details" hidden="until-found">
                                 <p class="municipality-distance">≈ 330 km de Boa Vista</p>
                                 <p class="municipality-description">Na BR-210, São João da Baliza é um município de floresta, cachoeiras e agricultura familiar, com festas populares que reúnem moradores de todo o sul do estado.</p>
                                 <ul class="municipality-activities">
@@ -587,7 +587,7 @@
                             <div class="municipality-tags"><span>FESTAS</span><small>Sul</small></div>
                             <h3>Caroebe</h3>
                             <p>Festa da Banana · cachoeiras</p>
-                            <div class="municipality-details" hidden>
+                            <div class="municipality-details" hidden="until-found">
                                 <p class="municipality-distance">≈ 360 km de Boa Vista</p>
                                 <p class="municipality-description">No extremo sudeste de Roraima, Caroebe é grande produtor de banana e celebra isso na tradicional Festa da Banana. Tem cachoeiras e muita floresta ao redor.</p>
                                 <ul class="municipality-activities">
@@ -712,7 +712,7 @@
                         </tbody>
                     </table>
                 </div>
-                <p class="route-bar">Quer saber quanto gasta indo por conta própria?<a href="#orcamento">Veja as estimativas　<span aria-hidden="true">→</span></a></p>
+                <p class="route-bar">Quer saber quanto gasta indo por conta própria?<a href="#orcamento">Veja as estimativas <span aria-hidden="true">→</span></a></p>
             </div>
         </section>
 
@@ -743,7 +743,7 @@
                             </div>
                         </li>
                     </ol>
-                    <p class="best-time"><span aria-hidden="true">◷</span>　Melhor época: <strong>outubro a abril</strong>　· clima de aventura</p>
+                    <p class="best-time"><span aria-hidden="true">◷</span> Melhor época: <strong>outubro a abril</strong> · clima de aventura</p>
                 </div>
             </div>
         </section>
@@ -773,13 +773,13 @@
                             <p class="pricing-includes">Média para 2 pessoas</p>
                             <dl class="cost-list">
                                 <div><dt>Combustível</dt><dd>R$ 185</dd></div>
-                                <div class="cost-rental" hidden><dt>Aluguel (3 diárias)</dt><dd>R$ 450</dd></div>
+                                <div class="cost-rental" hidden="until-found"><dt>Aluguel (3 diárias)</dt><dd>R$ 450</dd></div>
                                 <div><dt>Hospedagem (2 noites)</dt><dd>R$ 400</dd></div>
                                 <div><dt>Entrada e guia</dt><dd>R$ 115</dd></div>
                                 <div><dt>Alimentação</dt><dd>R$ 375</dd></div>
-                                <div class="cost-total"><dt>Total do casal</dt><dd data-alugado="R$ 1.525">R$ 1.075</dd></div>
+                                <div class="cost-total"><dt>Total do casal</dt><dd><span class="cost-own">R$ 1.075</span><span class="cost-rental" hidden="until-found">R$ 1.525</span></dd></div>
                             </dl>
-                            <p class="cost-per-person"><strong data-alugado="R$ 765">R$ 540</strong> por pessoa</p>
+                            <p class="cost-per-person"><strong><span class="cost-own">R$ 540</span><span class="cost-rental" hidden="until-found">R$ 765</span></strong> por pessoa</p>
                             <p class="cost-note">Na Serra Grande, a entrada custa cerca de R$ 15 por pessoa e o guia da trilha da Excalibur, cerca de R$ 80.</p>
                             <a class="pricing-update" href="#contato" data-destino="Boa Vista e Serra Grande">Viu outro valor? Avise o portal<span class="sr-only"> sobre Boa Vista e Serra Grande</span> <span aria-hidden="true">→</span></a>
                         </article>
@@ -796,13 +796,13 @@
                             <p class="pricing-includes">Média para 2 pessoas</p>
                             <dl class="cost-list">
                                 <div><dt>Combustível (≈ 440 km)</dt><dd>R$ 340</dd></div>
-                                <div class="cost-rental" hidden><dt>Aluguel (3 diárias)</dt><dd>R$ 450</dd></div>
+                                <div class="cost-rental" hidden="until-found"><dt>Aluguel (3 diárias)</dt><dd>R$ 450</dd></div>
                                 <div><dt>Pousada (2 noites)</dt><dd>R$ 600</dd></div>
                                 <div><dt>Guia nas trilhas</dt><dd>R$ 175</dd></div>
                                 <div><dt>Alimentação</dt><dd>R$ 350</dd></div>
-                                <div class="cost-total"><dt>Total do casal</dt><dd data-alugado="R$ 1.915">R$ 1.465</dd></div>
+                                <div class="cost-total"><dt>Total do casal</dt><dd><span class="cost-own">R$ 1.465</span><span class="cost-rental" hidden="until-found">R$ 1.915</span></dd></div>
                             </dl>
-                            <p class="cost-per-person"><strong data-alugado="R$ 960">R$ 735</strong> por pessoa</p>
+                            <p class="cost-per-person"><strong><span class="cost-own">R$ 735</span><span class="cost-rental" hidden="until-found">R$ 960</span></strong> por pessoa</p>
                             <p class="cost-note">Passeios de um dia saindo da capital custam em média R$ 369 por pessoa. De carro próprio, com pernoite, sai mais em conta.</p>
                             <a class="pricing-update" href="#contato" data-destino="Serra do Tepequém">Viu outro valor? Avise o portal<span class="sr-only"> sobre Serra do Tepequém</span> <span aria-hidden="true">→</span></a>
                         </article>
@@ -819,13 +819,13 @@
                             <p class="pricing-includes">Média para 2 pessoas</p>
                             <dl class="cost-list">
                                 <div><dt>Combustível</dt><dd>R$ 350</dd></div>
-                                <div class="cost-rental" hidden><dt>Aluguel (3 a 4 diárias)</dt><dd>R$ 525</dd></div>
+                                <div class="cost-rental" hidden="until-found"><dt>Aluguel (3 a 4 diárias)</dt><dd>R$ 525</dd></div>
                                 <div><dt>Hospedagem</dt><dd>R$ 375</dd></div>
                                 <div><dt>Taxas e guia</dt><dd>R$ 150</dd></div>
                                 <div><dt>Alimentação</dt><dd>R$ 375</dd></div>
-                                <div class="cost-total"><dt>Total do casal</dt><dd data-alugado="R$ 1.775">R$ 1.250</dd></div>
+                                <div class="cost-total"><dt>Total do casal</dt><dd><span class="cost-own">R$ 1.250</span><span class="cost-rental" hidden="until-found">R$ 1.775</span></dd></div>
                             </dl>
-                            <p class="cost-per-person"><strong data-alugado="R$ 890">R$ 625</strong> por pessoa</p>
+                            <p class="cost-per-person"><strong><span class="cost-own">R$ 625</span><span class="cost-rental" hidden="until-found">R$ 890</span></strong> por pessoa</p>
                             <p class="cost-note">Visitas a comunidades indígenas precisam de autorização prévia: não é só chegar e entrar.</p>
                             <a class="pricing-update" href="#contato" data-destino="Lavrado e Caracaranã">Viu outro valor? Avise o portal<span class="sr-only"> sobre Lavrado e Caracaranã</span> <span aria-hidden="true">→</span></a>
                         </article>
@@ -850,7 +850,7 @@
                             <p class="cost-per-person"><strong>R$ 6.535</strong> por pessoa</p>
                             <p class="cost-note">Pacotes de R$ 4.200 a R$ 8.500 por pessoa. O econômico já sai de Boa Vista com guias pemón, alimentação e pernoite em Santa Elena de Uairén; o completo soma traslados 4x4 e hospedagem extra. Circuitos de 10 a 12 dias partem de R$ 7.850.</p>
                             <p class="cost-note">À parte: carregador pessoal (≈ R$ 1.050 no trekking todo) e equipamentos, se não tiver (R$ 500 a R$ 1.500).</p>
-                            <p class="cost-note cost-rental" hidden>Não precisa alugar carro: o transporte até a trilha já vem no pacote.</p>
+                            <p class="cost-note cost-rental" hidden="until-found">Não precisa alugar carro: o transporte até a trilha já vem no pacote.</p>
                             <a class="pricing-update" href="#contato" data-destino="Expedição Monte Roraima">Viu outro valor? Avise o portal<span class="sr-only"> sobre Expedição Monte Roraima</span> <span aria-hidden="true">→</span></a>
                         </article>
                     </li>
@@ -919,57 +919,72 @@
                     <p>Serras, rios, cidades e encontros. Toque em uma foto para ampliar e navegar pela galeria.</p>
                 </header>
                 <div class="filter-bar" id="gallery-filters" role="group" aria-label="Filtrar fotos por tema">
-                    <button class="filter-chip" type="button" data-category="Todas" aria-pressed="true">Todas<span class="filter-count" aria-label="15 fotos">15</span></button>
-                    <button class="filter-chip" type="button" data-category="Natureza" aria-pressed="false">Natureza<span class="filter-count" aria-label="6 fotos">6</span></button>
-                    <button class="filter-chip" type="button" data-category="Boa Vista" aria-pressed="false">Boa Vista<span class="filter-count" aria-label="5 fotos">5</span></button>
-                    <button class="filter-chip" type="button" data-category="Viajantes" aria-pressed="false">Viajantes<span class="filter-count" aria-label="2 fotos">2</span></button>
-                    <button class="filter-chip" type="button" data-category="Cultura" aria-pressed="false">Cultura<span class="filter-count" aria-label="2 fotos">2</span></button>
+                    <button class="filter-chip" type="button" data-category="Todas" aria-pressed="true">Todas <span class="filter-count">15<span class="sr-only"> fotos</span></span></button>
+                    <button class="filter-chip" type="button" data-category="Natureza" aria-pressed="false">Natureza <span class="filter-count">6<span class="sr-only"> fotos</span></span></button>
+                    <button class="filter-chip" type="button" data-category="Boa Vista" aria-pressed="false">Boa Vista <span class="filter-count">5<span class="sr-only"> fotos</span></span></button>
+                    <button class="filter-chip" type="button" data-category="Viajantes" aria-pressed="false">Viajantes <span class="filter-count">2<span class="sr-only"> fotos</span></span></button>
+                    <button class="filter-chip" type="button" data-category="Cultura" aria-pressed="false">Cultura <span class="filter-count">2<span class="sr-only"> fotos</span></span></button>
                 </div>
                 <ul class="gallery-grid" id="gallery-grid">
-                    <li class="is-wide" data-category="Natureza" data-imagem="assets/img/galeria/tepuis-kukenan-roraima.webp" data-descricao="O amanhecer revela os dois tepuis lado a lado, na trilha que leva ao topo do Monte Roraima." data-autor="Paolo Costa Baldi" data-licenca="CC BY-SA 3.0" data-licenca-url="https://creativecommons.org/licenses/by-sa/3.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Kukenan_Roraima_GS.jpg">
-                        <button class="gallery-item" type="button"><img src="assets/img/galeria/tepuis-kukenan-roraima-mini.webp" alt="Os tepuis Kukenán e Roraima ao amanhecer, com a savana em primeiro plano" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Tepuis Kukenán e Roraima</strong><small>Monte Roraima</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    <li class="is-wide" data-category="Natureza" data-imagem="assets/img/galeria/tepuis-kukenan-roraima.webp" data-licenca-url="https://creativecommons.org/licenses/by-sa/3.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Kukenan_Roraima_GS.jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/tepuis-kukenan-roraima-mini.webp" alt="Os tepuis Kukenán e Roraima ao amanhecer, com a savana em primeiro plano" width="640" height="202" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Tepuis Kukenán e Roraima</strong><small>Monte Roraima</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                        <p class="gallery-details sr-only"><span class="gallery-description">O amanhecer revela os dois tepuis lado a lado, na trilha que leva ao topo do Monte Roraima.</span> <span class="gallery-credit">Foto: <span class="gallery-author">Paolo Costa Baldi</span> · <span class="gallery-license">CC BY-SA 3.0</span></span></p>
                     </li>
-                    <li class="is-tall" data-category="Viajantes" data-imagem="assets/img/viagem-de-moto.webp" data-descricao="Aventura de moto por estrada de terra, entre o capim alto e o céu nublado.">
-                        <button class="gallery-item" type="button"><img src="assets/img/viagem-de-moto.webp" alt="Casal posa ao lado de uma moto em estrada de terra cercada de vegetação" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Pé na estrada</strong><small>Roraima</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    <li class="is-tall" data-category="Viajantes" data-imagem="assets/img/viagem-de-moto.webp">
+                        <button class="gallery-item" type="button"><img src="assets/img/viagem-de-moto.webp" alt="Casal posa ao lado de uma moto em estrada de terra cercada de vegetação" width="695" height="869" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Pé na estrada</strong><small>Roraima</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                        <p class="gallery-details sr-only"><span class="gallery-description">Aventura de moto por estrada de terra, entre o capim alto e o céu nublado.</span></p>
                     </li>
-                    <li data-category="Natureza" data-imagem="assets/img/galeria/cachoeira-do-paiva.webp" data-descricao="Entre pedras e mata fechada, uma das quedas d’água mais visitadas da Serra do Tepequém." data-autor="Bruno.karklis" data-licenca="CC BY-SA 4.0" data-licenca-url="https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Cachoeira_do_Paiva_-_Tepequ%C3%A9m_(cropped).jpg">
-                        <button class="gallery-item" type="button"><img src="assets/img/galeria/cachoeira-do-paiva-mini.webp" alt="Cachoeira do Paiva descendo entre pedras e mata densa" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Cachoeira do Paiva</strong><small>Amajari</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    <li data-category="Natureza" data-imagem="assets/img/galeria/cachoeira-do-paiva.webp" data-licenca-url="https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Cachoeira_do_Paiva_-_Tepequ%C3%A9m_(cropped).jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/cachoeira-do-paiva-mini.webp" alt="Cachoeira do Paiva descendo entre pedras e mata densa" width="640" height="413" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Cachoeira do Paiva</strong><small>Amajari</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                        <p class="gallery-details sr-only"><span class="gallery-description">Entre pedras e mata fechada, uma das quedas d’água mais visitadas da Serra do Tepequém.</span> <span class="gallery-credit">Foto: <span class="gallery-author">Bruno.karklis</span> · <span class="gallery-license">CC BY-SA 4.0</span></span></p>
                     </li>
-                    <li class="is-wide" data-category="Boa Vista" data-imagem="assets/img/galeria/ponte-dos-macuxi.webp" data-descricao="O pôr do sol dourado sobre o Rio Branco, sob a ponte que liga a capital ao Cantá." data-autor="George Amaro" data-licenca="CC BY 2.0" data-licenca-url="https://creativecommons.org/licenses/by/2.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Ponte_dos_Macuxis,_Boa_Vista.jpg">
-                        <button class="gallery-item" type="button"><img src="assets/img/galeria/ponte-dos-macuxi-mini.webp" alt="Ponte dos Macuxi sobre o Rio Branco ao pôr do sol, refletida na água" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Ponte dos Macuxi</strong><small>Boa Vista</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    <li class="is-wide" data-category="Boa Vista" data-imagem="assets/img/galeria/ponte-dos-macuxi.webp" data-licenca-url="https://creativecommons.org/licenses/by/2.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Ponte_dos_Macuxis,_Boa_Vista.jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/ponte-dos-macuxi-mini.webp" alt="Ponte dos Macuxi sobre o Rio Branco ao pôr do sol, refletida na água" width="640" height="461" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Ponte dos Macuxi</strong><small>Boa Vista</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                        <p class="gallery-details sr-only"><span class="gallery-description">O pôr do sol dourado sobre o Rio Branco, sob a ponte que liga a capital ao Cantá.</span> <span class="gallery-credit">Foto: <span class="gallery-author">George Amaro</span> · <span class="gallery-license">CC BY 2.0</span></span></p>
                     </li>
-                    <li class="is-wide" data-category="Natureza" data-imagem="assets/img/galeria/lago-caracarana-entardecer.webp" data-descricao="Fim de tarde no lago da Terra Indígena Raposa Serra do Sol, com o céu refletido na água." data-autor="Guignipper" data-licenca="CC BY-SA 3.0" data-licenca-url="https://creativecommons.org/licenses/by-sa/3.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Crespusculo.jpg">
-                        <button class="gallery-item" type="button"><img src="assets/img/galeria/lago-caracarana-entardecer-mini.webp" alt="Silhueta de árvore à beira do Lago Caracaranã sob céu dramático ao entardecer" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Entardecer no Lago Caracaranã</strong><small>Normandia</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    <li class="is-wide" data-category="Natureza" data-imagem="assets/img/galeria/lago-caracarana-entardecer.webp" data-licenca-url="https://creativecommons.org/licenses/by-sa/3.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Crespusculo.jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/lago-caracarana-entardecer-mini.webp" alt="Silhueta de árvore à beira do Lago Caracaranã sob céu dramático ao entardecer" width="640" height="332" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Entardecer no Lago Caracaranã</strong><small>Normandia</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                        <p class="gallery-details sr-only"><span class="gallery-description">Fim de tarde no lago da Terra Indígena Raposa Serra do Sol, com o céu refletido na água.</span> <span class="gallery-credit">Foto: <span class="gallery-author">Guignipper</span> · <span class="gallery-license">CC BY-SA 3.0</span></span></p>
                     </li>
-                    <li data-category="Boa Vista" data-imagem="assets/img/galeria/orla-taumanan-aerea.webp" data-descricao="O calçadão às margens do Rio Branco, ponto de encontro da capital no fim do dia." data-autor="Ederson Brito/MTur" data-licenca="Domínio público" data-fonte="https://commons.wikimedia.org/wiki/File:EDERSON_BRITO_ORLA_TAUMANAN_BOA_VISTA_RR_(27203212678).jpg">
-                        <button class="gallery-item" type="button"><img src="assets/img/galeria/orla-taumanan-aerea-mini.webp" alt="Vista aérea da Orla Taumanan e do Rio Branco em Boa Vista" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Orla Taumanan vista do alto</strong><small>Boa Vista</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    <li data-category="Boa Vista" data-imagem="assets/img/galeria/orla-taumanan-aerea.webp" data-fonte="https://commons.wikimedia.org/wiki/File:EDERSON_BRITO_ORLA_TAUMANAN_BOA_VISTA_RR_(27203212678).jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/orla-taumanan-aerea-mini.webp" alt="Vista aérea da Orla Taumanan e do Rio Branco em Boa Vista" width="640" height="359" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Orla Taumanan vista do alto</strong><small>Boa Vista</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                        <p class="gallery-details sr-only"><span class="gallery-description">O calçadão às margens do Rio Branco, ponto de encontro da capital no fim do dia.</span> <span class="gallery-credit">Foto: <span class="gallery-author">Ederson Brito/MTur</span> · <span class="gallery-license">Domínio público</span></span></p>
                     </li>
-                    <li data-category="Natureza" data-imagem="assets/img/galeria/monte-roraima-topo.webp" data-descricao="Paredões de arenito e o vale lá embaixo, perto do ponto mais alto do tepui." data-autor="Tinhojv" data-licenca="CC BY-SA 4.0" data-licenca-url="https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Monte_Roraima,_ponto_mais_alto.jpg">
-                        <button class="gallery-item" type="button"><img src="assets/img/galeria/monte-roraima-topo-mini.webp" alt="Paredões de rocha no topo do Monte Roraima com vale e nuvens ao fundo" loading="lazy" decoding="async"><span class="gallery-caption"><strong>No topo do Monte Roraima</strong><small>Monte Roraima</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    <li data-category="Natureza" data-imagem="assets/img/galeria/monte-roraima-topo.webp" data-licenca-url="https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Monte_Roraima,_ponto_mais_alto.jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/monte-roraima-topo-mini.webp" alt="Paredões de rocha no topo do Monte Roraima com vale e nuvens ao fundo" width="640" height="427" loading="lazy" decoding="async"><span class="gallery-caption"><strong>No topo do Monte Roraima</strong><small>Monte Roraima</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                        <p class="gallery-details sr-only"><span class="gallery-description">Paredões de arenito e o vale lá embaixo, perto do ponto mais alto do tepui.</span> <span class="gallery-credit">Foto: <span class="gallery-author">Tinhojv</span> · <span class="gallery-license">CC BY-SA 4.0</span></span></p>
                     </li>
-                    <li data-category="Natureza" data-imagem="assets/img/galeria/praia-raposa-serra-do-sol.webp" data-descricao="Praia de água doce na Terra Indígena Raposa Serra do Sol, com as serras no horizonte." data-autor="Roosevelt Pinheiro" data-licenca="CC BY 3.0 br" data-licenca-url="https://creativecommons.org/licenses/by/3.0/br/" data-fonte="https://commons.wikimedia.org/wiki/File:Raposa_sol.JPG">
-                        <button class="gallery-item" type="button"><img src="assets/img/galeria/praia-raposa-serra-do-sol-mini.webp" alt="Praia de areia branca à beira de um lago, com serras ao fundo" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Areia branca no lavrado</strong><small>Raposa Serra do Sol</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    <li data-category="Natureza" data-imagem="assets/img/galeria/praia-raposa-serra-do-sol.webp" data-licenca-url="https://creativecommons.org/licenses/by/3.0/br/" data-fonte="https://commons.wikimedia.org/wiki/File:Raposa_sol.JPG">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/praia-raposa-serra-do-sol-mini.webp" alt="Praia de areia branca à beira de um lago, com serras ao fundo" width="640" height="430" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Areia branca no lavrado</strong><small>Raposa Serra do Sol</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                        <p class="gallery-details sr-only"><span class="gallery-description">Praia de água doce na Terra Indígena Raposa Serra do Sol, com as serras no horizonte.</span> <span class="gallery-credit">Foto: <span class="gallery-author">Roosevelt Pinheiro</span> · <span class="gallery-license">CC BY 3.0 br</span></span></p>
                     </li>
-                    <li data-category="Boa Vista" data-imagem="assets/img/galeria/catedral-cristo-redentor.webp" data-descricao="A arquitetura moderna da catedral da capital ganha outro brilho iluminada à noite." data-autor="Jason R Nascimento" data-licenca="CC BY-SA 3.0" data-licenca-url="https://creativecommons.org/licenses/by-sa/3.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Catedral_Cristo_Redentor_004_-_panoramio.jpg">
-                        <button class="gallery-item" type="button"><img src="assets/img/galeria/catedral-cristo-redentor-mini.webp" alt="Fachada curva da Catedral Cristo Redentor iluminada à noite" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Catedral Cristo Redentor</strong><small>Boa Vista</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    <li data-category="Boa Vista" data-imagem="assets/img/galeria/catedral-cristo-redentor.webp" data-licenca-url="https://creativecommons.org/licenses/by-sa/3.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Catedral_Cristo_Redentor_004_-_panoramio.jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/catedral-cristo-redentor-mini.webp" alt="Fachada curva da Catedral Cristo Redentor iluminada à noite" width="640" height="360" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Catedral Cristo Redentor</strong><small>Boa Vista</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                        <p class="gallery-details sr-only"><span class="gallery-description">A arquitetura moderna da catedral da capital ganha outro brilho iluminada à noite.</span> <span class="gallery-credit">Foto: <span class="gallery-author">Jason R Nascimento</span> · <span class="gallery-license">CC BY-SA 3.0</span></span></p>
                     </li>
-                    <li class="is-tall" data-category="Viajantes" data-imagem="assets/img/beira-do-rio.webp" data-descricao="Pedras, areia e mata: na seca, as margens dos rios viram mirantes naturais.">
-                        <button class="gallery-item" type="button"><img src="assets/img/beira-do-rio.webp" alt="Casal sorri sobre pedras à beira de um rio, com mata e céu azul ao fundo" loading="lazy" decoding="async"><span class="gallery-caption"><strong>À beira do rio</strong><small>Roraima</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    <li class="is-tall" data-category="Viajantes" data-imagem="assets/img/beira-do-rio.webp">
+                        <button class="gallery-item" type="button"><img src="assets/img/beira-do-rio.webp" alt="Casal sorri sobre pedras à beira de um rio, com mata e céu azul ao fundo" width="695" height="869" loading="lazy" decoding="async"><span class="gallery-caption"><strong>À beira do rio</strong><small>Roraima</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                        <p class="gallery-details sr-only"><span class="gallery-description">Pedras, areia e mata: na seca, as margens dos rios viram mirantes naturais.</span></p>
                     </li>
-                    <li data-category="Cultura" data-imagem="assets/img/galeria/monumento-aos-pioneiros.webp" data-descricao="Painel esculpido no Centro Cívico que homenageia quem ajudou a construir Roraima." data-autor="Rogério Regis" data-licenca="CC BY-SA 3.0" data-licenca-url="https://creativecommons.org/licenses/by-sa/3.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Monumento_aos_Pioneiros_-_panoramio.jpg">
-                        <button class="gallery-item" type="button"><img src="assets/img/galeria/monumento-aos-pioneiros-mini.webp" alt="Painel em relevo do Monumento aos Pioneiros com figuras esculpidas" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Monumento aos Pioneiros</strong><small>Boa Vista</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    <li data-category="Cultura" data-imagem="assets/img/galeria/monumento-aos-pioneiros.webp" data-licenca-url="https://creativecommons.org/licenses/by-sa/3.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Monumento_aos_Pioneiros_-_panoramio.jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/monumento-aos-pioneiros-mini.webp" alt="Painel em relevo do Monumento aos Pioneiros com figuras esculpidas" width="640" height="480" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Monumento aos Pioneiros</strong><small>Boa Vista</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                        <p class="gallery-details sr-only"><span class="gallery-description">Painel esculpido no Centro Cívico que homenageia quem ajudou a construir Roraima.</span> <span class="gallery-credit">Foto: <span class="gallery-author">Rogério Regis</span> · <span class="gallery-license">CC BY-SA 3.0</span></span></p>
                     </li>
-                    <li data-category="Natureza" data-imagem="assets/img/galeria/serra-do-tepequem.webp" data-descricao="Campos abertos, céu imenso e riachos de pedras avermelhadas no alto da serra." data-autor="Carlos Marques" data-licenca="CC BY-SA 2.0" data-licenca-url="https://creativecommons.org/licenses/by-sa/2.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Paisagem_da_Serra_do_Tepequ%C3%A9m.jpg">
-                        <button class="gallery-item" type="button"><img src="assets/img/galeria/serra-do-tepequem-mini.webp" alt="Riacho entre pedras avermelhadas no alto da Serra do Tepequém, sob céu com nuvens" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Serra do Tepequém</strong><small>Amajari</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    <li data-category="Natureza" data-imagem="assets/img/galeria/serra-do-tepequem.webp" data-licenca-url="https://creativecommons.org/licenses/by-sa/2.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Paisagem_da_Serra_do_Tepequ%C3%A9m.jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/serra-do-tepequem-mini.webp" alt="Riacho entre pedras avermelhadas no alto da Serra do Tepequém, sob céu com nuvens" width="640" height="396" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Serra do Tepequém</strong><small>Amajari</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                        <p class="gallery-details sr-only"><span class="gallery-description">Campos abertos, céu imenso e riachos de pedras avermelhadas no alto da serra.</span> <span class="gallery-credit">Foto: <span class="gallery-author">Carlos Marques</span> · <span class="gallery-license">CC BY-SA 2.0</span></span></p>
                     </li>
-                    <li data-category="Boa Vista" data-imagem="assets/img/galeria/praca-das-aguas.webp" data-descricao="Espaço de lazer da capital, com fontes, quiosques e painéis de energia solar." data-autor="Prefeitura de Boa Vista/Divulgação" data-licenca="CC BY-SA 4.0" data-licenca-url="https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Pra%C3%A7a_das_%C3%81guas_em_Boa_Vista.jpg">
-                        <button class="gallery-item" type="button"><img src="assets/img/galeria/praca-das-aguas-mini.webp" alt="Praça das Águas em Boa Vista, com pórtico e quiosque de vidro" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Praça das Águas</strong><small>Boa Vista</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    <li data-category="Boa Vista" data-imagem="assets/img/galeria/praca-das-aguas.webp" data-licenca-url="https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br" data-fonte="https://commons.wikimedia.org/wiki/File:Pra%C3%A7a_das_%C3%81guas_em_Boa_Vista.jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/galeria/praca-das-aguas-mini.webp" alt="Praça das Águas em Boa Vista, com pórtico e quiosque de vidro" width="620" height="465" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Praça das Águas</strong><small>Boa Vista</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                        <p class="gallery-details sr-only"><span class="gallery-description">Espaço de lazer da capital, com fontes, quiosques e painéis de energia solar.</span> <span class="gallery-credit">Foto: <span class="gallery-author">Prefeitura de Boa Vista/Divulgação</span> · <span class="gallery-license">CC BY-SA 4.0</span></span></p>
                     </li>
-                    <li data-category="Cultura" data-imagem="assets/img/artesanato-roraima.webp" data-descricao="Colares de sementes e contas feitos à mão: a natureza da região transformada em arte." data-autor="Ederson Brito/MTur" data-licenca="Domínio público" data-fonte="https://commons.wikimedia.org/wiki/File:EDERSON_BRITO_ARTESANATO_BOA_VISTA_RR_(39266621760).jpg">
-                        <button class="gallery-item" type="button"><img src="assets/img/artesanato-roraima.webp" alt="Colares de sementes e contas do artesanato regional de Roraima" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Arte que conta histórias</strong><small>Roraima</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    <li data-category="Cultura" data-imagem="assets/img/artesanato-roraima.webp" data-fonte="https://commons.wikimedia.org/wiki/File:EDERSON_BRITO_ARTESANATO_BOA_VISTA_RR_(39266621760).jpg">
+                        <button class="gallery-item" type="button"><img src="assets/img/artesanato-roraima.webp" alt="Colares de sementes e contas do artesanato regional de Roraima" width="1000" height="1245" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Arte que conta histórias</strong><small>Roraima</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                        <p class="gallery-details sr-only"><span class="gallery-description">Colares de sementes e contas feitos à mão: a natureza da região transformada em arte.</span> <span class="gallery-credit">Foto: <span class="gallery-author">Ederson Brito/MTur</span> · <span class="gallery-license">Domínio público</span></span></p>
                     </li>
-                    <li data-category="Boa Vista" data-imagem="assets/img/boa-vista-centro-civico.webp" data-descricao="A capital planejada em formato de leque, com a Praça do Centro Cívico ao centro." data-autor="Jorge Macedo/Divulgação">
-                        <button class="gallery-item" type="button"><img src="assets/img/boa-vista-centro-civico.webp" alt="Vista aérea do centro de Boa Vista, com a Praça do Centro Cívico e o Rio Branco ao fundo" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Boa Vista vista do alto</strong><small>Boa Vista</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                    <li data-category="Boa Vista" data-imagem="assets/img/boa-vista-centro-civico.webp">
+                        <button class="gallery-item" type="button"><img src="assets/img/boa-vista-centro-civico.webp" alt="Vista aérea do centro de Boa Vista, com a Praça do Centro Cívico e o Rio Branco ao fundo" width="612" height="612" loading="lazy" decoding="async"><span class="gallery-caption"><strong>Boa Vista vista do alto</strong><small>Boa Vista</small></span><span class="gallery-zoom" aria-hidden="true">⤢</span></button>
+                        <p class="gallery-details sr-only"><span class="gallery-description">A capital planejada em formato de leque, com a Praça do Centro Cívico ao centro.</span> <span class="gallery-credit">Foto: <span class="gallery-author">Jorge Macedo/Divulgação</span></span></p>
                     </li>
                 </ul>
             </div>
@@ -981,9 +996,9 @@
                     <p class="kicker kicker-dark"><span aria-hidden="true">✉</span> Colabore com o portal</p>
                     <h2>Viu um preço<br><em>diferente<br>por aí?</em></h2>
                     <p>Entradas, guias, pousadas e combustível mudam de preço. Se você esteve em algum ponto turístico de Roraima, conte quanto pagou. Conferimos cada informação antes de atualizar as estimativas.</p>
-                    <address class="contact-details"><span aria-hidden="true">✉</span>　oi@conhecaroraima.com.br
-                        <br><span aria-hidden="true">☎</span>　(95) 9999-88888
-                        <br><span aria-hidden="true">◎</span>　@conhecaroraima</address>
+                    <address class="contact-details"><span aria-hidden="true">✉</span> oi@conhecaroraima.com.br
+                        <br><span aria-hidden="true">☎</span> (95) 9999-88888
+                        <br><span aria-hidden="true">◎</span> @conhecaroraima</address>
                 </header>
                 <form id="contact-form" action="#" method="POST" aria-label="Formulário para enviar informações ao portal">
                     <fieldset>
@@ -1053,7 +1068,7 @@
                     </fieldset>
 
                     <div class="form-bottom"><small>Campos marcados com * são obrigatórios.</small>
-                        <button class="button button-dark" type="submit">Enviar informação　<span aria-hidden="true">→</span></button>
+                        <button class="button button-dark" type="submit">Enviar informação <span aria-hidden="true">→</span></button>
                     </div>
                     <p class="form-success" id="form-success" hidden><span aria-hidden="true">✓</span> Informação recebida. Obrigado por ajudar outros viajantes!</p>
                 </form>
@@ -1063,7 +1078,7 @@
 
     <footer>
         <div class="container footer-top">
-            <div class="footer-brand"><a class="brand" href="#top"><span class="brand-mark">CR</span> <span>CONHEÇA RORAIMA</span></a>
+            <div class="footer-brand"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">CR</span> <span>CONHEÇA RORAIMA</span></a>
                 <p>Um portal para olhar o extremo norte com curiosidade, respeito e vontade de voltar.</p>
             </div>
             <nav aria-label="Links do rodapé">
@@ -1079,23 +1094,22 @@
         <p class="container footer-bottom"><span>© 2026 Conheça Roraima</span><span>Feito com respeito ao território e às pessoas</span><span class="footer-credit">Desenvolvido por <a href="https://github.com/ivoshow" target="_blank" rel="noopener author">Ivonielson Freitas<span class="sr-only"> (abre em nova aba)</span></a></span></p>
         <p class="container footer-photo-credits">Fotos: Orla Taumanan — Evelyn Araripe/Minube · Vista aérea de Boa Vista — Jorge Macedo/Divulgação · Artesanato — Ederson Brito/MTur</p>
     </footer>
-    <!-- aqui começam os modais -->
-    <dialog class="welcome-modal" id="welcome-modal" aria-labelledby="welcome-title" aria-describedby="welcome-text">
-        <figure class="welcome-image">
-            <img id="welcome-image" src="assets/img/trilha-monte-roraima.webp" alt="Trilha em direção ao Monte Roraima" width="669" height="446" decoding="async">
-            <figcaption><span aria-hidden="true">⌖</span> <span id="welcome-place">Pacaraima · Roraima</span></figcaption>
-        </figure>
-        <div class="welcome-content">
-            <p class="kicker kicker-gold"><span></span> <span id="welcome-kicker">Destaque da temporada</span></p>
-            <h2 id="welcome-title">Suba ao topo do<br><em>Monte Roraima.</em></h2>
-            <p id="welcome-text">Um dos tepuis mais antigos do planeta, com cerca de 2.800 metros de altitude, vales de cristais e cachoeiras que caem direto das nuvens. Uma travessia de 7 a 9 dias que marca para sempre.</p>
-            <div class="welcome-actions">
-                <a class="button button-gold" id="welcome-cta" href="#experiencias" data-close-modal><span id="welcome-cta-text">Quero conhecer</span> <span aria-hidden="true">→</span></a>
-                <button class="welcome-dismiss" type="button" data-close-modal>Agora não</button>
-            </div>
+    <!-- Card de destaque: NÃO é um modal. Aparece no canto depois que a pessoa
+         rola além do hero, não bloqueia a página e não rouba o foco. O JS troca
+         o conteúdo padrão abaixo pelo próximo evento da agenda. -->
+    <aside class="welcome-card" id="welcome-card" aria-label="Destaque da agenda" hidden>
+        <img class="welcome-card-image" id="welcome-image" src="assets/img/trilha-monte-roraima.webp" alt="Trilha em direção ao Monte Roraima" width="669" height="446" loading="lazy" decoding="async">
+        <div class="welcome-card-content">
+            <p class="welcome-card-kicker" id="welcome-kicker">Destaque da temporada</p>
+            <h2 id="welcome-title">Monte Roraima</h2>
+            <p class="welcome-card-place"><span aria-hidden="true">⌖</span> <span id="welcome-place">Pacaraima · Roraima</span></p>
+            <p class="welcome-card-text" id="welcome-text">Um dos tepuis mais antigos do planeta, com vales de cristais e cachoeiras que caem direto das nuvens.</p>
+            <a class="welcome-card-cta" id="welcome-cta" href="#experiencias"><span id="welcome-cta-text">Quero conhecer</span> <span aria-hidden="true">→</span></a>
         </div>
-        <button class="welcome-close" type="button" aria-label="Fechar destaque" data-close-modal>×</button>
-    </dialog>
+        <button class="welcome-card-close" id="welcome-close" type="button" aria-label="Fechar destaque">×</button>
+    </aside>
+
+    <!-- aqui começam os modais -->
 
     <dialog class="municipality-modal" id="municipality-modal" aria-labelledby="municipality-modal-title">
         <header class="municipality-modal-header">

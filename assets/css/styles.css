@@ -150,8 +150,20 @@ button {
 
 /* o atributo hidden sempre esconde: sem isso, um display definido no CSS
    (grid, flex...) venceria o hidden e o elemento continuaria na tela */
-[hidden] {
+[hidden]:not([hidden="until-found"]) {
   display: none !important;
+}
+
+/* hidden="until-found": o texto fica escondido, mas continua no HTML e o
+   Ctrl+F do navegador encontra e revela. O navegador só esconde o conteúdo
+   (content-visibility), então a caixa vira 0 × 0 e sai do fluxo para não
+   deixar borda, sombra ou espaço vazio na tela */
+[hidden="until-found"] {
+  position: absolute !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
 }
 
 
@@ -1296,6 +1308,17 @@ em {
   font: normal .75rem var(--fonte-texto);
 }
 
+/* detalhes revelados pelo Ctrl+F (o "Saiba mais" continua abrindo o modal) */
+.municipality-details { margin-top: .5rem; }
+.municipality-activities {
+  margin: .5rem 0 0;
+  padding-left: 1rem;
+  list-style: disc;
+  color: var(--texto-tenue);
+  font-size: .75rem;
+  line-height: 1.5;
+}
+
 /* tabela de municípios */
 .table-wrapper {
   margin-top: 2.5rem;
@@ -1509,6 +1532,8 @@ em {
   font-size: .75rem;
 }
 
+.best-time > span { margin-right: .5em; }
+
 .best-time strong {
   color: var(--verde-floresta);
 }
@@ -1545,6 +1570,8 @@ em {
   font-size: .9375rem;
   line-height: 1.6;
 }
+
+.contact-details span { margin-right: .75em; }
 
 .contact-details {
   margin-top: 1.6875rem;
@@ -1866,14 +1893,15 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
 
 
 /* ==========================================================================
-   18. MODAL DE BOAS-VINDAS
+   18. CARD DE DESTAQUE E MODAIS
    --------------------------------------------------------------------------
-   Usa o elemento nativo <dialog>: com showModal() o navegador já cuida do
-   foco preso dentro do modal, da tecla Esc e do fundo (::backdrop).
+   O destaque de boas-vindas é um card fixo no canto, e não um modal: não
+   cobre a página, não prende o foco e só aparece depois da rolagem.
+   Os modais (município e galeria) usam o elemento nativo <dialog>: com
+   showModal() o navegador já cuida do foco, da tecla Esc e do ::backdrop.
    ========================================================================== */
 
-/* base comum aos dois modais (boas-vindas e detalhes do município) */
-.welcome-modal,
+/* base comum aos modais (detalhes do município e galeria) */
 .municipality-modal,
 .lightbox {
   max-height: calc(100dvh - 2rem);
@@ -1882,95 +1910,108 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   border-radius: var(--raio-grande);
 }
 
-.welcome-modal::backdrop,
 .municipality-modal::backdrop,
 .lightbox::backdrop {
   background: rgba(8, 24, 19, .72);
   backdrop-filter: blur(4px);
 }
 
-.welcome-modal {
-  width: min(52rem, calc(100% - 2rem));
+.welcome-card {
+  position: fixed;
+  z-index: 24;   /* abaixo do WhatsApp (25) e do toast (30) */
+  left: 1.375rem;
+  bottom: 1.375rem;
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  width: min(25rem, calc(100% - 2.75rem));
+  overflow: hidden;
   border: 1px solid rgba(248, 232, 189, .24);
+  border-radius: var(--raio-medio);
   background:
-    radial-gradient(circle at 85% 15%, rgba(211, 167, 69, .16), transparent 18rem),
+    radial-gradient(circle at 85% 15%, rgba(211, 167, 69, .16), transparent 12rem),
     var(--verde-floresta);
   color: var(--creme-claro);
-  box-shadow: 0 2rem 5rem rgba(0, 0, 0, .4);
-}
-
-.welcome-modal[open] {
-  display: grid;
-  grid-template-columns: 1fr 1.15fr;
+  box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, .35);
   animation: modalIn .45s cubic-bezier(.2, .7, .2, 1);
 }
 
-.welcome-image {
-  position: relative;
-  min-height: 100%;
-}
-
-.welcome-image img {
+.welcome-card-image {
   height: 100%;
   object-fit: cover;
 }
 
-.welcome-image figcaption {
-  position: absolute;
-  left: 1rem;
-  bottom: 1rem;
-  border-radius: var(--raio-pilula);
-  background: rgba(16, 45, 37, .82);
-  padding: .5rem .9rem;
-  font-size: .6875rem;
-  font-weight: var(--peso-negrito);
-  letter-spacing: var(--espacamento-letra);
-  text-transform: uppercase;
-}
-
-.welcome-content {
+.welcome-card-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 1.25rem;
-  padding: 3rem 2.5rem;
+  align-items: flex-start;
+  gap: .375rem;
+  padding: 1.125rem 2.75rem 1.125rem 1.125rem;   /* direita: espaço do × */
 }
 
-.welcome-content h2 {
+.welcome-card-kicker {
+  color: #f2cb6a;
+  font-size: .5625rem;
+  font-weight: var(--peso-negrito);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.welcome-card h2 {
   font-family: var(--fonte-titulo);
-  font-size: clamp(1.6rem, 4vw, 2.25rem);
+  font-size: 1.125rem;
   font-weight: var(--peso-regular);
-  line-height: 1.15;
+  line-height: 1.25;
 }
 
-.welcome-content h2 em { color: var(--ouro-brilho); }
-
-.welcome-content > p:not(.kicker) {
-  color: var(--texto-claro-suave);
-  font-size: .9375rem;
-  line-height: 1.65;
-}
-
-.welcome-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem 1.5rem;
-  margin-top: .5rem;
-}
-
-.welcome-dismiss {
-  background: none;
-  color: var(--texto-claro-suave);
-  font: inherit;
+.welcome-card-place {
+  color: var(--texto-claro-tenue);
   font-size: .6875rem;
+}
+
+/* descrição limitada a 2 linhas: o texto completo está na agenda */
+.welcome-card-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  color: var(--texto-claro-suave);
+  font-size: .75rem;
+  line-height: 1.5;
+}
+
+.welcome-card-cta {
+  margin-top: .25rem;
+  color: var(--ouro-brilho);
+  font-size: .625rem;
   font-weight: var(--peso-negrito);
   letter-spacing: var(--espacamento-letra);
   text-transform: uppercase;
 }
-.welcome-dismiss:hover { color: var(--ouro); }
+.welcome-card-cta:hover { color: var(--creme-claro); }
 
-.welcome-close, .modal-close {
+.welcome-card-close {
+  position: absolute;
+  top: .625rem;
+  right: .625rem;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(248, 232, 189, .3);
+  border-radius: var(--raio-circulo);
+  background: rgba(16, 45, 37, .6);
+  color: var(--creme-claro);
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: var(--transicao);
+}
+.welcome-card-close:hover { background: var(--ouro); color: var(--verde-floresta); }
+
+.welcome-card :focus-visible {
+  outline: 2px solid var(--ouro-brilho);
+  outline-offset: 3px;
+}
+
+.modal-close {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -1984,10 +2025,8 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
   line-height: 1;
   transition: var(--transicao);
 }
-.welcome-close:hover,
 .modal-close:hover { background: var(--ouro); color: var(--verde-floresta); }
 
-.welcome-modal :focus-visible,
 .municipality-modal :focus-visible,
 .lightbox :focus-visible {
   outline: 2px solid var(--ouro-brilho);
@@ -2394,8 +2433,6 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
 .cost-list .cost-rental dd { color: var(--ouro-escuro); }
 .pricing-card.featured .cost-list .cost-rental dt,
 .pricing-card.featured .cost-list .cost-rental dd { color: var(--ouro-brilho); }
-.cost-list > div[hidden],
-.cost-note[hidden],
 .car-mode[hidden] { display: none; }
 
 /* margin-top:auto alinha os links na base, mesmo com textos de tamanhos diferentes */
@@ -2626,6 +2663,8 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
 }
 
 .filter-count {
+  position: relative;   /* prende o texto .sr-only aqui dentro: sem isso, ele
+                           escapa da barra com rolagem e alarga a página */
   display: grid;
   place-items: center;
   min-width: 1.4rem;
@@ -3452,9 +3491,10 @@ body.js-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
     gap: .75rem 1rem;
   }
 
-  .welcome-modal[open] { grid-template-columns: 1fr; }
-  .welcome-image img { height: 11rem; }
-  .welcome-content { padding: 2rem 1.5rem; }
+  /* celular: faixa compacta no rodapé, sem foto, deixando livre o WhatsApp */
+  .welcome-card { left: 1rem; right: 5.5rem; bottom: 1rem; width: auto; grid-template-columns: 1fr; }
+  .welcome-card-image, .welcome-card-text { display: none; }
+  .welcome-card-content { padding: .875rem 2.75rem .875rem 1rem; }
 
   .municipality-modal-header { padding: 1.75rem 1.5rem 1.5rem; }
   .municipality-modal-body { padding: 1.5rem; }

@@ -216,9 +216,10 @@ upcomingEvents.forEach((evento) => {
 agendaList?.append(...upcomingEvents.map((evento) => evento.card));
 
 function setAgendaExpanded(expanded) {
-  // do 5º evento em diante, o card só aparece com a agenda expandida
+  // do 5º evento em diante, o card só aparece com a agenda expandida.
+  // 'until-found' esconde da tela, mas o Ctrl+F ainda encontra o texto
   [...agendaList.children].forEach((card, index) => {
-    card.hidden = !expanded && index >= AGENDA_VISIBLE;
+    card.hidden = !expanded && index >= AGENDA_VISIBLE ? 'until-found' : false;
   });
   agendaToggle.setAttribute('aria-expanded', String(expanded));
   agendaToggle.firstChild.textContent = expanded ? 'Mostrar menos ' : 'Ver agenda completa ';
@@ -235,8 +236,13 @@ agendaToggle?.addEventListener('click', () => {
   setAgendaExpanded(agendaToggle.getAttribute('aria-expanded') !== 'true');
 });
 
-// Modal de boas-vindas: aparece só na primeira visita (o navegador lembra via localStorage).
-const welcomeModal = document.querySelector('#welcome-modal');
+// o Ctrl+F achou um evento escondido: abre a agenda completa
+agendaList?.addEventListener('beforematch', () => setAgendaExpanded(true));
+
+// Card de destaque: aparece só na primeira visita (o navegador lembra via
+// localStorage). Não é modal: não bloqueia a página nem tira o foco de quem
+// está lendo, e só surge depois que a pessoa rola além do hero.
+const welcomeCard = document.querySelector('#welcome-card');
 const WELCOME_KEY = 'conheca-roraima:welcome-visto';
 
 function welcomeAlreadySeen() {
@@ -251,40 +257,52 @@ function markWelcomeSeen() {
   try {
     localStorage.setItem(WELCOME_KEY, 'sim');
   } catch {
-    // sem armazenamento, o modal volta na próxima visita — sem problema
+    // sem armazenamento, o card volta na próxima visita — sem problema
   }
 }
 
-// troca o destaque fixo do HTML pelo próximo evento da agenda
+// troca o destaque padrão do HTML pelo próximo evento da agenda
 function fillWelcomeWithEvent(evento) {
   const { card } = evento;
-  const image = welcomeModal.querySelector('#welcome-image');
+  const image = welcomeCard.querySelector('#welcome-image');
   image.src = card.dataset.imagem;
   image.alt = card.dataset.imagemAlt;
   const local = card.querySelector('.agenda-meta span:last-child').textContent;
-  welcomeModal.querySelector('#welcome-place').textContent = `${local} · Roraima`;
-  welcomeModal.querySelector('#welcome-kicker').textContent = evento.status === 'now'
+  welcomeCard.querySelector('#welcome-place').textContent = `${local} · Roraima`;
+  welcomeCard.querySelector('#welcome-kicker').textContent = evento.status === 'now'
     ? 'Acontecendo agora'
     : `Próximo evento · ${countdownText(evento).toLowerCase()}`;
-
-  const em = document.createElement('em');
-  em.textContent = `${card.querySelector('h3').textContent}.`;
-  welcomeModal.querySelector('#welcome-title').replaceChildren('Não perca:', document.createElement('br'), em);
-  const description = card.querySelector('.agenda-description').textContent;
-  const period = card.querySelector('.agenda-period').textContent;
-  welcomeModal.querySelector('#welcome-text').textContent = `${description} ${period}.`;
-
-  welcomeModal.querySelector('#welcome-cta').href = '#agenda';
-  welcomeModal.querySelector('#welcome-cta-text').textContent = 'Ver a agenda';
+  welcomeCard.querySelector('#welcome-title').textContent = card.querySelector('h3').textContent;
+  welcomeCard.querySelector('#welcome-text').textContent = card.querySelector('.agenda-description').textContent;
+  welcomeCard.querySelector('#welcome-cta').href = '#agenda';
+  welcomeCard.querySelector('#welcome-cta-text').textContent = 'Ver a agenda';
 }
 
-if (welcomeModal?.showModal && !welcomeAlreadySeen()) {
-  if (upcomingEvents.length) fillWelcomeWithEvent(upcomingEvents[0]);
-  // espera 600ms para a página "assentar" antes de abrir
-  setTimeout(() => welcomeModal.showModal(), 600);
+function closeWelcome() {
+  welcomeCard.hidden = true;
+  markWelcomeSeen();
+}
 
-  // o evento close dispara em qualquer forma de fechar: botões, Esc ou clique fora
-  welcomeModal.addEventListener('close', markWelcomeSeen);
+const hero = document.querySelector('.hero');
+
+if (welcomeCard && hero && 'IntersectionObserver' in window && !welcomeAlreadySeen()) {
+  if (upcomingEvents.length) fillWelcomeWithEvent(upcomingEvents[0]);
+
+  // em vez de um temporizador, a rolagem decide: quando o hero sai da tela
+  // por cima, a pessoa já começou a explorar e o card aparece no canto
+  const heroObserver = new IntersectionObserver(([entry], observer) => {
+    if (entry.isIntersecting || entry.boundingClientRect.top > 0) return;
+    welcomeCard.hidden = false;
+    observer.disconnect();
+  });
+  heroObserver.observe(hero);
+
+  welcomeCard.querySelector('#welcome-close').addEventListener('click', closeWelcome);
+  welcomeCard.querySelector('#welcome-cta').addEventListener('click', closeWelcome);
+  // Esc fecha o card se o foco estiver nele
+  welcomeCard.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeWelcome();
+  });
 }
 
 // ==========================================================================
@@ -472,8 +490,10 @@ if (testimonialsTrack) {
 
 // ==========================================================================
 // GALERIA
-// Mosaico de miniaturas com filtro por tema. Cada <li> guarda em data-*
-// a foto grande, a descrição e o crédito. Ao clicar, a foto abre no
+// Mosaico de miniaturas com filtro por tema. Cada <li> traz no HTML a
+// descrição e o crédito (texto para leitor de tela e buscadores); o data-*
+// guarda só endereços: a foto grande, a licença e a página original.
+// Ao clicar, a foto abre no
 // visualizador (<dialog>), que navega pelas setas, pelo teclado (← →) e
 // pelo arrasto do dedo no celular.
 // ==========================================================================
@@ -501,7 +521,10 @@ function renderGallery() {
 }
 
 // crédito: "Foto: autor · licença · ver original" (as licenças CC pedem autor e link)
-function renderCredit({ autor, licenca, licencaUrl, fonte }) {
+function renderCredit(item) {
+  const autor = item.querySelector('.gallery-author')?.textContent;
+  const licenca = item.querySelector('.gallery-license')?.textContent;
+  const { licencaUrl, fonte } = item.dataset;
   const credit = document.querySelector('#lightbox-credit');
   if (!autor) {
     credit.replaceChildren();
@@ -539,9 +562,9 @@ function showPhoto(index) {
   document.querySelector('#lightbox-category').textContent = item.dataset.category;
   document.querySelector('#lightbox-local').textContent = item.querySelector('.gallery-caption small').textContent;
   document.querySelector('#lightbox-title').textContent = item.querySelector('.gallery-caption strong').textContent;
-  document.querySelector('#lightbox-description').textContent = item.dataset.descricao;
+  document.querySelector('#lightbox-description').textContent = item.querySelector('.gallery-description').textContent;
   document.querySelector('#lightbox-counter').textContent = `${galleryIndex + 1} / ${galleryView.length}`;
-  renderCredit(item.dataset);
+  renderCredit(item);
 
   // pré-carrega as vizinhas: a troca de foto fica instantânea
   [galleryIndex - 1, galleryIndex + 1].forEach((i) => {
@@ -607,24 +630,30 @@ document.querySelectorAll('[data-destino]').forEach((link) => {
   });
 });
 
-// Carro próprio ou alugado: mostra as diárias do aluguel e troca os totais.
-// Os totais com aluguel ficam em data-alugado; o valor original é guardado em data-proprio.
+// Carro próprio ou alugado: os dois conjuntos de valores já estão no HTML
+// (.cost-own e .cost-rental); o JS só alterna qual deles fica visível.
 const carMode = document.querySelector('#car-mode');
 const pricingGrid = document.querySelector('#pricing-grid');
 
-if (carMode && pricingGrid) {
-  const totals = pricingGrid.querySelectorAll('[data-alugado]');
-  totals.forEach((el) => { el.dataset.proprio = el.textContent; });
+function setCarMode(rented) {
+  carMode.querySelectorAll('[data-car]').forEach((b) => {
+    b.setAttribute('aria-pressed', String((b.dataset.car === 'alugado') === rented));
+  });
+  // 'until-found': o valor escondido continua encontrável pelo Ctrl+F
+  pricingGrid.querySelectorAll('.cost-rental').forEach((el) => { el.hidden = rented ? false : 'until-found'; });
+  pricingGrid.querySelectorAll('.cost-own').forEach((el) => { el.hidden = rented ? 'until-found' : false; });
+}
 
+if (carMode && pricingGrid) {
   carMode.hidden = false;
   carMode.addEventListener('click', (event) => {
     const button = event.target.closest('[data-car]');
-    if (!button) return;
+    if (button) setCarMode(button.dataset.car === 'alugado');
+  });
 
-    const rented = button.dataset.car === 'alugado';
-    carMode.querySelectorAll('[data-car]').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
-    pricingGrid.querySelectorAll('.cost-rental').forEach((el) => { el.hidden = !rented; });
-    totals.forEach((el) => { el.textContent = rented ? el.dataset.alugado : el.dataset.proprio; });
+  // o Ctrl+F achou um valor do outro modo: troca para ele
+  pricingGrid.addEventListener('beforematch', (event) => {
+    setCarMode(Boolean(event.target.closest('.cost-rental')));
   });
 }
 
